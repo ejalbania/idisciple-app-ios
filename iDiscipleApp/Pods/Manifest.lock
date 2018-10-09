@@ -1,0 +1,20 @@
+PODS:
+  - PureLayout (3.1.2)
+  - SideMenu (5.0.1)
+
+DEPENDENCIES:
+  - PureLayout
+  - SideMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PureLayout
+    - SideMenu
+
+SPEC CHECKSUMS:
+  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
+  SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
+
+PODFILE CHECKSUM: 49d4dfec9ee3c06363a2696c0734a5a05bf6ae05
+
+COCOAPODS: 1.5.3

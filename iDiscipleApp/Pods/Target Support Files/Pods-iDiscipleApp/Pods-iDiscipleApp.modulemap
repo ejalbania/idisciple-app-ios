@@ -1,0 +1,6 @@
+framework module Pods_iDiscipleApp {
+  umbrella header "Pods-iDiscipleApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

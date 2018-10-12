@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
+        loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         
 //        for family in UIFont.familyNames.sorted() {
 //            let names = UIFont.fontNames(forFamilyName: family)
@@ -43,7 +44,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func showPasswordButton(sender: UIButton!){
@@ -59,6 +60,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func moveToForgotPassword(sender: UIButton!){
         let newViewController = ForgotPasswordViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @IBAction func logInButtonPressed(sender: UIButton!){
+        let newViewController = DashboardViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

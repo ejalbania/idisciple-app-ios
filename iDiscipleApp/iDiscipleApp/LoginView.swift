@@ -14,7 +14,8 @@ class LoginView: UIView {
     
     lazy var backgroundView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        //view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        view.backgroundColor = .white
         view.autoSetDimension(.height, toSize: screenSize.height)
         
         return view

@@ -41,40 +41,79 @@ class DashboardView: UIView {
 //        return view
 //    }()
     
-    lazy var myProfileButton: UIButton = {
-       let button = UIButton.newAutoLayout()
-        //button.backgroundColor = UIColor(red: 64/255.0, green: 142/255.0, blue: 192/255.0, alpha: 1.0)
+    lazy var myProfileButton: DashboardButton = {
+       let button = DashboardButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 64/255, green: 142/255, blue: 192/255, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        button.setTitle("My Profile", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
+        
+        button.dashButtonLabel.text = "MY PROFILE"
+        button.dashButtonImageView.image = UIImage(named: "dash_profile")
         
         return button
     }()
     
-    lazy var speakersButton: UIButton = {
-        let button = UIButton.newAutoLayout()
+    lazy var speakersButton: DashboardButton = {
+        let button = DashboardButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 230/255, green: 142/255, blue: 61/255, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        button.setTitle("Speakers", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
-        //button.setImage(UIImage(named:"icon_visible"), for: .normal)
-        //button.imageView?.contentMode = .scaleAspectFit
+
+        button.dashButtonLabel.text = "SPEAKERS"
+        button.dashButtonImageView.image = UIImage(named: "dash_speakers")
         
         return button
     }()
     
-    lazy var communityButton: UIButton = {
-        let button = UIButton.newAutoLayout()
+    lazy var communityButton: DashboardButton = {
+        let button = DashboardButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 205/255, green: 55/255, blue: 61/255, alpha: 1.0)
+    
+        button.dashButtonLabel.text = "COMMUNITY"
+        button.dashButtonImageView.image = UIImage(named: "dash_community")
+        button.dashButtonImageView.contentMode = .scaleAspectFill
+        
+        return button
+    }()
+    
+    lazy var scheduleButton: DashboardButton = {
+        let button = DashboardButton.newAutoLayout()
+        button.backgroundColor = UIColor(red: 205/255, green: 55/255, blue: 61/255, alpha: 1.0)
+        
+        button.dashButtonLabel.text = "SCHEDULE"
+        button.dashButtonImageView.image = UIImage(named: "dash_sched")
+        button.dashButtonImageView.contentMode = .scaleAspectFill
+        
+        return button
+    }()
+    
+    lazy var workshopButton: DashboardButton = {
+        let button = DashboardButton.newAutoLayout()
+        button.backgroundColor = UIColor(red: 118/255, green: 173/255, blue: 92/255, alpha: 1.0)
+        
+        button.dashButtonLabel.text = "WORKSHOP"
+        button.dashButtonImageView.image = UIImage(named: "dash_workshops")
+        button.dashButtonImageView.contentMode = .scaleAspectFill
+        
+        return button
+    }()
+    
+    lazy var resourcesButton: DashboardButton = {
+        let button = DashboardButton.newAutoLayout()
+        button.backgroundColor = UIColor(red: 64/255, green: 142/255, blue: 192/255, alpha: 1)
+        
+        button.dashButtonLabel.text = "RESOURCES"
+        button.dashButtonImageView.image = UIImage(named: "dash_resources")
+        
+        return button
+    }()
+    
+    lazy var directoryButton : UIButton = {
+        let button = UIButton.newAutoLayout()
+        button.backgroundColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
+        
+        button.setTitle("DIRECTORY", for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
+        
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
-        button.setTitle("Community", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
-        //button.setImage(UIImage(named:"icon_visible"), for: .normal)
-        //button.imageView?.contentMode = .scaleAspectFit
         
         return button
     }()
@@ -90,14 +129,6 @@ class DashboardView: UIView {
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
     
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -110,6 +141,11 @@ class DashboardView: UIView {
         mainView.addSubview(myProfileButton)
         mainView.addSubview(speakersButton)
         mainView.addSubview(communityButton)
+        mainView.addSubview(scheduleButton)
+        mainView.addSubview(workshopButton)
+        mainView.addSubview(resourcesButton)
+        
+        mainView.addSubview(directoryButton)
         
     }
     
@@ -135,26 +171,47 @@ class DashboardView: UIView {
             bannerView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             bannerView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
             
-            let dashButtonsArray = [myProfileButton, speakersButton, communityButton]
+            let dashButtonsArray = [myProfileButton, speakersButton, communityButton, scheduleButton, workshopButton, resourcesButton]
             
-            dashButtonsArray.first?.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 40, height: 90))
+            dashButtonsArray.first?.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 30, height: 90))
             dashButtonsArray.first?.autoPinEdge(.top, to: .bottom, of: bannerView, withOffset: 20)
             dashButtonsArray.first?.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
             
             var previousView: UIView?
+            
+            var count = 1
             for view in dashButtonsArray {
-                if let previousView = previousView {
-                    view.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 40, height: 90))
-                    view.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
-                    view.autoPinEdge(.top, to: .bottom, of: previousView, withOffset: 20)
+                
+                //right
+                if (count > 3){
+                    if(count == 4){
+                        view.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 30, height: 90))
+                        view.autoPinEdge(.top, to: .bottom, of: bannerView, withOffset: 20)
+                        view.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
+                    }else{
+                        if let previousView = previousView {
+                            view.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 30, height: 90))
+                            view.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
+                            view.autoPinEdge(.top, to: .bottom, of: previousView, withOffset: 20)
+                        }
+                    }
                 }
+                else{
+                    //left
+                    if let previousView = previousView {
+                        view.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 30, height: 90))
+                        view.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+                        view.autoPinEdge(.top, to: .bottom, of: previousView, withOffset: 20)
+                    }
+                }
+
                 previousView = view
+                count += 1
             }
-    
-//            myProfileButton.autoSetDimensions(to: CGSize(width: screenSize.width/2 - 40, height: 90))
-//
-//            myProfileButton.autoPinEdge(.top, to: .bottom, of: bannerView, withOffset: 20)
-//            myProfileButton.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+            
+            directoryButton.autoPinEdge(.top, to: .bottom, of: communityButton, withOffset: 30)
+            directoryButton.autoSetDimensions(to: CGSize(width: screenSize.width - 40, height: 50))
+            directoryButton.autoAlignAxis(toSuperviewAxis: .vertical)
             
             shouldSetupConstraints = false
         }

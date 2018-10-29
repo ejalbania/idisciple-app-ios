@@ -10,5 +10,7 @@ target 'iDiscipleApp' do
 
 pod 'SideMenu'
 pod 'PureLayout'
+pod 'SwiftyJSON', '~> 4.0'
+pod 'Alamofire', '~> 4.7'
 
 end

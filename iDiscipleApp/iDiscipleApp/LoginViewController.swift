@@ -7,6 +7,7 @@
 
 
 import UIKit
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
     
@@ -31,10 +32,9 @@ class LoginViewController: UIViewController {
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
         loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         
-//        for family in UIFont.familyNames.sorted() {
-//            let names = UIFont.fontNames(forFamilyName: family)
-//            print("Family: \(family) Font names: \(names)")
-//        }
+        loginView.emailTextfield.text = "noob@gmail.com"
+        loginView.passwordTextfield.text = "oE1N1R082OlzEvDB8vLN"
+        //showHideErrorLabel()
         
     }
     
@@ -64,7 +64,66 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(sender: UIButton!){
-        let newViewController = DashboardViewController()
+        
+        let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.login
+        let paramsDict = ["email": loginView.emailTextfield.text ?? "",
+                          "password" : loginView.passwordTextfield.text ?? ""] as [String : Any]
+        
+        //debugPrint("\(urlString)")
+        
+        ApiManager.sharedInstance.postDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
+            DispatchQueue.main.async {
+                
+                let jsonValue = JSON(json)
+                //debugPrint("\(jsonValue["data"])")
+                for (_, subJson) in jsonValue["data"] {
+                    //debugPrint("\(subJson["profile"])")
+                    debugPrint("\(subJson["user_account"]["user_id"])")
+                    
+                    if(subJson["user_account"]["first_time_user"].stringValue == "Yes"){
+                        let dateFormat = DateFormatter()
+                        dateFormat.dateFormat = "yyyy-MM-dd"
+                        let dataDate = dateFormat.date(from:(subJson["profile"]["birthdate"].stringValue))!
+                        //debugPrint("\(subJson["profile"]["birthdate"])")
+                        
+                        let user = User(userID: subJson["user_account"]["user_id"].int!,
+                                        userName: subJson["user_account"]["username"].string!,
+                                        firstName: subJson["profile"]["firstname"].string!,
+                                        middleName: subJson["profile"]["middlename"].string!,
+                                        lastName: subJson["profile"]["lastname"].string!,
+                                        nickName: subJson["profile"]["nickname"].string!,
+                                        mobileNo: subJson["profile"]["mobile_no"].string!,
+                                        birthDate: dataDate,
+                                        gender: subJson["profile"]["gender"].string!,
+                                        country: subJson["profile"]["country"].string!,
+                                        token: subJson["user_account"]["token"].string!)
+
+                        let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
+                        UserDefaults.standard.set(encodedData, forKey: "userProfile")
+
+                        self.moveToFirstTimeUser()
+                    }
+                }
+
+            }
+        }, onFailure: { error in
+            debugPrint("\(error)")
+        })
+        
+    }
+    
+    func showHideErrorLabel(){
+        
+        if(loginView.errorLabel.isHidden){
+            loginView.errorLabel.isHidden = false
+        }
+        else{
+            loginView.errorLabel.isHidden = true
+        }
+    }
+    
+    func moveToFirstTimeUser(){
+        let newViewController = FirstTimeUserViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

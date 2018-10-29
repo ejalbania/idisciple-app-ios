@@ -28,7 +28,7 @@ class DashboardView: UIView {
     
     lazy var bannerView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         view.autoSetDimension(.height, toSize: screenSize.height / 4)
         
         return view
@@ -107,6 +107,8 @@ class DashboardView: UIView {
     lazy var directoryButton : UIButton = {
         let button = UIButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
+        
+        button.setImage(UIImage(named: "dash_clipboard"), for: .normal)
         
         button.setTitle("DIRECTORY", for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -212,6 +214,8 @@ class DashboardView: UIView {
             directoryButton.autoPinEdge(.top, to: .bottom, of: communityButton, withOffset: 30)
             directoryButton.autoSetDimensions(to: CGSize(width: screenSize.width - 40, height: 50))
             directoryButton.autoAlignAxis(toSuperviewAxis: .vertical)
+            
+            directoryButton.imageView?.autoPinEdge(.right, to: .left, of: directoryButton.titleLabel ?? mainView, withOffset: -10)
             
             shouldSetupConstraints = false
         }

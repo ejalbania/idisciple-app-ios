@@ -1,15 +1,14 @@
 //
-//  LoginView.swift
+//  FirstTimeUserView.swift
 //  iDiscipleApp
 //
-//  Created by eboy on 27/09/2018.
+//  Created by Rick Roman on 28/10/2018.
 //
 
 import UIKit
-import PureLayout
 
-class LoginView: UIView {
-    
+class FirstTimeUserView: UIView {
+
     let mainLogoHeight = 100
     
     lazy var backgroundView: UIView = {
@@ -43,31 +42,20 @@ class LoginView: UIView {
         return view
     }()
     
-    lazy var welcomeLabel: UILabel = {
+    lazy var directionLabel: UILabel = {
         let label = UILabel.newAutoLayout()
-        label.text = "Welcome!"
+        label.text = "First! Let's make\n your password\n personal."
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 35)
-        label.numberOfLines = 1
-
-        return label
-    }()
-    
-    lazy var emailPasswordLabel: UILabel = {
-        let label = UILabel.newAutoLayout()
-        label.text = "Please enter your registered\n e-mail and password."
-        label.textColor = .gray
-        label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 20)
-        label.numberOfLines = 2
+        label.font = UIFont(name: "Montserrat-Bold", size: 30)
+        label.numberOfLines = 3
         
         return label
     }()
     
     lazy var errorLabel: UILabel = {
         let label = UILabel.newAutoLayout()
-        label.text = "INVALID E-MAIL OR PASSWORD!"
+        label.text = "PASSWORDS DO NOT MATCH."
         label.textColor = .red
         label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 14)
@@ -99,7 +87,7 @@ class LoginView: UIView {
         return textfield
     }()
     
-    lazy var passwordTextfield : UITextField = {
+    lazy var newPasswordTextfield : UITextField = {
         let textfield = UITextField.newAutoLayout()
         textfield.borderStyle = .bezel
         textfield.layer.borderColor = UIColor.lightGray.cgColor
@@ -109,7 +97,7 @@ class LoginView: UIView {
             NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 20)!
         ]
         
-        textfield.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
+        textfield.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: attributes)
         
         var imageView = UIImageView(frame: CGRect(x: 10, y: 3, width: 20, height: 20))
         imageView.image = UIImage(named: "icon_password")
@@ -120,35 +108,54 @@ class LoginView: UIView {
         
         textfield.leftView = leftView
         textfield.leftViewMode = UITextField.ViewMode.always
-
         
         return textfield
     }()
     
-    lazy var logInButton : UIButton = {
+    lazy var reEnterPasswordTextfield : UITextField = {
+        let textfield = UITextField.newAutoLayout()
+        textfield.borderStyle = .bezel
+        textfield.layer.borderColor = UIColor.lightGray.cgColor
+        textfield.isSecureTextEntry = true;
+        
+        let attributes = [
+            NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 20)!
+        ]
+        
+        textfield.attributedPlaceholder = NSAttributedString(string: "Re-Enter Password", attributes: attributes)
+        
+        var imageView = UIImageView(frame: CGRect(x: 10, y: 3, width: 20, height: 20))
+        imageView.image = UIImage(named: "icon_password")
+        imageView.contentMode = .scaleAspectFit
+        
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
+        leftView.addSubview(imageView)
+        
+        textfield.leftView = leftView
+        textfield.leftViewMode = UITextField.ViewMode.always
+        
+        return textfield
+    }()
+    
+    lazy var changeAndGoButton : UIButton = {
         let button = UIButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 118/255, green: 173/255, blue: 92/255, alpha: 1)
-        button.setTitle("LOG-IN", for: .normal)
+        button.setTitle("CHANGE PASSWORD & GO", for: .normal)
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
         
         return button
     }()
     
-    lazy var forgotPasswordButton : UIButton = {
-        let button = UIButton.newAutoLayout()
-        
-        let attributedString = NSMutableAttributedString(string: "Forgot Password?")
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
-        
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.titleLabel?.textColor = UIColor(red: 64/255, green: 142/255, blue: 192/255, alpha: 1)
-        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
+    lazy var showNewPasswordButton : UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        button.setImage(UIImage(named:"icon_visible"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         
         return button
     }()
     
-    lazy var showPasswordButton : UIButton = {
+    lazy var showReEnterPasswordButton : UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         button.setImage(UIImage(named:"icon_visible"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
@@ -176,19 +183,25 @@ class LoginView: UIView {
         mainView.addSubview(colorBar)
         mainView.addSubview(mainLogo)
         
-        mainView.addSubview(welcomeLabel)
-        mainView.addSubview(emailPasswordLabel)
+        mainView.addSubview(directionLabel)
+
         mainView.addSubview(errorLabel)
         
-        mainView.addSubview(emailTextfield)
-        mainView.addSubview(passwordTextfield)
-        mainView.addSubview(logInButton)
-        mainView.addSubview(forgotPasswordButton)
+        mainView.addSubview(newPasswordTextfield)
+        mainView.addSubview(reEnterPasswordTextfield)
+        mainView.addSubview(changeAndGoButton)
         
-        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
-        rightView.addSubview(showPasswordButton)
-        passwordTextfield.rightView = rightView
-        passwordTextfield.rightViewMode = UITextField.ViewMode.always
+        let newPasswordRightView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
+        newPasswordRightView.addSubview(showNewPasswordButton)
+        
+        let reEnterPasswordRightView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
+        reEnterPasswordRightView.addSubview(showReEnterPasswordButton)
+        
+        newPasswordTextfield.rightView = newPasswordRightView
+        newPasswordTextfield.rightViewMode = UITextField.ViewMode.always
+        
+        reEnterPasswordTextfield.rightView = reEnterPasswordRightView
+        reEnterPasswordTextfield.rightViewMode = UITextField.ViewMode.always
         
     }
     
@@ -200,9 +213,6 @@ class LoginView: UIView {
         if(shouldSetupConstraints) {
             
             // AutoLayout constraints
-            //backgroundView.autoCenterInSuperview()
-            
-//            backgroundView.autoPinEdge(toSuperviewEdge: .top)
             backgroundView.autoPinEdge(toSuperviewEdge: .left)
             backgroundView.autoPinEdge(toSuperviewEdge: .right)
             backgroundView.autoPinEdge(toSuperviewEdge: .bottom)
@@ -211,7 +221,7 @@ class LoginView: UIView {
             mainView.autoPinEdge(toSuperviewSafeArea: .left)
             mainView.autoPinEdge(toSuperviewSafeArea: .right)
             mainView.autoPinEdge(toSuperviewEdge: .bottom)
-
+            
             mainLogo.autoSetDimensions(to: CGSize(width: 100.0, height: 100.0))
             mainLogo.autoAlignAxis(toSuperviewAxis: .vertical)
             mainLogo.autoPinEdge(.bottom, to: .top, of: mainView, withOffset: CGFloat(mainLogoHeight + 50))
@@ -221,35 +231,28 @@ class LoginView: UIView {
             colorBar.autoPinEdge(toSuperviewEdge: .right, withInset: 0.0)
             colorBar.autoPinEdge(.top, to: .bottom, of: mainView, withOffset: -10.0)
             
-            welcomeLabel.autoPinEdge(.top, to: .bottom, of: mainLogo, withOffset: 30)
-            welcomeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+            directionLabel.autoPinEdge(.top, to: .bottom, of: mainLogo, withOffset: 30)
+            directionLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             
-            emailPasswordLabel.autoPinEdge(.top, to: .bottom, of: welcomeLabel, withOffset: 10)
-            emailPasswordLabel.autoSetDimensions(to: CGSize(width: screenSize.width - 40, height: 60))
-            emailPasswordLabel.autoAlignAxis(toSuperviewAxis: .vertical)
-            
-            errorLabel.autoPinEdge(.top, to: .bottom, of: emailPasswordLabel, withOffset: 0)
+            errorLabel.autoPinEdge(.top, to: .bottom, of: directionLabel, withOffset: 10)
             errorLabel.autoSetDimensions(to: CGSize(width: screenSize.width - 40, height: 40))
             errorLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             
-            emailTextfield.autoPinEdge(.top, to: .bottom, of: errorLabel, withOffset: 5)
-            emailTextfield.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 45))
-            emailTextfield.autoAlignAxis(toSuperviewAxis: .vertical)
+            newPasswordTextfield.autoPinEdge(.top, to: .bottom, of: errorLabel, withOffset: 15)
+            newPasswordTextfield.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 45))
+            newPasswordTextfield.autoAlignAxis(toSuperviewAxis: .vertical)
             
-            passwordTextfield.autoPinEdge(.top, to: .bottom, of: emailTextfield, withOffset: 15)
-            passwordTextfield.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 45))
-            passwordTextfield.autoAlignAxis(toSuperviewAxis: .vertical)
+            reEnterPasswordTextfield.autoPinEdge(.top, to: .bottom, of: newPasswordTextfield, withOffset: 15)
+            reEnterPasswordTextfield.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 45))
+            reEnterPasswordTextfield.autoAlignAxis(toSuperviewAxis: .vertical)
             
-            logInButton.autoPinEdge(.top, to: .bottom, of: passwordTextfield, withOffset: 40)
-            logInButton.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 50))
-            logInButton.autoAlignAxis(toSuperviewAxis: .vertical)
-            
-            forgotPasswordButton.autoPinEdge(.bottom, to: .top, of: colorBar, withOffset: -30)
-            forgotPasswordButton.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 40))
-            forgotPasswordButton.autoAlignAxis(toSuperviewAxis: .vertical)
+            changeAndGoButton.autoPinEdge(.top, to: .bottom, of: reEnterPasswordTextfield, withOffset: 40)
+            changeAndGoButton.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 50))
+            changeAndGoButton.autoAlignAxis(toSuperviewAxis: .vertical)
             
             shouldSetupConstraints = false
         }
         super.updateConstraints()
     }
+
 }

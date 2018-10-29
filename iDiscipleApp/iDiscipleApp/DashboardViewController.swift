@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class DashboardViewController: UIViewController {
     
@@ -25,10 +26,25 @@ class DashboardViewController: UIViewController {
         let menuBtnItem = UIBarButtonItem(image: UIImage(named: "dash_menu"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(menuButtonPressed))
         menuBtnItem.tintColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
         
+        
         self.navigationItem.leftBarButtonItem = menuBtnItem
         
+        let aboutBtnItem = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        aboutBtnItem.setBackgroundImage(UIImage(named: "dash_about"), for: .normal)
+        aboutBtnItem.imageView?.contentMode = .scaleAspectFit
+        aboutBtnItem.addTarget(self, action: #selector(aboutButtonPressed), for: .touchUpInside)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: aboutBtnItem)
+
         dashboadView = DashboardView(frame: CGRect.zero)
         self.view.addSubview(dashboadView)
+        
+        let slideMenuViewController = SlideMenuViewController()
+        
+        let menuLeftViewController = UISideMenuNavigationController(rootViewController: slideMenuViewController)
+        SideMenuManager.default.menuLeftNavigationController = menuLeftViewController
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuAnimationBackgroundColor = .clear
         
         // AutoLayout
         dashboadView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
@@ -46,6 +62,12 @@ class DashboardViewController: UIViewController {
     @objc func menuButtonPressed() {
         
         debugPrint("OPEN SLIDE MENU")
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
+    @objc func aboutButtonPressed() {
+        
+        debugPrint("OPEN About")
     }
 
 }

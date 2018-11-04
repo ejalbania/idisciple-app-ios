@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class FirstTimeUserViewController: UIViewController {
 
-        var firstTimeUserView: FirstTimeUserView!
+    var firstTimeUserView: FirstTimeUserView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,40 @@ class FirstTimeUserViewController: UIViewController {
     }
     
     @IBAction func changeAndGoButtonPressed(sender: UIButton!){
+        
+        var userID: Int = 0
+        if let data = UserDefaults.standard.data(forKey: "userProfile"),
+            let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User{
+            userID = user.userID
+        } else {
+            print("There is an issue")
+        }
+        
+        let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.firstLogPasswordUpdate + "/\(userID)"
+        let paramsDict = ["new_password": firstTimeUserView.newPasswordTextfield.text ?? ""] as [String : Any]
+        
+        self.appHelper.alert(message: "Please wait...")
+        
+        debugPrint(urlString)
+        ApiManager.sharedInstance.putDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
+            DispatchQueue.main.async {
+
+                self.appHelper.dismissAlert()
+
+                let jsonValue = JSON(json)
+                debugPrint("\(jsonValue["data"])")
+
+//                for (_, subJson) in jsonValue["data"] {
+//
+//                }
+
+            }
+        }, onFailure: { error in
+            debugPrint("\(error)")
+        })
+    }
+    
+    func moveToDashboard(){
         let newViewController = DashboardViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }

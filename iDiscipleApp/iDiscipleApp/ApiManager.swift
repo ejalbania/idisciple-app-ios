@@ -70,4 +70,32 @@ class ApiManager{
                 }
         }
     }
+    
+    //PUT
+    func putDataWithRequest(requestUrl: String, params: Dictionary<String, Any>, onSuccess: @escaping(Dictionary<String, Any>) -> Void,  onFailure: @escaping(String) -> Void){
+        
+        Alamofire.request(requestUrl, method: .put, parameters:params, encoding: URLEncoding.default, headers: nil)
+            .validate()
+            .responseJSON{ response in
+                
+                switch response.result {
+                case .success(let data):
+                    
+                    let checkData = JSON(data)
+                    if checkData["status"].stringValue == self.responseSuccess{
+                        onSuccess(data as! Dictionary)
+                    }else{
+                        debugPrint("ErrorResponse from WebService")
+                        onFailure(checkData["responseMessage"].stringValue)
+                    }
+                case .failure(let error):
+                    debugPrint("Request Error")
+                    //print("Request failed with error: \(error.localizedDescription)")
+                    onFailure(error.localizedDescription)
+                }
+        }
+    }
+
+    
+    
 }

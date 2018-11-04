@@ -51,7 +51,7 @@ class User: NSObject, NSCoding{
     
     required convenience init(coder aDecoder: NSCoder) {
         
-        let userID = aDecoder.decodeObject(forKey: "userID") as! Int
+        let userID = aDecoder.decodeInteger(forKey: "userID") 
         let userName = aDecoder.decodeObject(forKey: "userName") as! String
         
         let firstName = aDecoder.decodeObject(forKey: "firstName") as! String

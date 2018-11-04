@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 
+
 class LoginViewController: UIViewController {
     
     var loginView: LoginView!
@@ -27,6 +28,8 @@ class LoginViewController: UIViewController {
         
         loginView.colorBar.image = UIImage(named: "iDisc_colorBar")
         loginView.mainLogo.image  = UIImage(named: "iDisc_logo")
+        
+        loginView.errorLabel.isHidden = true
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
@@ -70,15 +73,18 @@ class LoginViewController: UIViewController {
                           "password" : loginView.passwordTextfield.text ?? ""] as [String : Any]
         
         //debugPrint("\(urlString)")
+        self.appHelper.alert(message: "Please wait...")
         
         ApiManager.sharedInstance.postDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
             DispatchQueue.main.async {
+                
+                self.appHelper.dismissAlert()
                 
                 let jsonValue = JSON(json)
                 //debugPrint("\(jsonValue["data"])")
                 for (_, subJson) in jsonValue["data"] {
                     //debugPrint("\(subJson["profile"])")
-                    debugPrint("\(subJson["user_account"]["user_id"])")
+                    debugPrint("\(subJson["user_account"]["first_time_user"])")
                     
                     if(subJson["user_account"]["first_time_user"].stringValue == "Yes"){
                         let dateFormat = DateFormatter()
@@ -103,11 +109,17 @@ class LoginViewController: UIViewController {
 
                         self.moveToFirstTimeUser()
                     }
+                    else {
+                        //Not first time User
+                        self.moveToDashboard()
+                    }
                 }
 
             }
         }, onFailure: { error in
             debugPrint("\(error)")
+            self.appHelper.dismissAlert()
+            self.loginView.errorLabel.isHidden = false
         })
         
     }
@@ -124,6 +136,11 @@ class LoginViewController: UIViewController {
     
     func moveToFirstTimeUser(){
         let newViewController = FirstTimeUserViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    func moveToDashboard(){
+        let newViewController = DashboardViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

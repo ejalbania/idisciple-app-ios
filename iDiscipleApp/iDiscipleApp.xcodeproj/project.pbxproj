@@ -13,6 +13,8 @@
 		1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E72185FC8F000DF8B7 /* FirstTimeUserView.swift */; };
 		1DB909EA2186140F000DF8B7 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E92186140F000DF8B7 /* ApiManager.swift */; };
 		1DB909EC21873724000DF8B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909EB21873724000DF8B7 /* User.swift */; };
+		1DB909EE218C66A7000DF8B7 /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909ED218C66A7000DF8B7 /* AppHelper.swift */; };
+		1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */; };
 		73012A53215C819000A90BAB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73012A52215C819000A90BAB /* LoginViewController.swift */; };
 		73012A55215C81B300A90BAB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73012A54215C81B300A90BAB /* LoginView.swift */; };
 		732146A7217437A000C09E8E /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732146A6217437A000C09E8E /* DashboardButton.swift */; };
@@ -41,6 +43,8 @@
 		1DB909E72185FC8F000DF8B7 /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
 		1DB909E92186140F000DF8B7 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		1DB909EB21873724000DF8B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1DB909ED218C66A7000DF8B7 /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
+		1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppHelper.swift"; sourceTree = "<group>"; };
 		5EA4A24F6EC0E790B38AE5AB /* Pods-iDiscipleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDiscipleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iDiscipleApp/Pods-iDiscipleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6343CB11802AB33AB5355D1D /* Pods_iDiscipleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDiscipleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73012A52215C819000A90BAB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				733CA239214758880045A44A /* HomeView.swift */,
 				733CA237214758700045A44A /* HomeViewController.swift */,
 				733CA227214757AA0045A44A /* ViewController.swift */,
+				1DB909ED218C66A7000DF8B7 /* AppHelper.swift */,
+				1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */,
 				1DB909EB21873724000DF8B7 /* User.swift */,
 				73FA95A0216348D200D46F6B /* Fonts */,
 				733CA229214757AA0045A44A /* Main.storyboard */,
@@ -275,11 +281,13 @@
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
 				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
 				1DB909EC21873724000DF8B7 /* User.swift in Sources */,
+				1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */,
 				732146A7217437A000C09E8E /* DashboardButton.swift in Sources */,
 				1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */,
 				733CA23A214758880045A44A /* HomeView.swift in Sources */,
 				733CA226214757AA0045A44A /* AppDelegate.swift in Sources */,
 				73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */,
+				1DB909EE218C66A7000DF8B7 /* AppHelper.swift in Sources */,
 				73012A53215C819000A90BAB /* LoginViewController.swift in Sources */,
 				733CA238214758700045A44A /* HomeViewController.swift in Sources */,
 				1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */,

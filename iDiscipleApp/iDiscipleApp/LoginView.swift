@@ -14,7 +14,8 @@ class LoginView: UIView {
     
     lazy var backgroundView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        //view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        view.backgroundColor = .white
         view.autoSetDimension(.height, toSize: screenSize.height)
         
         return view
@@ -66,10 +67,10 @@ class LoginView: UIView {
     
     lazy var errorLabel: UILabel = {
         let label = UILabel.newAutoLayout()
-        label.text = "Invalid E-mail or Password!"
+        label.text = "INVALID E-MAIL OR PASSWORD!"
         label.textColor = .red
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 16)
+        label.font = UIFont(name: "Montserrat-Bold", size: 14)
         label.numberOfLines = 1
         
         return label

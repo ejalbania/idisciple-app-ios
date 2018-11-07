@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */; };
+		1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */; };
+		1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */; };
+		1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E72185FC8F000DF8B7 /* FirstTimeUserView.swift */; };
+		1DB909EA2186140F000DF8B7 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E92186140F000DF8B7 /* ApiManager.swift */; };
+		1DB909EC21873724000DF8B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909EB21873724000DF8B7 /* User.swift */; };
+		1DB909EE218C66A7000DF8B7 /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909ED218C66A7000DF8B7 /* AppHelper.swift */; };
+		1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */; };
 		73012A53215C819000A90BAB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73012A52215C819000A90BAB /* LoginViewController.swift */; };
 		73012A55215C81B300A90BAB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73012A54215C81B300A90BAB /* LoginView.swift */; };
+		732146A7217437A000C09E8E /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732146A6217437A000C09E8E /* DashboardButton.swift */; };
 		733CA226214757AA0045A44A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA225214757AA0045A44A /* AppDelegate.swift */; };
 		733CA228214757AA0045A44A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA227214757AA0045A44A /* ViewController.swift */; };
 		733CA22B214757AA0045A44A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 733CA229214757AA0045A44A /* Main.storyboard */; };
@@ -22,14 +31,25 @@
 		73FA95AE216B40EC00D46F6B /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FA95AB216B40EC00D46F6B /* Montserrat-Black.ttf */; };
 		73FA95AF216B40EC00D46F6B /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FA95AC216B40EC00D46F6B /* Montserrat-Bold.ttf */; };
 		73FA95B0216B40EC00D46F6B /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FA95AD216B40EC00D46F6B /* Montserrat-Regular.ttf */; };
+		73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA95B5216EDB1000D46F6B /* DashboardView.swift */; };
+		73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */; };
 		CD9348F88D123BB8CF2AC825 /* Pods_iDiscipleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6343CB11802AB33AB5355D1D /* Pods_iDiscipleApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuView.swift; sourceTree = "<group>"; };
+		1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
+		1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserViewController.swift; sourceTree = "<group>"; };
+		1DB909E72185FC8F000DF8B7 /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
+		1DB909E92186140F000DF8B7 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		1DB909EB21873724000DF8B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1DB909ED218C66A7000DF8B7 /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
+		1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppHelper.swift"; sourceTree = "<group>"; };
 		5EA4A24F6EC0E790B38AE5AB /* Pods-iDiscipleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDiscipleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iDiscipleApp/Pods-iDiscipleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6343CB11802AB33AB5355D1D /* Pods_iDiscipleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDiscipleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73012A52215C819000A90BAB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		73012A54215C81B300A90BAB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		732146A6217437A000C09E8E /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		733CA222214757AA0045A44A /* iDiscipleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDiscipleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		733CA225214757AA0045A44A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		733CA227214757AA0045A44A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +65,8 @@
 		73FA95AB216B40EC00D46F6B /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.ttf"; path = "iDiscipleApp/Fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		73FA95AC216B40EC00D46F6B /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "iDiscipleApp/Fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		73FA95AD216B40EC00D46F6B /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "iDiscipleApp/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		73FA95B5216EDB1000D46F6B /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8A677C7C27A2039E276CE408 /* Pods-iDiscipleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDiscipleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDiscipleApp/Pods-iDiscipleApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,13 +107,24 @@
 			isa = PBXGroup;
 			children = (
 				733CA225214757AA0045A44A /* AppDelegate.swift */,
+				1DB909E92186140F000DF8B7 /* ApiManager.swift */,
 				73012A54215C81B300A90BAB /* LoginView.swift */,
 				73012A52215C819000A90BAB /* LoginViewController.swift */,
+				1DB909E72185FC8F000DF8B7 /* FirstTimeUserView.swift */,
+				1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */,
 				73FA95A7216B0AC800D46F6B /* ForgotPasswordView.swift */,
 				73FA95A9216B0ADF00D46F6B /* ForgotPasswordViewController.swift */,
+				732146A6217437A000C09E8E /* DashboardButton.swift */,
+				73FA95B5216EDB1000D46F6B /* DashboardView.swift */,
+				73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */,
+				1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */,
+				1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */,
 				733CA239214758880045A44A /* HomeView.swift */,
 				733CA237214758700045A44A /* HomeViewController.swift */,
 				733CA227214757AA0045A44A /* ViewController.swift */,
+				1DB909ED218C66A7000DF8B7 /* AppHelper.swift */,
+				1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */,
+				1DB909EB21873724000DF8B7 /* User.swift */,
 				73FA95A0216348D200D46F6B /* Fonts */,
 				733CA229214757AA0045A44A /* Main.storyboard */,
 				733CA22C214757AC0045A44A /* Assets.xcassets */,
@@ -198,13 +231,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iDiscipleApp/Pods-iDiscipleApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -236,14 +273,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DB909EA2186140F000DF8B7 /* ApiManager.swift in Sources */,
 				73FA95AA216B0ADF00D46F6B /* ForgotPasswordViewController.swift in Sources */,
+				1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */,
 				73012A55215C81B300A90BAB /* LoginView.swift in Sources */,
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
+				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
+				1DB909EC21873724000DF8B7 /* User.swift in Sources */,
+				1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */,
+				732146A7217437A000C09E8E /* DashboardButton.swift in Sources */,
+				1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */,
 				733CA23A214758880045A44A /* HomeView.swift in Sources */,
 				733CA226214757AA0045A44A /* AppDelegate.swift in Sources */,
+				73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */,
+				1DB909EE218C66A7000DF8B7 /* AppHelper.swift in Sources */,
 				73012A53215C819000A90BAB /* LoginViewController.swift in Sources */,
 				733CA238214758700045A44A /* HomeViewController.swift in Sources */,
+				1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */,
+				1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5LHRGK662A;
+				DEVELOPMENT_TEAM = M73P4V89AU;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -408,7 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5LHRGK662A;
+				DEVELOPMENT_TEAM = M73P4V89AU;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

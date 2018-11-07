@@ -21,7 +21,7 @@ class User: NSObject, NSCoding{
     private(set) var gender : String
     private(set) var country : String
     
-    private(set) var token: String
+    var token: String
     
     public init(userID: Int,
                 userName: String,

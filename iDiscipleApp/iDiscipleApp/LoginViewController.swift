@@ -29,15 +29,14 @@ class LoginViewController: UIViewController {
         loginView.colorBar.image = UIImage(named: "iDisc_colorBar")
         loginView.mainLogo.image  = UIImage(named: "iDisc_logo")
         
-        loginView.errorLabel.isHidden = true
+        showHideErrorLabel()
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
         loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         
-        loginView.emailTextfield.text = "noob@gmail.com"
-        loginView.passwordTextfield.text = "oE1N1R082OlzEvDB8vLN"
-        //showHideErrorLabel()
+        loginView.emailTextfield.text = "noob8@gmail.com"
+        loginView.passwordTextfield.text = "boxDokQ0JhvWJ4811ENJ"
         
     }
     
@@ -66,6 +65,11 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
+    //test
+    @IBAction func toFirstTimeUserTest(sender: UIButton!){
+        self.moveToFirstTimeUser()
+    }
+    
     @IBAction func logInButtonPressed(sender: UIButton!){
         
         let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.login
@@ -79,38 +83,24 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 self.appHelper.dismissAlert()
+                self.loginView.errorLabel.isHidden = true
                 
                 let jsonValue = JSON(json)
                 //debugPrint("\(jsonValue["data"])")
+                
                 for (_, subJson) in jsonValue["data"] {
                     //debugPrint("\(subJson["profile"])")
                     debugPrint("\(subJson["user_account"]["first_time_user"])")
                     
                     if(subJson["user_account"]["first_time_user"].stringValue == "Yes"){
-                        let dateFormat = DateFormatter()
-                        dateFormat.dateFormat = "yyyy-MM-dd"
-                        let dataDate = dateFormat.date(from:(subJson["profile"]["birthdate"].stringValue))!
-                        //debugPrint("\(subJson["profile"]["birthdate"])")
-                        
-                        let user = User(userID: subJson["user_account"]["user_id"].int!,
-                                        userName: subJson["user_account"]["username"].string!,
-                                        firstName: subJson["profile"]["firstname"].string!,
-                                        middleName: subJson["profile"]["middlename"].string!,
-                                        lastName: subJson["profile"]["lastname"].string!,
-                                        nickName: subJson["profile"]["nickname"].string!,
-                                        mobileNo: subJson["profile"]["mobile_no"].string!,
-                                        birthDate: dataDate,
-                                        gender: subJson["profile"]["gender"].string!,
-                                        country: subJson["profile"]["country"].string!,
-                                        token: subJson["user_account"]["token"].string!)
-
-                        let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
-                        UserDefaults.standard.set(encodedData, forKey: "userProfile")
-
+                        //First time User
+                        self.createUserProfile(jsonValue: jsonValue)
                         self.moveToFirstTimeUser()
                     }
                     else {
                         //Not first time User
+                        debugPrint("\(subJson["user_account"]["token"])")
+                        self.createUserProfile(jsonValue: jsonValue)
                         self.moveToDashboard()
                     }
                 }
@@ -119,9 +109,8 @@ class LoginViewController: UIViewController {
         }, onFailure: { error in
             debugPrint("\(error)")
             self.appHelper.dismissAlert()
-            self.loginView.errorLabel.isHidden = false
+            self.showHideErrorLabel()
         })
-        
     }
     
     func showHideErrorLabel(){
@@ -134,6 +123,31 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func createUserProfile(jsonValue:JSON){
+        
+        for (_, subJson) in jsonValue["data"] {
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "yyyy-MM-dd"
+            let dataDate = dateFormat.date(from:(subJson["profile"]["birthdate"].stringValue))!
+            //debugPrint("\(subJson["profile"]["birthdate"])")
+            
+            let user = User(userID: subJson["user_account"]["user_id"].int!,
+                            userName: subJson["user_account"]["username"].string!,
+                            firstName: subJson["profile"]["firstname"].string!,
+                            middleName: subJson["profile"]["middlename"].string!,
+                            lastName: subJson["profile"]["lastname"].string!,
+                            nickName: subJson["profile"]["nickname"].string!,
+                            mobileNo: subJson["profile"]["mobile_no"].string!,
+                            birthDate: dataDate,
+                            gender: subJson["profile"]["gender"].string!,
+                            country: subJson["profile"]["country"].string!,
+                            token: subJson["user_account"]["token"].string!)
+            
+            let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
+            UserDefaults.standard.set(encodedData, forKey: "userProfile")
+        }
+    }
+    
     func moveToFirstTimeUser(){
         let newViewController = FirstTimeUserViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
@@ -141,7 +155,7 @@ class LoginViewController: UIViewController {
     
     func moveToDashboard(){
         let newViewController = DashboardViewController()
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
 }

@@ -48,6 +48,14 @@ class DashboardViewController: UIViewController {
         
         // AutoLayout
         dashboadView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
+        
+        //Test Check for loaded Api_Token
+        if let data = UserDefaults.standard.data(forKey: "userProfile"),
+            let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User{
+            debugPrint("Loaded User Token: \(user.token)")
+        } else {
+            print("There is an issue")
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -32,6 +32,8 @@ class FirstTimeUserViewController: UIViewController {
         
         firstTimeUserView.changeAndGoButton.addTarget(self, action: #selector(changeAndGoButtonPressed), for: .touchUpInside)
         
+        firstTimeUserView.errorLabel.isHidden = true
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,15 +69,19 @@ class FirstTimeUserViewController: UIViewController {
     
     @IBAction func changeAndGoButtonPressed(sender: UIButton!){
         
-        var userID: Int = 0
-        if let data = UserDefaults.standard.data(forKey: "userProfile"),
-            let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User{
-            userID = user.userID
-        } else {
-            print("There is an issue")
-        }
+//        var userID: Int = 0
+//        //retrieve
+//        if let data = UserDefaults.standard.data(forKey: "userProfile"),
+//            let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User{
+//            userID = user.userID
+//        } else {
+//            print("There is an issue")
+//        }
         
-        let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.firstLogPasswordUpdate + "/\(userID)"
+        let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
+        let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
+        
+        let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.firstLogPasswordUpdate + "/\(loadedUser.userID)"
         let paramsDict = ["new_password": firstTimeUserView.newPasswordTextfield.text ?? ""] as [String : Any]
         
         self.appHelper.alert(message: "Please wait...")
@@ -87,12 +93,15 @@ class FirstTimeUserViewController: UIViewController {
                 self.appHelper.dismissAlert()
 
                 let jsonValue = JSON(json)
-                debugPrint("\(jsonValue["data"])")
-
-//                for (_, subJson) in jsonValue["data"] {
-//
-//                }
-
+                debugPrint("\(jsonValue["data"]["api_token"])")
+                
+                //Save new api token
+                loadedUser.token = jsonValue["data"]["api_token"].string!
+                //Update user data
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: loadedUser)
+                UserDefaults.standard.set(encodedData, forKey: "userProfile")
+                
+                self.moveToDashboard()
             }
         }, onFailure: { error in
             debugPrint("\(error)")
@@ -101,7 +110,7 @@ class FirstTimeUserViewController: UIViewController {
     
     func moveToDashboard(){
         let newViewController = DashboardViewController()
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        self.navigationController?.pushViewController(newViewController, animated: false)
     }
 
 }

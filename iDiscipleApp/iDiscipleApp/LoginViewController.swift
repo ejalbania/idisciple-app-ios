@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
-        loginView.logInButton.addTarget(self, action: #selector(toFirstTimeUserTest), for: .touchUpInside)
+        loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         
         loginView.emailTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
         loginView.passwordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)

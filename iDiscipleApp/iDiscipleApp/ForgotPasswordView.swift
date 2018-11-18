@@ -129,7 +129,8 @@ class ForgotPasswordView: UIView {
         let button = UIButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 69/255, green: 145/255, blue: 195/255, alpha: 1)
         button.setTitle("E-mail Reset Link", for: .normal)
-        button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 1), for: .highlighted)
         button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
         
         return button

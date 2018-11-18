@@ -33,10 +33,17 @@ class LoginViewController: UIViewController {
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
-        loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
+        loginView.logInButton.addTarget(self, action: #selector(toFirstTimeUserTest), for: .touchUpInside)
         
-        loginView.emailTextfield.text = "noob8@gmail.com"
-        loginView.passwordTextfield.text = "boxDokQ0JhvWJ4811ENJ"
+        loginView.emailTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        loginView.passwordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        
+        loginView.logInButton.isUserInteractionEnabled = false
+        loginView.logInButton.alpha = 0.5
+        
+        //Test Inputa
+        //loginView.emailTextfield.text = "noob@gmail.com"
+        //loginView.passwordTextfield.text = "4IMt7l3Ak7TH9zFiWLe4"
         
     }
     
@@ -47,6 +54,16 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    @objc func textfieldDidChange(textField: UITextField) {
+        loginView.logInButton.isUserInteractionEnabled = !loginView.emailTextfield.text!.isEmpty && !loginView.passwordTextfield.text!.isEmpty
+        
+        if(loginView.logInButton.isUserInteractionEnabled){
+            loginView.logInButton.alpha = 1
+        }else{
+            loginView.logInButton.alpha = 0.5
+        }
     }
     
     @IBAction func showPasswordButton(sender: UIButton!){
@@ -72,12 +89,15 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInButtonPressed(sender: UIButton!){
         
+        loginView.errorLabel.isHidden = true
+        //showHideErrorLabel()
+        
         let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.login
         let paramsDict = ["email": loginView.emailTextfield.text ?? "",
                           "password" : loginView.passwordTextfield.text ?? ""] as [String : Any]
         
         //debugPrint("\(urlString)")
-        self.appHelper.alert(message: "Please wait...")
+        self.appHelper.alert(message: "Logging in...")
         
         ApiManager.sharedInstance.postDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
             DispatchQueue.main.async {
@@ -158,4 +178,5 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
+
 }

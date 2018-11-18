@@ -129,7 +129,9 @@ class LoginView: UIView {
         let button = UIButton.newAutoLayout()
         button.backgroundColor = UIColor(red: 118/255, green: 173/255, blue: 92/255, alpha: 1)
         button.setTitle("LOG-IN", for: .normal)
-        button.titleLabel?.textColor = .white
+        //button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 1), for: .highlighted)
         button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 20)
         
         return button

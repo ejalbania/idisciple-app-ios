@@ -55,7 +55,8 @@ class FirstTimeUserView: UIView {
     
     lazy var errorLabel: UILabel = {
         let label = UILabel.newAutoLayout()
-        label.text = "PASSWORDS DO NOT MATCH."
+        //label.text = "PASSWORDS DO NOT MATCH."
+        label.text = "Minimum password input is 8 characters."
         label.textColor = .red
         label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 14)

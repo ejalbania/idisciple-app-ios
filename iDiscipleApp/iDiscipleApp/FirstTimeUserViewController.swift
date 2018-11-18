@@ -32,7 +32,13 @@ class FirstTimeUserViewController: UIViewController {
         
         firstTimeUserView.changeAndGoButton.addTarget(self, action: #selector(changeAndGoButtonPressed), for: .touchUpInside)
         
-        firstTimeUserView.errorLabel.isHidden = true
+        //firstTimeUserView.errorLabel.isHidden = true
+        
+        firstTimeUserView.newPasswordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        firstTimeUserView.reEnterPasswordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        
+        firstTimeUserView.changeAndGoButton.isUserInteractionEnabled = false
+        firstTimeUserView.changeAndGoButton.alpha = 0.5
         
     }
     
@@ -43,6 +49,17 @@ class FirstTimeUserViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    @objc func textfieldDidChange(textField: UITextField) {
+        firstTimeUserView.changeAndGoButton.isUserInteractionEnabled = !firstTimeUserView.newPasswordTextfield.text!.isEmpty && !firstTimeUserView.reEnterPasswordTextfield.text!.isEmpty && firstTimeUserView.newPasswordTextfield.text?.count ?? 0 > 7 && firstTimeUserView.reEnterPasswordTextfield.text?.count ?? 0 > 7
+        
+        if(firstTimeUserView.changeAndGoButton.isUserInteractionEnabled){
+            firstTimeUserView.changeAndGoButton.alpha = 1
+        }else{
+            firstTimeUserView.changeAndGoButton.alpha = 0.5
+            firstTimeUserView.errorLabel.text = "Minimum password input is 8 characters."
+        }
     }
     
     @IBAction func showNewPasswordButton(sender: UIButton!){
@@ -78,34 +95,42 @@ class FirstTimeUserViewController: UIViewController {
 //            print("There is an issue")
 //        }
         
-        let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
-        let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
-        
-        let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.firstLogPasswordUpdate + "/\(loadedUser.userID)"
-        let paramsDict = ["new_password": firstTimeUserView.newPasswordTextfield.text ?? ""] as [String : Any]
-        
-        self.appHelper.alert(message: "Please wait...")
-        
-        debugPrint(urlString)
-        ApiManager.sharedInstance.putDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
-            DispatchQueue.main.async {
-
-                self.appHelper.dismissAlert()
-
-                let jsonValue = JSON(json)
-                debugPrint("\(jsonValue["data"]["api_token"])")
-                
-                //Save new api token
-                loadedUser.token = jsonValue["data"]["api_token"].string!
-                //Update user data
-                let encodedData = NSKeyedArchiver.archivedData(withRootObject: loadedUser)
-                UserDefaults.standard.set(encodedData, forKey: "userProfile")
-                
-                self.moveToDashboard()
-            }
-        }, onFailure: { error in
-            debugPrint("\(error)")
-        })
+        if(firstTimeUserView.newPasswordTextfield.text! != firstTimeUserView.reEnterPasswordTextfield.text!){
+            firstTimeUserView.errorLabel.isHidden = false
+            firstTimeUserView.errorLabel.text = "Passwords do not match."
+        } else{
+            //Textfield input is equal
+            firstTimeUserView.errorLabel.isHidden = false
+            
+            let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
+            let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
+            
+            let urlString = ApiManager.sharedInstance.baseURL + ApiManager.sharedInstance.firstLogPasswordUpdate + "/\(loadedUser.userID)"
+            let paramsDict = ["new_password": firstTimeUserView.newPasswordTextfield.text ?? ""] as [String : Any]
+            
+            self.appHelper.alert(message: "Please wait...")
+            
+            debugPrint(urlString)
+            ApiManager.sharedInstance.putDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
+                DispatchQueue.main.async {
+                    
+                    self.appHelper.dismissAlert()
+                    
+                    let jsonValue = JSON(json)
+                    debugPrint("\(jsonValue["data"]["api_token"])")
+                    
+                    //Save new api token
+                    loadedUser.token = jsonValue["data"]["api_token"].string!
+                    //Update user data
+                    let encodedData = NSKeyedArchiver.archivedData(withRootObject: loadedUser)
+                    UserDefaults.standard.set(encodedData, forKey: "userProfile")
+                    
+                    self.moveToDashboard()
+                }
+            }, onFailure: { error in
+                debugPrint("\(error)")
+            })
+        }
     }
     
     func moveToDashboard(){

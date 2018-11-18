@@ -151,6 +151,7 @@ class LoginView: UIView {
     lazy var showPasswordButton : UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         button.setImage(UIImage(named:"icon_visible"), for: .normal)
+        button.setImage(UIImage(named: ""), for: .selected)
         button.imageView?.contentMode = .scaleAspectFit
         
         return button

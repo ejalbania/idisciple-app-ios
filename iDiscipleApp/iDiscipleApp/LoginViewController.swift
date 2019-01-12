@@ -33,7 +33,10 @@ class LoginViewController: UIViewController {
         
         loginView.showPasswordButton.addTarget(self, action: #selector(showPasswordButton), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(moveToForgotPassword), for: .touchUpInside)
-        loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
+        
+        //set to logInButtonPressed for actual
+        //toMainTabViewTest for testing
+        loginView.logInButton.addTarget(self, action: #selector(toMainTabViewTest), for: .touchUpInside)
         
         loginView.emailTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
         loginView.passwordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
@@ -41,7 +44,7 @@ class LoginViewController: UIViewController {
         loginView.logInButton.isUserInteractionEnabled = false
         loginView.logInButton.alpha = 0.5
         
-        //Test Inputa
+        //Test Input
         //loginView.emailTextfield.text = "noob@gmail.com"
         //loginView.passwordTextfield.text = "4IMt7l3Ak7TH9zFiWLe4"
         
@@ -85,6 +88,10 @@ class LoginViewController: UIViewController {
     //test
     @IBAction func toFirstTimeUserTest(sender: UIButton!){
         self.moveToFirstTimeUser()
+    }
+    
+    @IBAction func toMainTabViewTest(sender: UIButton!){
+        self.moveToMainTabView()
     }
     
     @IBAction func logInButtonPressed(sender: UIButton!){
@@ -175,6 +182,11 @@ class LoginViewController: UIViewController {
     
     func moveToDashboard(){
         let newViewController = DashboardViewController()
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
+    
+    func moveToMainTabView(){
+        let newViewController = MainTabBarController()
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     

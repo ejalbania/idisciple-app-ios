@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D33CC6C21E8DD3D00CF2A8E /* SpeakersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */; };
+		1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */; };
+		1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */; };
 		1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */; };
 		1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */; };
 		1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersView.swift; sourceTree = "<group>"; };
+		1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersViewController.swift; sourceTree = "<group>"; };
+		1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuView.swift; sourceTree = "<group>"; };
 		1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
 		1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +120,9 @@
 				1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */,
 				73FA95A7216B0AC800D46F6B /* ForgotPasswordView.swift */,
 				73FA95A9216B0ADF00D46F6B /* ForgotPasswordViewController.swift */,
+				1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */,
+				1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */,
+				1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */,
 				732146A6217437A000C09E8E /* DashboardButton.swift */,
 				73FA95B5216EDB1000D46F6B /* DashboardView.swift */,
 				73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */,
@@ -275,6 +284,8 @@
 			files = (
 				1DB909EA2186140F000DF8B7 /* ApiManager.swift in Sources */,
 				73FA95AA216B0ADF00D46F6B /* ForgotPasswordViewController.swift in Sources */,
+				1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */,
+				1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */,
 				1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */,
 				73012A55215C81B300A90BAB /* LoginView.swift in Sources */,
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
@@ -284,6 +295,7 @@
 				1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */,
 				732146A7217437A000C09E8E /* DashboardButton.swift in Sources */,
 				1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */,
+				1D33CC6C21E8DD3D00CF2A8E /* SpeakersView.swift in Sources */,
 				733CA23A214758880045A44A /* HomeView.swift in Sources */,
 				733CA226214757AA0045A44A /* AppDelegate.swift in Sources */,
 				73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */,
@@ -437,7 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M73P4V89AU;
+				DEVELOPMENT_TEAM = 5LHRGK662A;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,7 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M73P4V89AU;
+				DEVELOPMENT_TEAM = 5LHRGK662A;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

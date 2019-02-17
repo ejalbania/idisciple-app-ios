@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		1D33CC6C21E8DD3D00CF2A8E /* SpeakersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */; };
 		1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */; };
+		1D33CC7021EF635D00CF2A8E /* SpeakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC6F21EF635D00CF2A8E /* SpeakersCollectionViewCell.swift */; };
+		1D33CC7221EF65C700CF2A8E /* SpeakersCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7121EF65C700CF2A8E /* SpeakersCollectionView.swift */; };
+		1D33CC7421F8B69500CF2A8E /* SpeakersBioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7321F8B69500CF2A8E /* SpeakersBioViewController.swift */; };
+		1D33CC7621F9747100CF2A8E /* SpeakersBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7521F9747100CF2A8E /* SpeakersBioView.swift */; };
+		1D33CC7821FF2EAD00CF2A8E /* WorkshopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7721FF2EAD00CF2A8E /* WorkshopsView.swift */; };
+		1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7D21FF329800CF2A8E /* WorkshopsViewController.swift */; };
+		1D33CC802200009100CF2A8E /* WorkshopsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7F2200009100CF2A8E /* WorkshopsTableViewCell.swift */; };
+		1D33CC84220F22EC00CF2A8E /* WorkshopPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC83220F22EC00CF2A8E /* WorkshopPopOverView.swift */; };
+		1D33CC86220F2BC800CF2A8E /* UIView+AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC85220F2BC800CF2A8E /* UIView+AppHelper.swift */; };
+		1D33CC882216F63D00CF2A8E /* WorkshopsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC872216F63D00CF2A8E /* WorkshopsInfoView.swift */; };
+		1D33CC8A221707E000CF2A8E /* WorkshopsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC89221707E000CF2A8E /* WorkshopsInfoViewController.swift */; };
 		1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */; };
 		1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */; };
 		1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */; };
@@ -42,6 +53,17 @@
 /* Begin PBXFileReference section */
 		1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersView.swift; sourceTree = "<group>"; };
 		1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersViewController.swift; sourceTree = "<group>"; };
+		1D33CC6F21EF635D00CF2A8E /* SpeakersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D33CC7121EF65C700CF2A8E /* SpeakersCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersCollectionView.swift; sourceTree = "<group>"; };
+		1D33CC7321F8B69500CF2A8E /* SpeakersBioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersBioViewController.swift; sourceTree = "<group>"; };
+		1D33CC7521F9747100CF2A8E /* SpeakersBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakersBioView.swift; sourceTree = "<group>"; };
+		1D33CC7721FF2EAD00CF2A8E /* WorkshopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsView.swift; sourceTree = "<group>"; };
+		1D33CC7D21FF329800CF2A8E /* WorkshopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsViewController.swift; sourceTree = "<group>"; };
+		1D33CC7F2200009100CF2A8E /* WorkshopsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsTableViewCell.swift; sourceTree = "<group>"; };
+		1D33CC83220F22EC00CF2A8E /* WorkshopPopOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopPopOverView.swift; sourceTree = "<group>"; };
+		1D33CC85220F2BC800CF2A8E /* UIView+AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AppHelper.swift"; sourceTree = "<group>"; };
+		1D33CC872216F63D00CF2A8E /* WorkshopsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsInfoView.swift; sourceTree = "<group>"; };
+		1D33CC89221707E000CF2A8E /* WorkshopsInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsInfoViewController.swift; sourceTree = "<group>"; };
 		1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuView.swift; sourceTree = "<group>"; };
 		1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +110,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D33CC7A21FF311E00CF2A8E /* Speakers Tab */ = {
+			isa = PBXGroup;
+			children = (
+				1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */,
+				1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */,
+				1D33CC7121EF65C700CF2A8E /* SpeakersCollectionView.swift */,
+				1D33CC6F21EF635D00CF2A8E /* SpeakersCollectionViewCell.swift */,
+				1D33CC7521F9747100CF2A8E /* SpeakersBioView.swift */,
+				1D33CC7321F8B69500CF2A8E /* SpeakersBioViewController.swift */,
+			);
+			path = "Speakers Tab";
+			sourceTree = "<group>";
+		};
+		1D33CC7C21FF315300CF2A8E /* Workshops Tab */ = {
+			isa = PBXGroup;
+			children = (
+				1D33CC7721FF2EAD00CF2A8E /* WorkshopsView.swift */,
+				1D33CC7D21FF329800CF2A8E /* WorkshopsViewController.swift */,
+				1D33CC7F2200009100CF2A8E /* WorkshopsTableViewCell.swift */,
+				1D33CC83220F22EC00CF2A8E /* WorkshopPopOverView.swift */,
+				1D33CC872216F63D00CF2A8E /* WorkshopsInfoView.swift */,
+				1D33CC89221707E000CF2A8E /* WorkshopsInfoViewController.swift */,
+			);
+			path = "Workshops Tab";
+			sourceTree = "<group>";
+		};
 		733CA219214757AA0045A44A = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +169,8 @@
 				73FA95A7216B0AC800D46F6B /* ForgotPasswordView.swift */,
 				73FA95A9216B0ADF00D46F6B /* ForgotPasswordViewController.swift */,
 				1D368F2221DD0DDA00E59C6F /* MainTabBarController.swift */,
-				1D33CC6B21E8DD3D00CF2A8E /* SpeakersView.swift */,
-				1D33CC6D21E8DD6000CF2A8E /* SpeakersViewController.swift */,
+				1D33CC7A21FF311E00CF2A8E /* Speakers Tab */,
+				1D33CC7C21FF315300CF2A8E /* Workshops Tab */,
 				732146A6217437A000C09E8E /* DashboardButton.swift */,
 				73FA95B5216EDB1000D46F6B /* DashboardView.swift */,
 				73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */,
@@ -133,6 +181,7 @@
 				733CA227214757AA0045A44A /* ViewController.swift */,
 				1DB909ED218C66A7000DF8B7 /* AppHelper.swift */,
 				1DB909EF218C6737000DF8B7 /* UIViewController+AppHelper.swift */,
+				1D33CC85220F2BC800CF2A8E /* UIView+AppHelper.swift */,
 				1DB909EB21873724000DF8B7 /* User.swift */,
 				73FA95A0216348D200D46F6B /* Fonts */,
 				733CA229214757AA0045A44A /* Main.storyboard */,
@@ -241,6 +290,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iDiscipleApp/Pods-iDiscipleApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Popover/Popover.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -248,6 +298,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Popover.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -283,25 +334,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DB909EA2186140F000DF8B7 /* ApiManager.swift in Sources */,
+				1D33CC7021EF635D00CF2A8E /* SpeakersCollectionViewCell.swift in Sources */,
+				1D33CC7421F8B69500CF2A8E /* SpeakersBioViewController.swift in Sources */,
 				73FA95AA216B0ADF00D46F6B /* ForgotPasswordViewController.swift in Sources */,
 				1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */,
+				1D33CC86220F2BC800CF2A8E /* UIView+AppHelper.swift in Sources */,
 				1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */,
+				1D33CC8A221707E000CF2A8E /* WorkshopsInfoViewController.swift in Sources */,
 				1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */,
 				73012A55215C81B300A90BAB /* LoginView.swift in Sources */,
+				1D33CC882216F63D00CF2A8E /* WorkshopsInfoView.swift in Sources */,
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
 				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
+				1D33CC7821FF2EAD00CF2A8E /* WorkshopsView.swift in Sources */,
 				1DB909EC21873724000DF8B7 /* User.swift in Sources */,
 				1DB909F0218C6737000DF8B7 /* UIViewController+AppHelper.swift in Sources */,
 				732146A7217437A000C09E8E /* DashboardButton.swift in Sources */,
+				1D33CC84220F22EC00CF2A8E /* WorkshopPopOverView.swift in Sources */,
+				1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */,
 				1DB909E82185FC8F000DF8B7 /* FirstTimeUserView.swift in Sources */,
 				1D33CC6C21E8DD3D00CF2A8E /* SpeakersView.swift in Sources */,
 				733CA23A214758880045A44A /* HomeView.swift in Sources */,
 				733CA226214757AA0045A44A /* AppDelegate.swift in Sources */,
+				1D33CC802200009100CF2A8E /* WorkshopsTableViewCell.swift in Sources */,
 				73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */,
 				1DB909EE218C66A7000DF8B7 /* AppHelper.swift in Sources */,
 				73012A53215C819000A90BAB /* LoginViewController.swift in Sources */,
+				1D33CC7221EF65C700CF2A8E /* SpeakersCollectionView.swift in Sources */,
 				733CA238214758700045A44A /* HomeViewController.swift in Sources */,
+				1D33CC7621F9747100CF2A8E /* SpeakersBioView.swift in Sources */,
 				1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */,
 				1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */,
 			);

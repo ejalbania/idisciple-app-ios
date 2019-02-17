@@ -28,3 +28,4 @@ public struct AppHelper<Base> {
 // All conformance here
 //extension UIColor: AppHelperCompatible {}
 extension UIViewController : AppHelperCompatible{}
+extension UIView : AppHelperCompatible{}

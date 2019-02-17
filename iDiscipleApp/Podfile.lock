@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (4.7.3)
+  - Popover (1.2.0)
   - PureLayout (3.1.2)
   - SideMenu (5.0.1)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - Popover
   - PureLayout
   - SideMenu
   - SwiftyJSON (~> 4.0)
@@ -13,16 +15,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Popover
     - PureLayout
     - SideMenu
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Popover: 28c1ac8e937ab2b3965bd2da7dd18324357abc41
   PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 1a121f9c1eb1379e0d3c7316dea7b1bb64ca492d
+PODFILE CHECKSUM: a8afadbbfc3f0813738113274011ba69016a27a0
 
 COCOAPODS: 1.5.3

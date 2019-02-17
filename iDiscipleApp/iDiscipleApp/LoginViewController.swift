@@ -45,8 +45,8 @@ class LoginViewController: UIViewController {
         loginView.logInButton.alpha = 0.5
         
         //Test Input
-        //loginView.emailTextfield.text = "noob@gmail.com"
-        //loginView.passwordTextfield.text = "4IMt7l3Ak7TH9zFiWLe4"
+        loginView.emailTextfield.text = "noob@gmail.com"
+        //loginView.passwordTextfield.text = "1"
         
     }
     
@@ -187,7 +187,10 @@ class LoginViewController: UIViewController {
     
     func moveToMainTabView(){
         let newViewController = MainTabBarController()
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(newViewController, animated: false)
+        //color of default selected tab
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
     }
     
 

@@ -13,25 +13,21 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //self.navigationController?.navigationBar.isHidden = true
-        //self.navigationController?.isNavigationBarHidden = false
-        //self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
+        self.navigationController?.isNavigationBarHidden = false
+        
+        //Test hide button
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         
         self.delegate = self as? UITabBarControllerDelegate
         //self.tabBarController?.delegate = self
         
-        
         let speakersViewController = SpeakersViewController()
-        //speakersViewController.view.backgroundColor = UIColor.white
         
-        let workshopsViewController = ViewController()
-        workshopsViewController.view.backgroundColor = UIColor.white
+        let workshopsViewController = WorkshopsViewController()
         
         let scheduleViewController = ViewController()
-        //downloadsVC.title = "Downloads”
         scheduleViewController.view.backgroundColor = UIColor.white
-        
-
         
         let communityViewController = ViewController()
         communityViewController.view.backgroundColor = UIColor.white
@@ -63,8 +59,8 @@ class MainTabBarController: UITabBarController {
         moreViewController.tabBarItem.tag = 4
         
         let controllers = [speakersViewController, workshopsViewController, scheduleViewController, communityViewController, moreViewController]
-        //self.viewControllers = controllers
-        self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
+        self.viewControllers = controllers
+        //self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         
         //tabBarController?.selectedViewController = speakersViewController;
     }
@@ -75,9 +71,11 @@ class MainTabBarController: UITabBarController {
         switch item.tag {
         case 0:
              self.tabBar.tintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
+             self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
             break
         case 1:
             self.tabBar.tintColor = UIColor(red: 101/255, green: 175/255, blue: 85/255, alpha: 1)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 101/255, green: 175/255, blue: 85/255, alpha: 1)
             break
         case 2:
             self.tabBar.tintColor = UIColor(red: 220/255, green: 36/255, blue: 58/255, alpha: 1)

@@ -12,6 +12,7 @@ pod 'SideMenu'
 pod 'PureLayout'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'Alamofire', '~> 4.7'
+pod 'XLPagerTabStrip', '~> 8.1'
 pod "Popover"
 
 end

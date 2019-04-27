@@ -13,7 +13,7 @@ public protocol AppHelperCompatible {
 }
 
 public extension AppHelperCompatible {
-    public var appHelper: AppHelper<Self> {
+    var appHelper: AppHelper<Self> {
         get { return AppHelper(self) }
     }
 }

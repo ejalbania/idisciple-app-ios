@@ -1,9 +1,10 @@
 PODS:
-  - Alamofire (4.7.3)
-  - Popover (1.2.0)
-  - PureLayout (3.1.2)
+  - Alamofire (4.8.2)
+  - Popover (1.2.2)
+  - PureLayout (3.1.4)
   - SideMenu (5.0.1)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (4.3.0)
+  - XLPagerTabStrip (8.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - PureLayout
   - SideMenu
   - SwiftyJSON (~> 4.0)
+  - XLPagerTabStrip (~> 8.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -19,14 +21,16 @@ SPEC REPOS:
     - PureLayout
     - SideMenu
     - SwiftyJSON
+    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Popover: 28c1ac8e937ab2b3965bd2da7dd18324357abc41
-  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Popover: 21e357f86d45c8d9e29a41a4adbca3664d6e511f
+  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: a8afadbbfc3f0813738113274011ba69016a27a0
+PODFILE CHECKSUM: 112ba39d6d7d4afba1f4cc0baa328d57492efac2
 
 COCOAPODS: 1.5.3

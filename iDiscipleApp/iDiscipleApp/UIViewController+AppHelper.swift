@@ -18,4 +18,5 @@ extension AppHelper where Base: UIViewController {
     func dismissAlert(){
         self.base.dismiss(animated: false, completion: nil);
     }
+    
 }

@@ -84,9 +84,6 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
             backgroundView.autoPinEdge(toSuperviewEdge: .right)
             backgroundView.autoPinEdge(toSuperviewEdge: .bottom)
             
-            //workshopTableView.autoPinEdge(toSuperviewEdge: .top, withInset: 20)
-
-            
             shouldSetupConstraints = false
         }
         super.updateConstraints()
@@ -103,6 +100,7 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.workshopTitleLabel.text = "Warding 101"
 
         cell.moreOptionButton.tag = indexPath.row
+        cell.selectionStyle = .none
         cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
         
         //cell.labUerName.text = "Name"

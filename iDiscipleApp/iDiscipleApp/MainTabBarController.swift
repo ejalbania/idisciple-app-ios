@@ -26,11 +26,11 @@ class MainTabBarController: UITabBarController {
         
         let workshopsViewController = WorkshopsViewController()
         
-        let scheduleViewController = ViewController()
-        scheduleViewController.view.backgroundColor = UIColor.white
+        let scheduleViewController = ScheduleViewController()
+        //scheduleViewController.view.backgroundColor = UIColor.white
         
-        let communityViewController = ViewController()
-        communityViewController.view.backgroundColor = UIColor.white
+        let communityViewController = CommunityViewController()
+        //communityViewController.view.backgroundColor = UIColor.white
         
         let moreViewController = ViewController()
         moreViewController.view.backgroundColor = UIColor.white
@@ -78,16 +78,20 @@ class MainTabBarController: UITabBarController {
             self.navigationController?.navigationBar.barTintColor = UIColor(red: 101/255, green: 175/255, blue: 85/255, alpha: 1)
             break
         case 2:
-            self.tabBar.tintColor = UIColor(red: 220/255, green: 36/255, blue: 58/255, alpha: 1)
+            self.tabBar.tintColor = UIColor(red: 221/255, green: 36/255, blue: 58/255, alpha: 1)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 221/255, green: 36/255, blue: 58/255, alpha: 1)
             break
         case 3:
             self.tabBar.tintColor = UIColor(red: 22/255, green: 145/255, blue: 195/255, alpha: 1)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 22/255, green: 145/255, blue: 195/255, alpha: 1)
             break
         case 4:
             self.tabBar.tintColor = UIColor(red: 59/255, green: 59/255, blue: 59/255, alpha: 1)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 1)
             break
         default:
             self.tabBar.tintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
             break
         }
     }

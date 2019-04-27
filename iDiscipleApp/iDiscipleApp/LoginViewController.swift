@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var loginView: LoginView!
     
@@ -39,7 +39,9 @@ class LoginViewController: UIViewController {
         loginView.logInButton.addTarget(self, action: #selector(toMainTabViewTest), for: .touchUpInside)
         
         loginView.emailTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        loginView.emailTextfield.delegate = self
         loginView.passwordTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
+        loginView.passwordTextfield.delegate = self
         
         loginView.logInButton.isUserInteractionEnabled = false
         loginView.logInButton.alpha = 0.5
@@ -67,6 +69,11 @@ class LoginViewController: UIViewController {
         }else{
             loginView.logInButton.alpha = 0.5
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func showPasswordButton(sender: UIButton!){

@@ -11,7 +11,6 @@ import Popover
 class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, WorkshopPopOverViewDelegate {
 
     var workshopView: WorkshopsView!
-    //var speakersCollectionView: SpeakersCollectionView!
     
     let screenSize = UIScreen.main.bounds
     
@@ -28,7 +27,7 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
         
         workshopView.delegate = self
         workshopView.workshopPopOverView.delegate = self
-        
+
         //workshopView.workshopTableView.reloadData()
         
     }
@@ -41,7 +40,7 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
     
     //WorkshopView delegate
     func workshopMoreOptionDidPressed(_ workshopsTableView: UITableView, selectedButton: UIButton) {
-        debugPrint(selectedButton.tag)
+        //debugPrint(selectedButton.tag)
         showPopOverMenu(fromView: selectedButton)
 
     }
@@ -50,15 +49,22 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
     func workshopPopOverViewDescriptionPressed() {
         debugPrint("view description")
         workshopView.popOver.dismiss()
+        openWorkshopInfoView();
         
-        let newViewController = WorkshopsInfoViewController()
-        newViewController.modalPresentationStyle = .overFullScreen
-        present(newViewController, animated: false, completion: nil)
     }
     
     func workshopPopOverViewOutlinePressed() {
         debugPrint("view outline")
         workshopView.popOver.dismiss()
+        openWorkshopInfoView();
+    }
+    
+    //open workshop detail pop up
+    func openWorkshopInfoView(){
+        let newViewController = WorkshopsInfoViewController()
+        //self.navigationController?.modal(newViewController, animated: false)
+        newViewController.modalPresentationStyle = .overFullScreen
+        present(newViewController, animated: false, completion: nil)
     }
     
 }

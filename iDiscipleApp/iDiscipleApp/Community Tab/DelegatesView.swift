@@ -131,6 +131,7 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.delegateSearchBar.endEditing(true)
+        //test pushgit s
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

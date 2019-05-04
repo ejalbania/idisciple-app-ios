@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SpeakersViewController: UIViewController, SpeakersCollectionViewDelegate {
     
     var speakersView: SpeakersView!
     var speakersCollectionView: SpeakersCollectionView!
+    
     
     let screenSize = UIScreen.main.bounds
 
@@ -27,9 +29,54 @@ class SpeakersViewController: UIViewController, SpeakersCollectionViewDelegate {
         speakersCollectionView.delegate = self
         speakersView.addSubview(speakersCollectionView)
         
+        //speakersCollectionView.speakerView.isHidden = true;
+        loadSpeakers()
+        
         // AutoLayout
         speakersView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
         
+    }
+    
+    func loadSpeakers(){
+        
+        let urlString = ApiManager.sharedInstance.speakersJson
+        
+        ApiManager.sharedInstance.getDataFromJson(url: urlString, onSuccess: { json in
+             DispatchQueue.main.async {
+                
+                let jsonValue = JSON(json)
+                //debugPrint("\(jsonValue)")
+                
+                for (_, subJson) in jsonValue[0]["data"] {
+        
+                    self.speakersCollectionView.speakerArray.append(Speaker(speakerID: subJson["id"].intValue,
+                                                 name: subJson["name"].stringValue,
+                                                 bio: subJson["bia"].stringValue,
+                                                 nationality: subJson["nationality"].intValue,
+                                                 facebook: subJson["facebook"].stringValue,
+                                                 twitter: subJson["twitter"].stringValue,
+                                                 website: subJson["website"].stringValue,
+                                                 imagePath: subJson["img_path"].stringValue,
+                                                 imageName: subJson["img_name"].stringValue,
+                                                 plenaryTitle: subJson["plenary_title"].stringValue,
+                                                 plenaryDate: subJson["plenary_schedule_date"].stringValue,
+                                                 plenaryTime: subJson["plenary_schedule_time"].stringValue,
+                                                 workshopID: subJson["workshop_id"].intValue,
+                                                 workshopTitle: subJson["workshop_title"].stringValue,
+                                                 workshopDate: subJson["workshop_schedule_date"].stringValue,
+                                                 workshopTime: subJson["workshop_schedule_time"].stringValue))
+                    
+                }
+                
+                self.speakersCollectionView.speakersCV.reloadData()
+                self.speakersCollectionView.updateConstraints()
+                
+            }
+        }, onFailure: { error in
+            debugPrint("\(error)")
+            //self.appHelper.dismissAlert()
+        })
+       
     }
     
     // MARK: SpeakersCollectionView Delegate
@@ -39,6 +86,7 @@ class SpeakersViewController: UIViewController, SpeakersCollectionViewDelegate {
         let newViewController = SpeakersBioViewController()
         //self.navigationController?.modal(newViewController, animated: false)
         newViewController.modalPresentationStyle = .overFullScreen
+        newViewController.speakerBio = speakersCollectionView.speakerArray[indexPathRow]
         present(newViewController, animated: false, completion: nil)
     }
     

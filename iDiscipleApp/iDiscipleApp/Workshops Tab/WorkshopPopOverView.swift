@@ -17,15 +17,15 @@ import UIKit
 class WorkshopPopOverView: UIView {
     
     var delegate : WorkshopPopOverViewDelegate?
-    
+
     lazy var viewDescriptionBtn: UIButton = {
         
         let button = UIButton.newAutoLayout()
         button.setTitle("View Description", for: .normal)
         //button.layer.borderWidth = 1;
         button.setTitleColor(.black, for: .normal)
-        button.autoSetDimensions(to: CGSize(width: 250, height: 40))
-        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 24)
+        button.autoSetDimensions(to: CGSize(width: 210, height: 40))
+        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)
         button.titleLabel?.textAlignment = .left
         
         return button
@@ -37,8 +37,8 @@ class WorkshopPopOverView: UIView {
         button.setTitle("View Outline", for: .normal)
         //button.layer.borderWidth = 1
         button.setTitleColor(.black, for: .normal)
-        button.autoSetDimensions(to: CGSize(width: 250, height: 40))
-        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 24)
+        button.autoSetDimensions(to: CGSize(width: 210, height: 40))
+        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)
         button.titleLabel?.textAlignment = .left
         
         return button
@@ -72,10 +72,10 @@ class WorkshopPopOverView: UIView {
             
             // AutoLayout constraints
             viewDescriptionBtn.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
-            viewDescriptionBtn.autoAlignAxis(toSuperviewAxis: .vertical)
+            viewDescriptionBtn.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             
             viewOutlineBtn.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-            viewOutlineBtn.autoAlignAxis(toSuperviewAxis: .vertical)
+            viewDescriptionBtn.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             
             shouldSetupConstraints = false
         }

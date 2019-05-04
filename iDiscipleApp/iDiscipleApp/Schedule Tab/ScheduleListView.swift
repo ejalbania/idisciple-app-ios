@@ -11,6 +11,8 @@ class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
+    
+    var scheduleArray : [Schedule] = []
 
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
@@ -68,16 +70,47 @@ class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return scheduleArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
         
         cell.selectionStyle = .none
-  
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        
+        if (!scheduleArray.isEmpty){
+            let cellSchedule = scheduleArray[indexPath.row]
+            
+            cell.scheduleTimeLabel.text = cellSchedule.schedStartTime + " - " + cellSchedule.schedEndTime
+            cell.eventNameLabel.text = cellSchedule.schedName
+            cell.locationLabel.text = cellSchedule.schedVenue
+            
+            cell.happeningNowWorkshopLabel.isHidden = true
+            cell.selectedWorkshopLabel.isHidden = true
+            
+            //Check here if workshop/happening or not
+            let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
+            let currentDay = GlobalConstant.kDateSource_formatter.date(from: stringDay)
+            let stringTime = GlobalConstant.kTimeSource_formatter.string(from: Date())
+            let currentTime = GlobalConstant.kTimeSource_formatter.date(from: stringTime)
+            let startTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedStartTime)
+            let endTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedEndTime)
+            
+            //add date checking
+            if(GlobalConstant.kDateSource_formatter.date(from: cellSchedule.schedDate)! == currentDay!){
+                if startTime! < currentTime! && currentTime! < endTime!{
+                    cell.happeningNowWorkshopLabel.isHidden = false
+                }
+            }
+            
+            //AddChecking if workshop
+            //cell.selectedWorkshopLabel.isHidden = false
+            //cell.happeningNowWorkshopLabel.isHidden = false
+            
+        }
+        
+        cell.shouldSetupConstraints = true
+        cell.updateConstraints()
         
         return cell
     }

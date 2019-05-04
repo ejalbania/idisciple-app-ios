@@ -7,6 +7,7 @@
 
 import UIKit
 import PureLayout
+import Kingfisher
 
 let cellReuseIdentifier = "SpeakerCollectionViewCell"
 
@@ -19,29 +20,11 @@ let cellReuseIdentifier = "SpeakerCollectionViewCell"
 class SpeakersCollectionView: UIView , UICollectionViewDataSource, UICollectionViewDelegate {
     
     var delegate : SpeakersCollectionViewDelegate?
+    var speakerArray : [Speaker] = []
     
-    //modify
-    lazy var speakerView : UICollectionView = {
-        
-        let cv = UICollectionView.newAutoLayout()
-        cv.dataSource = self
-        cv.delegate = self
-        //cv.isPagingEnabled = true
-        cv.backgroundColor = .red//UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
-        
-        //cv.backgroundColor = UIColor.init(patternImage: UIImage(named: "grid_resize")!)
-        
-        cv.showsHorizontalScrollIndicator = false
-        cv.showsVerticalScrollIndicator = false
-        cv.allowsMultipleSelection = false //true
-        
-        return cv
-        
-    }()
-    
+    lazy var speakersCV = UICollectionView()
     let screenSize = UIScreen.main.bounds
     var shouldSetupConstraints = true
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,12 +34,12 @@ class SpeakersCollectionView: UIView , UICollectionViewDataSource, UICollectionV
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         layout.itemSize = CGSize(width: (screenSize.width/2 - 15), height: 250)
         
-        let myCollectionView:UICollectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
-        myCollectionView.dataSource = self
-        myCollectionView.delegate = self
-        myCollectionView.register(SpeakersCollectionViewCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
-        myCollectionView.backgroundColor = .clear
-        self.addSubview(myCollectionView)
+        speakersCV = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        speakersCV.dataSource = self
+        speakersCV.delegate = self
+        speakersCV.register(SpeakersCollectionViewCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
+        speakersCV.backgroundColor = .clear
+        self.addSubview(speakersCV)
         
         //self.createSubviews()
     }
@@ -74,16 +57,42 @@ class SpeakersCollectionView: UIView , UICollectionViewDataSource, UICollectionV
         super.updateConstraints()
     }
     
+    func reloadCollectionView(loadedArray: [Speaker]){
+        
+        speakerArray.removeAll()
+        speakerArray = loadedArray
+        
+        speakersCV.reloadData()
+        
+        //speakerView.isHidden = false
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if speakerArray.isEmpty{
+            return 0
+        }
+        else{
+            return speakerArray.count
+
+        }
+        //return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let speakerCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! SpeakersCollectionViewCell
         //speakerCell.backgroundColor = .blue
-        speakerCell.speakerNameLabel.text = "Donkey Courier"
+        if (!speakerArray.isEmpty){
+            let cellSpeaker = speakerArray[indexPath.row]
+            
+            let imageUrl = cellSpeaker.imagePath + cellSpeaker.imageName
+            speakerCell.speakerImageView.kf.indicatorType = .activity
+            speakerCell.speakerImageView.kf.setImage(with: ImageResource(downloadURL:URL(string: imageUrl)!, cacheKey: imageUrl))
+            speakerCell.speakerNameLabel.text = cellSpeaker.name
+            speakerCell.plenaryTopicLabel.text = cellSpeaker.plenaryTitle
+            speakerCell.dateAndTimeLabel.text = cellSpeaker.plenaryDate + " " + cellSpeaker.plenaryTime
+        }
         
         return speakerCell
     }

@@ -23,16 +23,26 @@ class GroupsViewController: UIViewController, IndicatorInfoProvider {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+  
         
         groupsView = GroupsView(frame: CGRect.zero)
         self.view.addSubview(groupsView)
         
-        //groupView.familyGroupNumberLabel.contentInsetAdjustmentBehavior = .never
+        //groupsView.familyGroupTableView.contentInsetAdjustmentBehavior = .never
         
         // AutoLayout
         groupsView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
-
+        
+        super.viewDidLoad()
+        //self.view.setNeedsLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.view.setNeedsLayout()
+        //self.groupsView.familyGroupNumberView.setNeedsLayout()
+        //self.view.layoutIfNeeded()
     }
     
     // MARK: - IndicatorInfoProvider

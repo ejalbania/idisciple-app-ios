@@ -7,6 +7,7 @@
 
 import UIKit
 import XLPagerTabStrip
+import SwiftyJSON
 
 class ScheduleListViewController: UIViewController, IndicatorInfoProvider {
 
@@ -33,7 +34,15 @@ class ScheduleListViewController: UIViewController, IndicatorInfoProvider {
         // AutoLayout
         scheduleListView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
         
-  
+        loadSchedule()
+        //debugPrint("\(String(describing: itemInfo.title))")
+        //getSystemTime()
+    }
+    
+    func getSystemTime(){
+        
+        debugPrint("\(GlobalConstant.kTimeSource_formatter.string(from: Date()))")
+        debugPrint("\(GlobalConstant.kDateSource_formatter.string(from: Date()))")
         
     }
     
@@ -42,5 +51,38 @@ class ScheduleListViewController: UIViewController, IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return itemInfo
     }
+    
+    func loadSchedule() {
+        
+        let filename = "schedule"
+        
+        //Check if schedule.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
+                
+                if(subJson["sched_date"].stringValue == itemInfo.title){
+                    self.scheduleListView.scheduleArray.append(Schedule(schedID: subJson["sched_id"].intValue,
+                                                                               schedDate: subJson["sched_date"].stringValue,
+                                                                               schedStartTime: subJson["sched_start_time"].stringValue,
+                                                                               schedEndTime: subJson["sched_end_time"].stringValue,
+                                                                               schedName: subJson["sched_name"].stringValue,
+                                                                               schedVenue: subJson["sched_venue"].stringValue,
+                                                                               schedWorkshopID: subJson["workshop_id"].intValue))
+                }
+            }
+            
+            //reloadTables
+            self.scheduleListView.scheduleListTableView.reloadData()
+            
+        }else{
+            debugPrint("\(filename) not found!")
+        }
+        
+    }
+
 
 }

@@ -8,7 +8,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class DelegatesViewController: UIViewController, IndicatorInfoProvider {
+class DelegatesViewController: UIViewController, IndicatorInfoProvider, DelegatesViewDelegate {
 
     var delegatesView: DelegatesView!
     var itemInfo: IndicatorInfo = "View"
@@ -26,6 +26,7 @@ class DelegatesViewController: UIViewController, IndicatorInfoProvider {
         super.viewDidLoad()
         
         delegatesView = DelegatesView(frame: CGRect.zero)
+        delegatesView.delegate = self
         self.view.addSubview(delegatesView)
         
         // AutoLayout
@@ -37,6 +38,20 @@ class DelegatesViewController: UIViewController, IndicatorInfoProvider {
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return itemInfo
+    }
+    
+    func delegatesTableViewDidSelectCell(_ delegatesView: DelegatesView, indexPathRow: Int) {
+        //Call Pop Up Here
+        debugPrint("Open Profile from: " + "\(indexPathRow)")
+        
+        DispatchQueue.main.async {
+            let newViewController = DelegatesProfileViewController()
+            //self.navigationController?.modal(newViewController, animated: false)
+            newViewController.modalPresentationStyle = .overFullScreen
+            self.present(newViewController, animated: false, completion: nil)
+        }
+        
+
     }
     
 }

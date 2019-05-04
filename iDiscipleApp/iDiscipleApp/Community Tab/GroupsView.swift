@@ -25,6 +25,7 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .white
         //view.layer.borderWidth = 0.5
         view.autoSetDimension(.height, toSize: 150)
+        view.autoSetDimension(.width, toSize: self.screenSize.width)
         
         return view
     }()
@@ -143,9 +144,7 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
             mainView.autoPinEdge(toSuperviewEdge: .top)
             //mainView.autoPinEdge(toSuperviewEdge: .bottom)
             
-            familyGroupNumberView.autoAlignAxis(toSuperviewAxis: .vertical)
-            familyGroupNumberView.autoPinEdge(toSuperviewEdge: .left)
-            //familyGroupNumberView.autoPinEdge(toSuperviewEdge: .right)
+            familyGroupNumberView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             familyGroupNumberView.autoPinEdge(toSuperviewEdge: .top, withInset: 1)
             
             familyGroupNumberLabel.autoAlignAxis(toSuperviewAxis: .vertical)

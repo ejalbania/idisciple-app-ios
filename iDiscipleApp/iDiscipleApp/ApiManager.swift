@@ -18,8 +18,64 @@ class ApiManager{
     let login = "auth/login"
     let firstLogPasswordUpdate = "user/first-time"
     
+    let loadData = "content/all"
+    
+    let speakersJson = "https://idisciple.ph/2019/apbycon/assets/speakers.json"
+    let workshopsJson = "https://idisciple.ph/2019/apbycon/assets/workshops.json"
+    
     let responseSuccess = "Success"
     let responseError = "ERR"
+    
+//    func getDataFromFile(filename: String, dataString: String, onSuccess: @escaping(String) -> Void, onFailure:@escaping(String -> Void)){
+//
+//        let file = filename //this is the file. we will write to and read from it
+//
+//        let text = "some text" //just a text
+//
+//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+//
+//            let fileURL = dir.appendingPathComponent(file)
+//
+//            //writing
+//            do {
+//                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+//            }
+//            catch {/* error handling here */}
+//
+//            //reading
+//            do {
+//                _ = try String(contentsOf: fileURL, encoding: .utf8)
+//            }
+//            catch {/* error handling here */}
+//        }
+//    }
+
+    func getDataFromJson(url: String, onSuccess: @escaping([Dictionary<String, Any>]) -> Void,  onFailure: @escaping(String) -> Void){
+        
+        Alamofire.request(url)
+            .validate()
+            .responseJSON { response in
+                //debugPrint(response.result)
+                switch response.result {
+                case .success(let data):
+                    let checkData = JSON(data)
+//                    debugPrint(checkData[0]["data"])
+//                    debugPrint(checkData[0]["name"])
+                    
+                    if checkData[0]["name"].stringValue != "" {
+                        onSuccess(data as! Array)
+                    }else{
+                        debugPrint("ERROR")
+                        onFailure(checkData["message"].stringValue)
+                    }
+                case .failure(let error):
+                    //print("Request failed with error: \(error.localizedDescription)")
+                    debugPrint("ERROR")
+                    onFailure(error.localizedDescription)
+                }
+        }
+    }
+    
     
     //GET
     func getDataWithRequest(requestUrl: String, onSuccess: @escaping(Dictionary<String, Any>) -> Void,  onFailure: @escaping(String) -> Void){

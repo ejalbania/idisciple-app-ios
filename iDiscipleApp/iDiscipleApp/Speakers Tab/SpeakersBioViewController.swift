@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SpeakersBioViewController: UIViewController {
     
     var speakersBioView: SpeakersBioView!
+    
+    var speakerBio : Speaker? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,29 @@ class SpeakersBioViewController: UIViewController {
         speakersBioView.mainView.layer.addSublayer(footerLayer)
         
         speakersBioView.dismissButton.addTarget(self, action: #selector(dismissSpeakersBioView), for: .touchUpInside)
+        
+        if((speakerBio) != nil){
+            
+            let imageUrl = speakerBio!.imagePath + speakerBio!.imageName
+            speakersBioView.speakerImageView.kf.indicatorType = .activity
+            speakersBioView.speakerImageView.kf.setImage(with: ImageResource(downloadURL:URL(string: imageUrl)!, cacheKey: imageUrl))
+            
+            speakersBioView.speakerNameLabel.text = speakerBio?.name
+            
+            
+            if((speakerBio?.facebook.isEmpty)!){
+                speakersBioView.socialLabel.text = "facebook.com"
+            }else{
+                speakersBioView.socialLabel.text = speakerBio?.facebook
+            }
+            
+            if((speakerBio?.bio.isEmpty)!){
+                speakersBioView.speakerDescriptionTextView.text = "No bio provided"
+
+            }else{
+                speakersBioView.speakerDescriptionTextView.text = speakerBio?.bio
+            }
+        }
         
     }
     

@@ -7,7 +7,15 @@
 
 import UIKit
 
+@objc protocol DelegatesViewDelegate {
+    @objc optional func delegatesTableViewDidSelectCell(_ delegatesView: DelegatesView, indexPathRow: Int) -> Void
+    //func customAlertDidPressDismiss(_ customAlert: CustomAlertController) -> Void
+    //@objc optional func customAlertDidPressOk(_ customAlert: CustomAlertController) -> Void
+}
+
 class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+    
+    var delegate : DelegatesViewDelegate?
 
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
@@ -29,13 +37,13 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         return view
     }()
     
-    lazy var delegateSearchBar : UISearchBar = {
+    lazy var delegatesSearchBar : UISearchBar = {
         
         let search = UISearchBar.newAutoLayout()
         search.searchBarStyle = .minimal
-        search.layer.borderWidth = 1
-        search.layer.borderColor = UIColor.lightGray.cgColor
-        search.layer.cornerRadius = 5.0
+        //search.layer.borderWidth = 1
+        //search.layer.borderColor = UIColor.lightGray.cgColor
+        //search.layer.cornerRadius = 5.0
         search.placeholder = "Search names"
         search.autoSetDimension(.height, toSize: 50)
         search.autoSetDimension(.width, toSize: self.screenSize.width - 40)
@@ -53,7 +61,7 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         return button
     }()
     
-    lazy var familyGroupTableView : UITableView = {
+    lazy var delegatesTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
         tableView.backgroundColor = .white
         tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height-(162+70)))
@@ -71,15 +79,15 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         
         mainView.addSubview(searchBarView)
         
-        delegateSearchBar.delegate = self
-        searchBarView.addSubview(delegateSearchBar)
+        delegatesSearchBar.delegate = self
+        searchBarView.addSubview(delegatesSearchBar)
         
-        familyGroupTableView.delegate = self
-        familyGroupTableView.dataSource = self
-        familyGroupTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
-        mainView.addSubview(familyGroupTableView)
+        delegatesTableView.delegate = self
+        delegatesTableView.dataSource = self
+        delegatesTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
+        mainView.addSubview(delegatesTableView)
         
-        //familyGroupTableView.isHidden = true
+        //delegatesTableView.isHidden = true
         //NSLog("%f", screenSize.height)
         
     }
@@ -103,10 +111,10 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
             searchBarView.autoPinEdge(toSuperviewEdge: .left)
             searchBarView.autoPinEdge(toSuperviewEdge: .top, withInset: 1)
             
-            delegateSearchBar.autoAlignAxis(toSuperviewAxis: .vertical)
-            delegateSearchBar.autoAlignAxis(toSuperviewAxis: .horizontal)
+            delegatesSearchBar.autoAlignAxis(toSuperviewAxis: .vertical)
+            delegatesSearchBar.autoAlignAxis(toSuperviewAxis: .horizontal)
             
-            familyGroupTableView.autoPinEdge(.top, to: .bottom, of: searchBarView, withOffset: 0)
+            delegatesTableView.autoPinEdge(.top, to: .bottom, of: searchBarView, withOffset: 0)
             
             shouldSetupConstraints = false
         }
@@ -129,12 +137,20 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        NSLog("%d", indexPath.row);
+        delegate?.delegatesTableViewDidSelectCell?(self, indexPathRow: indexPath.row)
+        //delegate?.speakersCollectionDidSelect!(self, indexPathRow: indexPath.row)
+        
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegateSearchBar.endEditing(true)
+        self.delegatesSearchBar.endEditing(true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.delegateSearchBar.endEditing(true)
+        self.delegatesSearchBar.endEditing(true)
         //do search here
     }
 

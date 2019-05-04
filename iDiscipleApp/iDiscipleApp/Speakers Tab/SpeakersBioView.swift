@@ -12,7 +12,7 @@ class SpeakersBioView: UIView {
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
-    let imageDimension = CGFloat(100)
+    let imageDimension = CGFloat(120)
     var adjustTextView = false
 
     lazy var overlayBackgroundView: UIView = {
@@ -86,6 +86,7 @@ class SpeakersBioView: UIView {
     
     lazy var speakerDescriptionTextView: UITextView = {
         let textView = UITextView.newAutoLayout()
+        textView.isEditable = false
         textView.textAlignment = NSTextAlignment.center
         textView.textColor = UIColor.black
         textView.font = UIFont(name: "Montserrat-Regular", size: 16)

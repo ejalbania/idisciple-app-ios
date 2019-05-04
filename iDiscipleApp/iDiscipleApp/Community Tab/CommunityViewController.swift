@@ -48,8 +48,15 @@ class CommunityViewController: ButtonBarPagerTabStripViewController {
         
         super.viewDidLoad()
         
-        adjustViews()
+        //adjustViews()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.view.setNeedsLayout()
+        //self.view.layoutIfNeeded()
     }
     
     func adjustViews(){

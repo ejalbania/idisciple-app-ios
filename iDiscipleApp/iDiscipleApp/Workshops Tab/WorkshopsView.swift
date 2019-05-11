@@ -8,16 +8,7 @@
 import UIKit
 import Popover
 
-@objc protocol WorkshopsTableViewDelegate {
-    @objc optional func workshopMoreOptionDidPressed(_ workshopsTableView: UITableView, selectedButton: UIButton) -> Void
-    @objc optional func workshopMoreOptionDidPressedWithIndexPath(_ indexPath: Int, selectedButton: UIButton) -> Void
-    //func customAlertDidPressDismiss(_ customAlert: CustomAlertController) -> Void
-    //@objc optional func customAlertDidPressOk(_ customAlert: CustomAlertController) -> Void
-}
-
-class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
-    
-    var delegate : WorkshopsTableViewDelegate?
+class WorkshopsView: UIView {
     
     var workshopsArray : [Workshop] = []
     var speakersArray : [Speaker] = []
@@ -35,6 +26,8 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         return view
     }()
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var workshopTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
@@ -69,10 +62,13 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.addSubview(backgroundView)
         
-        workshopTableView.delegate = self
-        workshopTableView.dataSource = self
-        workshopTableView.register(WorkshopsTableViewCell.self, forCellReuseIdentifier: "WorkshopsTableViewCell")
         backgroundView.addSubview(workshopTableView)
+        
+        if #available(iOS 10.0, *) {
+            workshopTableView.refreshControl = refreshControl
+        } else {
+            workshopTableView.addSubview(refreshControl)
+        }
         
     }
     
@@ -93,51 +89,5 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
             shouldSetupConstraints = false
         }
         super.updateConstraints()
-    }
-    
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if workshopsArray.isEmpty{
-            return 0
-        }
-        else{
-            return workshopsArray.count
-            
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkshopsTableViewCell", for: indexPath) as! WorkshopsTableViewCell
-        
-        //cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
-        cell.selectionStyle = .none
-        
-        
-        if (!workshopsArray.isEmpty){
-            let cellWorkshop = workshopsArray[indexPath.row]
-            
-            //let imageUrl = cellSpeaker.imagePath + cellSpeaker.imageName
-            //cellWorkshop.work.kf.indicatorType = .activity
-            cell.workshopTitleLabel.text = cellWorkshop.workshopName
-            
-            for speaker in speakersArray{
-                if(speaker.speakerID == cellWorkshop.workshopSpeakerID){
-                    cell.facilitatorsNameLabel.text = speaker.name//(cellWorkshop.workshopSpeakerID)
-                }
-            }
-    
-            cell.dateTimeLocationLabel.text = cellWorkshop.workshopDate + " " + cellWorkshop.workshopTime + " / " +  cellWorkshop.workshopLocation
-            cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
-            cell.moreOptionButton.tag = indexPath.row
-        }
-
-        return cell
-    }
-    
-    
-    @IBAction func openPopover(sender: UIButton!){
-        //debugPrint(sender.tag)
-        //delegate?.workshopMoreOptionDidPressed!(workshopTableView, selectedButton: sender)
-        delegate?.workshopMoreOptionDidPressedWithIndexPath?(sender.tag, selectedButton: sender)
     }
 }

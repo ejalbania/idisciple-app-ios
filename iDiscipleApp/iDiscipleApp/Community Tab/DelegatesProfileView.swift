@@ -25,7 +25,8 @@ class DelegatesProfileView: UIView {
         let view = UIView.newAutoLayout()
         view.backgroundColor = UIColor.white
         
-        view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: screenSize.height - (screenSize.height/3)))
+        //view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: screenSize.height - (screenSize.height/3)))
+         view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 470))
         
         view.layer.cornerRadius = 20.0
         //view.layer.borderColor = UIColor.black.cgColor
@@ -50,9 +51,10 @@ class DelegatesProfileView: UIView {
     lazy var profileImageView : UIImageView = {
         
         var image = UIImageView(image: UIImage(named: "creep"))
-        image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 200))
+        image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height:170))
         image.backgroundColor = .darkGray
-        image.contentMode = UIImageView.ContentMode.scaleAspectFit
+        image.contentMode = UIImageView.ContentMode.scaleAspectFill
+        image.clipsToBounds = true
         
         //image.layer.masksToBounds = false
         //image.layer.cornerRadius = imageDimension/2
@@ -110,6 +112,7 @@ class DelegatesProfileView: UIView {
         label.text = "Attending Workshop Name Here & Another Worshop Name Here & Another Worshop Name Here"
         label.textColor = .lightGray
         //label.textAlignment = .center
+        //label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Montserrat-Bold", size: 16)
         label.numberOfLines = 3
         
@@ -181,6 +184,10 @@ class DelegatesProfileView: UIView {
         mainView.addSubview(familyGroupLabel)
         
         mainView.addSubview(dismissButton)
+        
+        //debugPrint(screenSize.height - (screenSize.height/3))
+        
+        starredButton.isHidden = true
         
     }
     

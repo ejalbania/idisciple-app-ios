@@ -53,6 +53,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
         label.text = "Speaker's Name Here"
         label.textColor = .black
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Montserrat-Bold", size: 20)
         label.numberOfLines = 2
         return label

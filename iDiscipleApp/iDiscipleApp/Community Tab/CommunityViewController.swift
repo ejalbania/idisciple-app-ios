@@ -8,12 +8,17 @@
 import UIKit
 import Foundation
 import XLPagerTabStrip
+import SwiftyJSON
 
 class CommunityViewController: ButtonBarPagerTabStripViewController {
 
     var communityView: CommunityView!
     
-    //let blueInstagramColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
+    var familyGroupArray : [FamilyGroup] = []
+    var profileArray : [Profile] = []
+    
+    let groupVC = GroupsViewController(itemInfo: "GROUPS")
+    let delegatesVC = DelegatesViewController(itemInfo: "DELEGATES")
     
     override func viewDidLoad() {
         
@@ -44,11 +49,16 @@ class CommunityViewController: ButtonBarPagerTabStripViewController {
         
         self.view.setNeedsLayout()
         // AutoLayout
-       communityView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
+        communityView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
+        
+        loadCommunityData()
+        
+        groupVC.familyGroupArray = familyGroupArray
+        groupVC.profileArray = profileArray
+        delegatesVC.familyGroupArray = familyGroupArray
+        delegatesVC.profileArray = profileArray
         
         super.viewDidLoad()
-        
-        //adjustViews()
 
     }
     
@@ -78,9 +88,77 @@ class CommunityViewController: ButtonBarPagerTabStripViewController {
     // MARK: - PagerTabStripDataSource
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let child_1 = GroupsViewController(itemInfo: "GROUPS")
-        let child_2 = DelegatesViewController(itemInfo: "DELEGATES")
-        return [child_1, child_2]
+        return [groupVC, delegatesVC]
+    }
+    
+    func loadCommunityData(){
+        
+        familyGroupArray.removeAll()
+        
+        let filename = "family_groups"
+        
+        //Check if family_groups.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
+                
+                self.familyGroupArray.append(FamilyGroup(familyGroupID: subJson["fg_id"].intValue,
+                                                                    familyGroupName: subJson["fg_name"].stringValue,
+                                                                    familyGroupLeadID: subJson["fg_lead_id"].intValue))
+            }
+            
+            //reloadTables
+            //self.groupsView.familyGroupTableView.reloadData()
+            //            updateFamilyGroupCounter()
+            //            enableFamilyGroupController()
+            loadProfiles()
+            
+        }else{
+            debugPrint("\(filename) not found!")
+        }
+        
+    }
+    
+    func loadProfiles(){
+        
+        profileArray.removeAll()
+        let filename = "profile"
+        
+        //Check if schedule.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
+                
+                self.profileArray.append(Profile(profileID: subJson["id"].intValue,
+                                                            profileName: subJson["name"].stringValue,
+                                                            firstName: subJson["firstname"].stringValue,
+                                                            middleName: subJson["middlename"].stringValue,
+                                                            lastName: subJson["lastname"].stringValue,
+                                                            nickName: subJson["nickname"].stringValue,
+                                                            gender: subJson["gender"].stringValue,
+                                                            country: subJson["country"].stringValue,
+                                                            familyGroupID: subJson["fg_id"].intValue,
+                                                            firstWorkshop: subJson["workshop_number_1"].intValue,
+                                                            secondWorkshop: subJson["workshop_number_2"].intValue,
+                                                            imagePath: subJson["img_path"].stringValue,
+                                                            imageName: subJson["img_name"].stringValue))
+            }
+            
+            //reloadTables
+            //self.groupsView.familyGroupTableView.reloadData()
+            //updateFamilyGroupCounter()
+            //enableFamilyGroupController()
+            
+        }else{
+            debugPrint("\(filename) not found!")
+        }
+        
     }
 
 }

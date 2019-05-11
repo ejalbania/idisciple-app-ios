@@ -7,18 +7,12 @@
 
 import UIKit
 
-@objc protocol DelegatesViewDelegate {
-    @objc optional func delegatesTableViewDidSelectCell(_ delegatesView: DelegatesView, indexPathRow: Int) -> Void
-    //func customAlertDidPressDismiss(_ customAlert: CustomAlertController) -> Void
-    //@objc optional func customAlertDidPressOk(_ customAlert: CustomAlertController) -> Void
-}
-
-class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
-    
-    var delegate : DelegatesViewDelegate?
+class DelegatesView: UIView {
 
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
@@ -79,13 +73,15 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         
         mainView.addSubview(searchBarView)
         
-        delegatesSearchBar.delegate = self
         searchBarView.addSubview(delegatesSearchBar)
         
-        delegatesTableView.delegate = self
-        delegatesTableView.dataSource = self
-        delegatesTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
         mainView.addSubview(delegatesTableView)
+        
+        if #available(iOS 10.0, *) {
+            delegatesTableView.refreshControl = refreshControl
+        } else {
+            delegatesTableView.addSubview(refreshControl)
+        }
         
         //delegatesTableView.isHidden = true
         //NSLog("%f", screenSize.height)
@@ -120,38 +116,4 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         }
         super.updateConstraints()
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DelegateTableViewCell", for: indexPath) as! DelegateTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        NSLog("%d", indexPath.row);
-        delegate?.delegatesTableViewDidSelectCell?(self, indexPathRow: indexPath.row)
-        //delegate?.speakersCollectionDidSelect!(self, indexPathRow: indexPath.row)
-        
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegatesSearchBar.endEditing(true)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.delegatesSearchBar.endEditing(true)
-        //do search here
-    }
-
 }

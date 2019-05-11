@@ -13,6 +13,9 @@ import SwiftyJSON
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var loginView: LoginView!
+    var activeField: UITextField?
+    
+     let screenSize: CGRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         //set to logInButtonPressed for actual
         //toMainTabViewTest for testing
-        loginView.logInButton.addTarget(self, action: #selector(toMainTabViewTest), for: .touchUpInside)
+        loginView.logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         
         loginView.emailTextfield.addTarget(self, action: #selector(textfieldDidChange), for: .editingChanged)
         loginView.emailTextfield.delegate = self
@@ -47,9 +50,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.logInButton.alpha = 0.5
         
         //Test Input
-        loginView.emailTextfield.text = "noob@gmail.com"
+        //loginView.emailTextfield.text = "ajsumalbag14@gmail.com"
         //loginView.passwordTextfield.text = "1"
         
+        //debugPrint(screenSize.height)
+        if(screenSize.height <= 667){
+            registerForKeyboardNotifications()
+        }
+        
+        self.appHelper.alert(message: "Loading..")
+        checkForLoggedUser()
+    }
+    
+    deinit {
+        if(screenSize.height <= 667){
+            deregisterFromKeyboardNotifications()
+        }
+     
+    }
+    
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    
+    func checkForLoggedUser(){
+        
+        if(UserDefaults.standard.bool(forKey: GlobalConstant.checkLoginState)){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.appHelper.dismissAlert()
+                self.moveToMainTabView()
+            }
+        }else{
+            self.appHelper.dismissAlert()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,20 +121,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func moveToForgotPassword(sender: UIButton!){
+        
+        //hide keyboard
+        self.view.endEditing(true)
+        
         let newViewController = ForgotPasswordViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     //test
     @IBAction func toFirstTimeUserTest(sender: UIButton!){
+        self.view.endEditing(true)
         self.moveToFirstTimeUser()
     }
     
     @IBAction func toMainTabViewTest(sender: UIButton!){
+        self.view.endEditing(true)
         self.moveToMainTabView()
     }
     
     @IBAction func logInButtonPressed(sender: UIButton!){
+        
+        self.view.endEditing(true)
         
         loginView.errorLabel.isHidden = true
         //showHideErrorLabel()
@@ -135,8 +176,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         //Not first time User
                         debugPrint("\(subJson["user_account"]["token"])")
                         self.createUserProfile(jsonValue: jsonValue)
-                        self.moveToDashboard()
+                        self.moveToMainTabView()
                     }
+                    
+                    //Is Logged
+                    UserDefaults.standard.set(true, forKey: GlobalConstant.checkLoginState)
                 }
 
             }
@@ -165,17 +209,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let dataDate = dateFormat.date(from:(subJson["profile"]["birthdate"].stringValue))!
             //debugPrint("\(subJson["profile"]["birthdate"])")
             
-            let user = User(userID: subJson["user_account"]["user_id"].int!,
-                            userName: subJson["user_account"]["username"].string!,
-                            firstName: subJson["profile"]["firstname"].string!,
-                            middleName: subJson["profile"]["middlename"].string!,
-                            lastName: subJson["profile"]["lastname"].string!,
-                            nickName: subJson["profile"]["nickname"].string!,
-                            mobileNo: subJson["profile"]["mobile_no"].string!,
+            let user = User(userID: subJson["user_account"]["user_id"].intValue,
+                            userName: subJson["user_account"]["username"].stringValue,
+                            firstName: subJson["profile"]["firstname"].stringValue,
+                            middleName: subJson["profile"]["middlename"].stringValue,
+                            lastName: subJson["profile"]["lastname"].stringValue,
+                            nickName: subJson["profile"]["nickname"].stringValue,
+                            mobileNo: subJson["profile"]["mobile_no"].stringValue,
                             birthDate: dataDate,
-                            gender: subJson["profile"]["gender"].string!,
-                            country: subJson["profile"]["country"].string!,
-                            token: subJson["user_account"]["token"].string!)
+                            gender: subJson["profile"]["gender"].stringValue,
+                            country: subJson["profile"]["country"].stringValue,
+                            token: subJson["user_account"]["token"].stringValue)
             
             let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
             UserDefaults.standard.set(encodedData, forKey: "userProfile")
@@ -200,5 +244,66 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
     }
     
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChange(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChange(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChange(notification:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func keyboardWillChange(notification: NSNotification){
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        //debugPrint(notification.name.rawValue)
+        if(notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification){
+            var aRect : CGRect = self.loginView.frame
+            aRect.size.height -= keyboardRect.height
+            
+            if let activeField = self.activeField {
+                //debugPrint("\(aRect) + \(activeField.frame)")
+                if (aRect.contains(activeField.frame.origin)){
+                    //debugPrint("keyboard did interfere")
+                    self.loginView.keyboardHeight = Int(keyboardRect.height)
+                    self.loginView.isKeyboardShowing = true
+                    
+                    self.loginView.setNeedsUpdateConstraints()
+                    self.loginView.updateConstraintsIfNeeded()
+                }
+            }
+        }
+        
+        if(notification.name == UIResponder.keyboardWillHideNotification){
+            self.loginView.isKeyboardShowing = false
+            self.loginView.setNeedsUpdateConstraints()
+            self.loginView.updateConstraintsIfNeeded()
+        }
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
 
 }

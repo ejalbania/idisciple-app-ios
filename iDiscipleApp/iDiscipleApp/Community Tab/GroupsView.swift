@@ -7,10 +7,17 @@
 
 import UIKit
 
-class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
+class GroupsView: UIView {
 
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
+    
+    var familyGroupArray : [FamilyGroup] = []
+    
+    //var profileArray : [Profile] = []
+    //var familyGroupListArray: [Profile] = []
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
@@ -119,10 +126,14 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         familyGroupNumberView.addSubview(familyGroupLabel)
         
-        familyGroupTableView.delegate = self
-        familyGroupTableView.dataSource = self
-        familyGroupTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
         mainView.addSubview(familyGroupTableView)
+        
+        
+        if #available(iOS 10.0, *) {
+            familyGroupTableView.refreshControl = refreshControl
+        } else {
+            familyGroupTableView.addSubview(refreshControl)
+        }
         
         //familyGroupTableView.isHidden = true
         //NSLog("%f", screenSize.height)
@@ -170,21 +181,4 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         super.updateConstraints()
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DelegateTableViewCell", for: indexPath) as! DelegateTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        
-        return cell
-    }
-
 }

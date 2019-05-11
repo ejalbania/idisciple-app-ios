@@ -9,11 +9,14 @@ import UIKit
 import Popover
 import SwiftyJSON
 
-class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, WorkshopPopOverViewDelegate {
+class WorkshopsViewController: DownloaderViewController, UITableViewDelegate, UITableViewDataSource, WorkshopPopOverViewDelegate {
 
     var workshopView: WorkshopsView!
-    
     let screenSize = UIScreen.main.bounds
+    
+    var workshopsArray : [Workshop] = []
+    var speakersArray : [Speaker] = []
+    var profileArray : [Profile] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,29 +29,55 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
         // AutoLayout
         workshopView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
         
-        workshopView.delegate = self
         workshopView.workshopPopOverView.delegate = self
+        
+        workshopView.workshopTableView.delegate = self
+        workshopView.workshopTableView.dataSource = self
+        workshopView.workshopTableView.register(WorkshopsTableViewCell.self, forCellReuseIdentifier: "WorkshopsTableViewCell")
+        
+        workshopView.refreshControl.addTarget(self, action: #selector(reloadData(_:)), for: .valueChanged)
 
         //workshopView.workshopTableView.reloadData()
-        checkSpeakers()
+        reloadTab()
         
     }
+    
+    func reloadTab(){
+        
+        checkSpeakers()
+        loadWorkshops()
+        loadProfiles()
+        
+        self.workshopView.workshopTableView.reloadData()
+    }
+    
+    @objc private func reloadData(_ sender: Any) {
+        // Reload data
+        debugPrint("call reload here")
+        
+        reloadJsonData(onSuccess: { string in
+            
+            DispatchQueue.main.async {
+                self.doneReloading()
+            }
+            
+        }, onFailure: { error in
+            debugPrint(error)
+        })
+    }
+    
+    func doneReloading() {
+        
+        self.workshopView.refreshControl.endRefreshing()
+        reloadTab()
+    }
+
     
     func showPopOverMenu(fromView: UIView, indexPath: Int){
         
         workshopView.selectedIndexPath = indexPath
         workshopView.popOver.show(workshopView.workshopPopOverView, fromView: fromView)
         
-    }
-    
-    //WorkshopView delegate
-    func workshopMoreOptionDidPressed(_ workshopsTableView: UITableView, selectedButton: UIButton) {
-        //debugPrint(selectedButton.tag)
-        //showPopOverMenu(fromView: selectedButton)
-    }
-    
-    func workshopMoreOptionDidPressedWithIndexPath(_ indexPath: Int, selectedButton: UIButton) {
-        showPopOverMenu(fromView: selectedButton, indexPath: indexPath)
     }
     
     //Workshop pop over delegate
@@ -70,49 +99,84 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
         let newViewController = WorkshopsInfoViewController()
         
         newViewController.isOutline = isOutline
-        newViewController.workShopInfo = workshopView.workshopsArray[indexPath]
+        newViewController.workShopInfo = workshopsArray[indexPath]
         
         newViewController.modalPresentationStyle = .overFullScreen
         present(newViewController, animated: false, completion: nil)
     }
     
+    func loadProfiles(){
+        
+        profileArray.removeAll()
+        let filename = "profile"
+        
+        //Check if schedule.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
+                
+                self.profileArray.append(Profile(profileID: subJson["id"].intValue,
+                                                 profileName: subJson["name"].stringValue,
+                                                 firstName: subJson["firstname"].stringValue,
+                                                 middleName: subJson["middlename"].stringValue,
+                                                 lastName: subJson["lastname"].stringValue,
+                                                 nickName: subJson["nickname"].stringValue,
+                                                 gender: subJson["gender"].stringValue,
+                                                 country: subJson["country"].stringValue,
+                                                 familyGroupID: subJson["fg_id"].intValue,
+                                                 firstWorkshop: subJson["workshop_number_1"].intValue,
+                                                 secondWorkshop: subJson["workshop_number_2"].intValue,
+                                                 imagePath: subJson["img_path"].stringValue,
+                                                 imageName: subJson["img_name"].stringValue))
+            }
+            
+            //self.workshopView.workshopTableView.reloadData()
+            
+        }else{
+            debugPrint("\(filename) not found!")
+        }
+        
+    }
+    
     func loadWorkshops(){
         
-        let urlString = ApiManager.sharedInstance.workshopsJson
+        workshopsArray.removeAll()
         
-        ApiManager.sharedInstance.getDataFromJson(url: urlString, onSuccess: { json in
-            DispatchQueue.main.async {
+        let filename = "workshops"
+        
+        //Check if workshops.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
                 
-                let jsonValue = JSON(json)
-                //debugPrint("\(jsonValue[0]["data"])")
-                
-                for (_, subJson) in jsonValue[0]["data"] {
-                    //debugPrint("\(subJson["profile"])")
-                    //debugPrint("\(subJson["name"])")
-                    
-                    self.workshopView.workshopsArray.append(Workshop(workshopID: subJson["workshop_id"].intValue,
-                                                                     workshopName: subJson["workshop_name"].stringValue,
-                                                                     workshopDescription: subJson["description"].stringValue,
-                                                                     workshopOutline: subJson["outline"].stringValue,
-                                                                     workshopSpeakerID: subJson["speaker_id"].intValue,
-                                                                     workshopDate: subJson["workshop_schedule_date"].stringValue,
-                                                                     workshopTime: subJson["workshop_schedule_time"].stringValue,
-                                                                     workshopLocation: subJson["location"].stringValue))
-                    
-                }
-                
-                self.workshopView.workshopTableView.reloadData()
-                
+                self.workshopsArray.append(Workshop(workshopID: subJson["workshop_id"].intValue,
+                                                   workshopName: subJson["workshop_name"].stringValue,
+                                                   workshopDescription: subJson["description"].stringValue,
+                                                   workshopOutline: subJson["outline"].stringValue,
+                                                   workshopSpeakerID: subJson["speaker_id"].intValue,
+                                                   workshopDate: subJson["workshop_schedule_date"].stringValue,
+                                                   workshopTime: subJson["workshop_schedule_time"].stringValue,
+                                                   workshopLocation: subJson["location"].stringValue))
             }
-        }, onFailure: { error in
-            debugPrint("\(error)")
-            self.appHelper.dismissAlert()
-        })
+            
+        }else{
+            debugPrint("\(filename) not found!")
+        }
+        
+        //loadProfiles()
+        
     }
     
     func checkSpeakers(){
         
-         let filename = "speakers"
+        speakersArray.removeAll()
+        let filename = "speakers"
         
         //Check if speaker.json exists
         let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
@@ -121,7 +185,7 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
             let jsonValue = JSON(testRetrieve!)
             //debugPrint("\(jsonValue)")
             for (_, subJson) in jsonValue[0]["data"]{
-                self.workshopView.speakersArray.append((Speaker(speakerID: subJson["id"].intValue,
+                self.speakersArray.append((Speaker(speakerID: subJson["id"].intValue,
                                                                name: subJson["name"].stringValue,
                                                                bio: subJson["bia"].stringValue,
                                                                nationality: subJson["nationality"].intValue,
@@ -142,8 +206,59 @@ class WorkshopsViewController: UIViewController, WorkshopsTableViewDelegate, Wor
             debugPrint("\(filename) not found!")
         }
         
-        loadWorkshops()
+        //loadWorkshops()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if workshopsArray.isEmpty{
+            return 0
+        }
+        else{
+            return workshopsArray.count
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkshopsTableViewCell", for: indexPath) as! WorkshopsTableViewCell
         
+        //cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
+        cell.selectionStyle = .none
+        
+        if (!workshopsArray.isEmpty){
+            let cellWorkshop = workshopsArray[indexPath.row]
+            
+            cell.workshopTitleLabel.text = cellWorkshop.workshopName
+            
+            for speaker in speakersArray{
+                if(speaker.speakerID == cellWorkshop.workshopSpeakerID){
+                    cell.facilitatorsNameLabel.text = speaker.name//(cellWorkshop.workshopSpeakerID)
+                }
+            }
+            
+            let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
+            let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
+            
+            let userProfile = profileArray.first(where: ({ (profileSearch: Profile) -> Bool in
+                return profileSearch.profileID == loadedUser.userID
+            }))
+            
+            cell.selectedWorkshopLabel.isHidden = true
+            if(cellWorkshop.workshopID == userProfile?.firstWorkshop || cellWorkshop.workshopID == userProfile?.secondWorkshop){
+                cell.selectedWorkshopLabel.isHidden = false
+            }
+
+            
+            cell.dateTimeLocationLabel.text = cellWorkshop.workshopDate + " " + cellWorkshop.workshopTime + " / " +  cellWorkshop.workshopLocation
+            cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
+            cell.moreOptionButton.tag = indexPath.row
+        }
+        
+        return cell
+    }
+    
+    @IBAction func openPopover(sender: UIButton!){
+        showPopOverMenu(fromView: sender, indexPath: sender.tag)
     }
     
 }

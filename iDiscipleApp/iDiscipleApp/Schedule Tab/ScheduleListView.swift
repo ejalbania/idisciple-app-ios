@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
+class ScheduleListView: UIView {
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
@@ -21,6 +21,8 @@ class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         return view
     }()
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var scheduleListTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
@@ -38,10 +40,18 @@ class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.addSubview(mainView)
         
-        scheduleListTableView.delegate = self
-        scheduleListTableView.dataSource = self
-        scheduleListTableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: "ScheduleTableViewCell")
+//        scheduleListTableView.delegate = self
+//        scheduleListTableView.dataSource = self
+//        scheduleListTableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: "ScheduleTableViewCell")
+        
         mainView.addSubview(scheduleListTableView)
+        
+        if #available(iOS 10.0, *) {
+            scheduleListTableView.refreshControl = refreshControl
+        } else {
+            scheduleListTableView.addSubview(refreshControl)
+        }
+        
         
         //scheduleListTableView.isHidden = true
         //NSLog("%f", screenSize.height)
@@ -69,50 +79,50 @@ class ScheduleListView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scheduleArray.count
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return scheduleArray.count
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        if (!scheduleArray.isEmpty){
-            let cellSchedule = scheduleArray[indexPath.row]
-            
-            cell.scheduleTimeLabel.text = cellSchedule.schedStartTime + " - " + cellSchedule.schedEndTime
-            cell.eventNameLabel.text = cellSchedule.schedName
-            cell.locationLabel.text = cellSchedule.schedVenue
-            
-            cell.happeningNowWorkshopLabel.isHidden = true
-            cell.selectedWorkshopLabel.isHidden = true
-            
-            //Check here if workshop/happening or not
-            let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
-            let currentDay = GlobalConstant.kDateSource_formatter.date(from: stringDay)
-            let stringTime = GlobalConstant.kTimeSource_formatter.string(from: Date())
-            let currentTime = GlobalConstant.kTimeSource_formatter.date(from: stringTime)
-            let startTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedStartTime)
-            let endTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedEndTime)
-            
-            //add date checking
-            if(GlobalConstant.kDateSource_formatter.date(from: cellSchedule.schedDate)! == currentDay!){
-                if startTime! < currentTime! && currentTime! < endTime!{
-                    cell.happeningNowWorkshopLabel.isHidden = false
-                }
-            }
-            
-            //AddChecking if workshop
-            //cell.selectedWorkshopLabel.isHidden = false
-            //cell.happeningNowWorkshopLabel.isHidden = false
-            
-        }
-        
-        cell.shouldSetupConstraints = true
-        cell.updateConstraints()
-        
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
+//
+//        cell.selectionStyle = .none
+//
+//        if (!scheduleArray.isEmpty){
+//            let cellSchedule = scheduleArray[indexPath.row]
+//
+//            cell.scheduleTimeLabel.text = cellSchedule.schedStartTime + " - " + cellSchedule.schedEndTime
+//            cell.eventNameLabel.text = cellSchedule.schedName
+//            cell.locationLabel.text = cellSchedule.schedVenue
+//
+//            cell.happeningNowWorkshopLabel.isHidden = true
+//            cell.selectedWorkshopLabel.isHidden = true
+//
+//            //Check here if workshop/happening or not
+//            let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
+//            let currentDay = GlobalConstant.kDateSource_formatter.date(from: stringDay)
+//            let stringTime = GlobalConstant.kTimeSource_formatter.string(from: Date())
+//            let currentTime = GlobalConstant.kTimeSource_formatter.date(from: stringTime)
+//            let startTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedStartTime)
+//            let endTime = GlobalConstant.kTimeSource_formatter.date(from: cellSchedule.schedEndTime)
+//
+//            //add date checking
+//            if(GlobalConstant.kDateSource_formatter.date(from: cellSchedule.schedDate)! == currentDay!){
+//                if startTime! < currentTime! && currentTime! < endTime!{
+//                    cell.happeningNowWorkshopLabel.isHidden = false
+//                }
+//            }
+//
+//            //AddChecking if workshop
+//            //cell.selectedWorkshopLabel.isHidden = false
+//            //cell.happeningNowWorkshopLabel.isHidden = false
+//
+//        }
+//
+//        cell.shouldSetupConstraints = true
+//        cell.updateConstraints()
+//
+//        return cell
+//    }
 
 }

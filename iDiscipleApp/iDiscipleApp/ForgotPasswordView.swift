@@ -12,6 +12,10 @@ class ForgotPasswordView: UIView {
 
     let mainLogoHeight = 100
     
+    var isKeyboardShowing = false
+    var keyboardHeight = 0
+    var backgroundHeightConstraint: NSLayoutConstraint?
+    
     lazy var backgroundView: UIView = {
         let view = UIView.newAutoLayout()
         //view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
@@ -171,6 +175,8 @@ class ForgotPasswordView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .white
+        
         self.addSubview(backgroundView)
         backgroundView.addSubview(mainView)
         
@@ -244,6 +250,14 @@ class ForgotPasswordView: UIView {
             
             shouldSetupConstraints = false
         }
+        
+        backgroundHeightConstraint?.autoRemove()
+        if(isKeyboardShowing){
+            backgroundHeightConstraint =  backgroundView.autoPinEdge(.bottom, to: .top, of: self, withOffset: screenSize.height - CGFloat(keyboardHeight))
+        }else{
+            backgroundHeightConstraint =  backgroundView.autoPinEdge(.bottom, to: .top, of: self, withOffset: screenSize.height)
+        }
+        
         super.updateConstraints()
     }
 

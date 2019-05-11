@@ -69,7 +69,7 @@ class SpeakersBioView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 22)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
     
@@ -168,7 +168,9 @@ class SpeakersBioView: UIView {
             speakerImageView.autoPinEdge(.top, to: .bottom, of: speakersBioLabel, withOffset: imageDimension/3)
             
             speakerNameLabel.autoPinEdge(.top, to: .bottom, of: speakerImageView, withOffset:imageDimension/4)
-            speakerNameLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+            speakerNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            speakerNameLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+            //speakerNameLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             
             socialLabel.autoPinEdge(.top, to: .bottom, of: speakerNameLabel, withOffset:5)
             socialLabel.autoAlignAxis(toSuperviewAxis: .vertical)

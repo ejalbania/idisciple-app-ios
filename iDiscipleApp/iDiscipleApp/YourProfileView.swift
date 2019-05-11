@@ -25,7 +25,7 @@ class YourProfileView: UIView {
         let view = UIView.newAutoLayout()
         view.backgroundColor = UIColor.white
         
-        view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: screenSize.height - (screenSize.height/3)))
+        view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 470))
         
         view.layer.cornerRadius = 20.0
         //view.layer.borderColor = UIColor.black.cgColor
@@ -50,9 +50,10 @@ class YourProfileView: UIView {
     lazy var profileImageView : UIImageView = {
         
         var image = UIImageView(image: UIImage(named: "creep"))
-        image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 200))
+        image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 170))
         image.backgroundColor = .darkGray
-        image.contentMode = UIImageView.ContentMode.scaleAspectFit
+        image.contentMode = UIImageView.ContentMode.scaleAspectFill
+        image.clipsToBounds = true
         
         //image.layer.masksToBounds = false
         //image.layer.cornerRadius = imageDimension/2
@@ -109,7 +110,7 @@ class YourProfileView: UIView {
     lazy var workshopsLabel: UILabel = {
         let label = UILabel.newAutoLayout()
         //label.backgroundColor = .yellow
-        label.text = "Attending Workshop Name Here & Another Worshop Name Here & Another Worshop Name Here"
+        label.text = ""
         label.textColor = .lightGray
         //label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 16)
@@ -140,6 +141,18 @@ class YourProfileView: UIView {
         label.numberOfLines = 1
         
         return label
+    }()
+    
+    lazy var changeAvatarButton : UIButton = {
+        let button = UIButton.newAutoLayout()
+        button.setTitle("CHANGE AVATAR", for: .normal)
+        button.titleLabel?.textColor = .black
+        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 14)
+        //button.layer.borderWidth = 1.0
+        button.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
+        button.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 40))
+  
+        return button
     }()
     
     lazy var dismissButton : UIButton = {
@@ -198,6 +211,8 @@ class YourProfileView: UIView {
         mainView.addSubview(logoutButton)
         mainView.addSubview(dismissButton)
         
+        mainView.addSubview(changeAvatarButton)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -223,6 +238,12 @@ class YourProfileView: UIView {
             
             profileImageView.autoAlignAxis(toSuperviewAxis: .vertical)
             profileImageView.autoPinEdge(.top, to: .bottom, of: profileTitleLabel, withOffset: 10)
+            
+            //changeAvatarButton.autoAlignAxis(toSuperviewAxis: .vertical)
+            //changeAvatarButton.autoAlignAxis(toSuperviewAxis: .horizontal)
+            changeAvatarButton.autoPinEdge(.top, to: .bottom, of: profileImageView, withOffset: -40)
+            //changeAvatarButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+            //changeAvatarButton.autoPinEdge(toSuperviewEdge: .left, withInset: profileImageView.frame.width/2)
             
             nicknameLabel.autoPinEdge(.top, to: .bottom, of: profileImageView, withOffset:20)
             nicknameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)

@@ -46,7 +46,7 @@ class SpeakersBioViewController: UIViewController {
             
             let imageUrl = speakerBio!.imagePath + speakerBio!.imageName
             speakersBioView.speakerImageView.kf.indicatorType = .activity
-            speakersBioView.speakerImageView.kf.setImage(with: ImageResource(downloadURL:URL(string: imageUrl)!, cacheKey: imageUrl))
+            speakersBioView.speakerImageView.kf.setImage(with: ImageResource(downloadURL:URL(string: imageUrl)!, cacheKey: imageUrl), placeholder: UIImage(named: "country_\(speakerBio!.nationality)"))
             
             speakersBioView.speakerNameLabel.text = speakerBio?.name
             

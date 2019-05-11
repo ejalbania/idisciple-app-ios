@@ -139,8 +139,18 @@ class WorkshopsTableViewCell: UITableViewCell {
             selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 5)
             selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
-            dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
-            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            if(selectedWorkshopLabel.isHidden){
+                
+                dateTimeLocationLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset: 30)
+                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+                
+            }else{
+                dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            }
+            
+//            dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+//            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
             facilitatorsNameLabel.autoPinEdge(.bottom, to: .top, of: dateTimeLocationLabel, withOffset: 0)
             facilitatorsNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)

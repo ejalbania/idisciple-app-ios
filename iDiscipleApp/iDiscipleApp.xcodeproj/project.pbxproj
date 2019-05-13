@@ -45,10 +45,6 @@
 		1D530D0C2283137E00EAB306 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D0B2283137E00EAB306 /* MapViewController.swift */; };
 		1D530D0E22840BD900EAB306 /* MapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D0D22840BD900EAB306 /* MapLegendTableViewCell.swift */; };
 		1D530D1222841E4C00EAB306 /* MapArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D1122841E4C00EAB306 /* MapArea.swift */; };
-		1D530D142285B12300EAB306 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D132285B12300EAB306 /* MoreView.swift */; };
-		1D530D162285B15C00EAB306 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D152285B15C00EAB306 /* MoreViewController.swift */; };
-		1D530D182285B4E600EAB306 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D172285B4E600EAB306 /* AboutViewController.swift */; };
-		1D530D1A2285B4FD00EAB306 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D192285B4FD00EAB306 /* AboutView.swift */; };
 		1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */; };
 		1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */; };
 		1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */; };
@@ -122,10 +118,6 @@
 		1D530D0B2283137E00EAB306 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1D530D0D22840BD900EAB306 /* MapLegendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLegendTableViewCell.swift; sourceTree = "<group>"; };
 		1D530D1122841E4C00EAB306 /* MapArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapArea.swift; sourceTree = "<group>"; };
-		1D530D132285B12300EAB306 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
-		1D530D152285B15C00EAB306 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		1D530D172285B4E600EAB306 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		1D530D192285B4FD00EAB306 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		1DB909DE217E0D5C000DF8B7 /* SlideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuView.swift; sourceTree = "<group>"; };
 		1DB909E1217E0D75000DF8B7 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
 		1DB909E52185FC7A000DF8B7 /* FirstTimeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserViewController.swift; sourceTree = "<group>"; };
@@ -274,10 +266,6 @@
 				1D33CC7C21FF315300CF2A8E /* Workshops Tab */,
 				1DED0FEE226EEF080094E0F6 /* Schedule Tab */,
 				1D530CE62273ED2600EAB306 /* Community Tab */,
-				1D530D132285B12300EAB306 /* MoreView.swift */,
-				1D530D152285B15C00EAB306 /* MoreViewController.swift */,
-				1D530D192285B4FD00EAB306 /* AboutView.swift */,
-				1D530D172285B4E600EAB306 /* AboutViewController.swift */,
 				732146A6217437A000C09E8E /* DashboardButton.swift */,
 				73FA95B5216EDB1000D46F6B /* DashboardView.swift */,
 				73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */,
@@ -457,7 +445,6 @@
 				1D530CE82273EDEA00EAB306 /* GroupsView.swift in Sources */,
 				1D530CE42273740E00EAB306 /* ScheduleTableViewCell.swift in Sources */,
 				1D33CC7021EF635D00CF2A8E /* SpeakersCollectionViewCell.swift in Sources */,
-				1D530D162285B15C00EAB306 /* MoreViewController.swift in Sources */,
 				1D33CC7421F8B69500CF2A8E /* SpeakersBioViewController.swift in Sources */,
 				73FA95AA216B0ADF00D46F6B /* ForgotPasswordViewController.swift in Sources */,
 				1D530D062280213100EAB306 /* Country.swift in Sources */,
@@ -481,7 +468,6 @@
 				1D33CC882216F63D00CF2A8E /* WorkshopsInfoView.swift in Sources */,
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
-				1D530D142285B12300EAB306 /* MoreView.swift in Sources */,
 				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
 				1D33CC7821FF2EAD00CF2A8E /* WorkshopsView.swift in Sources */,
 				1D530CFC227AF06000EAB306 /* Workshop.swift in Sources */,
@@ -498,7 +484,6 @@
 				1D530CEA227424A400EAB306 /* DelegateTableViewCell.swift in Sources */,
 				1D530D0A2283136E00EAB306 /* MapView.swift in Sources */,
 				1D530CEE227437CE00EAB306 /* DelegatesView.swift in Sources */,
-				1D530D1A2285B4FD00EAB306 /* AboutView.swift in Sources */,
 				1D530D0C2283137E00EAB306 /* MapViewController.swift in Sources */,
 				1DED0FF0226EEFA90094E0F6 /* CommunityViewController.swift in Sources */,
 				1D530D0E22840BD900EAB306 /* MapLegendTableViewCell.swift in Sources */,
@@ -516,7 +501,6 @@
 				733CA238214758700045A44A /* HomeViewController.swift in Sources */,
 				1D33CC7621F9747100CF2A8E /* SpeakersBioView.swift in Sources */,
 				1DB909DF217E0D5C000DF8B7 /* SlideMenuView.swift in Sources */,
-				1D530D182285B4E600EAB306 /* AboutViewController.swift in Sources */,
 				1DB909E62185FC7A000DF8B7 /* FirstTimeUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,7 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.idiscipleph.iDisciplePhApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = iDisciplePhAppDistributionProfile;
+				PROVISIONING_PROFILE_SPECIFIER = iDisciplePhAppDevelopmentProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
     let workshopsViewController = WorkshopsViewController()
     let scheduleViewController = ScheduleViewController()
     let communityViewController = CommunityViewController()
-    let moreViewController = MoreViewController()
+    let moreViewController = ViewController()
     
     let profileViewController = YourProfileViewController()
 

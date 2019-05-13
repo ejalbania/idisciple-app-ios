@@ -74,7 +74,6 @@ class DashboardViewController: UIViewController {
     }
     
     @objc func aboutButtonPressed() {
-        
         debugPrint("OPEN About")
     }
 

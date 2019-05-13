@@ -8,15 +8,12 @@
 import UIKit
 import Popover
 
-@objc protocol WorkshopsTableViewDelegate {
-    @objc optional func workshopMoreOptionDidPressed(_ workshopsTableView: UITableView, selectedButton: UIButton) -> Void
-    //func customAlertDidPressDismiss(_ customAlert: CustomAlertController) -> Void
-    //@objc optional func customAlertDidPressOk(_ customAlert: CustomAlertController) -> Void
-}
-
-class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
+class WorkshopsView: UIView {
     
-     var delegate : WorkshopsTableViewDelegate?
+    var workshopsArray : [Workshop] = []
+    var speakersArray : [Speaker] = []
+    
+    var selectedIndexPath : Int? = nil
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
@@ -30,6 +27,8 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return view
     }()
     
+    lazy var refreshControl = UIRefreshControl()
+    
     lazy var workshopTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
         tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height))
@@ -41,7 +40,7 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }()
     
     lazy var workshopPopOverView : WorkshopPopOverView = {
-        let view = WorkshopPopOverView(frame: CGRect(x: 0, y: 0, width: 250, height: 80))
+        let view = WorkshopPopOverView(frame: CGRect(x: 0, y: 0, width: 210, height: 80))
         return view
     }()
     
@@ -63,10 +62,13 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.addSubview(backgroundView)
         
-        workshopTableView.delegate = self
-        workshopTableView.dataSource = self
-        workshopTableView.register(WorkshopsTableViewCell.self, forCellReuseIdentifier: "WorkshopsTableViewCell")
         backgroundView.addSubview(workshopTableView)
+        
+        if #available(iOS 10.0, *) {
+            workshopTableView.refreshControl = refreshControl
+        } else {
+            workshopTableView.addSubview(refreshControl)
+        }
         
     }
     
@@ -87,32 +89,5 @@ class WorkshopsView: UIView, UITableViewDelegate, UITableViewDataSource {
             shouldSetupConstraints = false
         }
         super.updateConstraints()
-    }
-    
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkshopsTableViewCell", for: indexPath) as! WorkshopsTableViewCell
-        
-        cell.workshopTitleLabel.text = "Warding 101"
-
-        cell.moreOptionButton.tag = indexPath.row
-        cell.selectionStyle = .none
-        cell.moreOptionButton.addTarget(self, action: #selector(openPopover), for: .touchUpInside)
-        
-        //cell.labUerName.text = "Name"
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-
-        return cell
-    }
-    
-    
-    @IBAction func openPopover(sender: UIButton!){
-        //debugPrint(sender.tag)
-        delegate?.workshopMoreOptionDidPressed!(workshopTableView, selectedButton: sender)
     }
 }

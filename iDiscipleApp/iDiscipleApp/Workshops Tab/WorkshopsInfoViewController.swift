@@ -9,7 +9,10 @@ import UIKit
 
 class WorkshopsInfoViewController: UIViewController {
     
-        var workshopInfoView: WorkshopsInfoView!
+    var workshopInfoView: WorkshopsInfoView!
+    var isOutline : Bool = false
+    var selectedIndexPath : Int = 0
+    var workShopInfo : Workshop? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,17 @@ class WorkshopsInfoViewController: UIViewController {
         workshopInfoView.mainView.layer.addSublayer(footerLayer)
         
         workshopInfoView.dismissButton.addTarget(self, action: #selector(dismissSpeakersBioView), for: .touchUpInside)
+        
+        workshopInfoView.workshopTitleLabel.text = workShopInfo?.workshopName
+        if(isOutline){
+            workshopInfoView.workshopBlurbLabel.text = "Workshop Outline"
+            workshopInfoView.workshopDescriptionTextView.text = workShopInfo?.workshopOutline
+        }else{
+            workshopInfoView.workshopBlurbLabel.text = "Workshop Description"
+            workshopInfoView.workshopDescriptionTextView.text = workShopInfo?.workshopDescription
+        }
+
+
     }
     
     @IBAction func dismissSpeakersBioView(sender: UIButton!){

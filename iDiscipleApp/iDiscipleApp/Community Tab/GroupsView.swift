@@ -7,10 +7,17 @@
 
 import UIKit
 
-class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
+class GroupsView: UIView {
 
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
+    
+    var familyGroupArray : [FamilyGroup] = []
+    
+    //var profileArray : [Profile] = []
+    //var familyGroupListArray: [Profile] = []
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
@@ -25,6 +32,7 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .white
         //view.layer.borderWidth = 0.5
         view.autoSetDimension(.height, toSize: 150)
+        view.autoSetDimension(.width, toSize: self.screenSize.width)
         
         return view
     }()
@@ -118,10 +126,14 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         familyGroupNumberView.addSubview(familyGroupLabel)
         
-        familyGroupTableView.delegate = self
-        familyGroupTableView.dataSource = self
-        familyGroupTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
         mainView.addSubview(familyGroupTableView)
+        
+        
+        if #available(iOS 10.0, *) {
+            familyGroupTableView.refreshControl = refreshControl
+        } else {
+            familyGroupTableView.addSubview(refreshControl)
+        }
         
         //familyGroupTableView.isHidden = true
         //NSLog("%f", screenSize.height)
@@ -143,9 +155,7 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
             mainView.autoPinEdge(toSuperviewEdge: .top)
             //mainView.autoPinEdge(toSuperviewEdge: .bottom)
             
-            familyGroupNumberView.autoAlignAxis(toSuperviewAxis: .vertical)
-            familyGroupNumberView.autoPinEdge(toSuperviewEdge: .left)
-            //familyGroupNumberView.autoPinEdge(toSuperviewEdge: .right)
+            familyGroupNumberView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             familyGroupNumberView.autoPinEdge(toSuperviewEdge: .top, withInset: 1)
             
             familyGroupNumberLabel.autoAlignAxis(toSuperviewAxis: .vertical)
@@ -171,21 +181,4 @@ class GroupsView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         super.updateConstraints()
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DelegateTableViewCell", for: indexPath) as! DelegateTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        
-        return cell
-    }
-
 }

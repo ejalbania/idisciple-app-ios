@@ -7,6 +7,7 @@
 
 import UIKit
 import XLPagerTabStrip
+import SwiftyJSON
 
 class ScheduleViewController: ButtonBarPagerTabStripViewController {
 
@@ -14,6 +15,10 @@ class ScheduleViewController: ButtonBarPagerTabStripViewController {
     var scheduleView: ScheduleView!
     
     //let blueInstagramColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
+    let day1VC = ScheduleListViewController(itemInfo: "2019-05-21")
+    let day2VC = ScheduleListViewController(itemInfo: "2019-05-22")
+    let day3VC = ScheduleListViewController(itemInfo: "2019-05-23")
+    let day4VC = ScheduleListViewController(itemInfo: "2019-05-24")
     
     override func viewDidLoad() {
         
@@ -44,34 +49,59 @@ class ScheduleViewController: ButtonBarPagerTabStripViewController {
         }
         
         super.viewDidLoad()
+        checkDateForTabSelection()
     
         // Do any additional setup after loading the view.
-        //adjustViews()
-   
+        
     }
     
-    func adjustViews(){
-        DispatchQueue.main.async {
-            NSLog("adjustedViews")
-            self.view.setNeedsLayout()
+    func checkDateForTabSelection(){
+        
+        //Check here if workshop/happening or not
+        let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
+        let currentDay = GlobalConstant.kDateSource_formatter.date(from: stringDay)
+        
+        let firstDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
+        let secondDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
+        let thirdDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
+        let lastDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
+        
+        //add date checking
+        if currentDay! <= firstDay!{
+            moveToViewController(at: 0, animated: false)
+            day1VC.scheduleListView.scheduleListTableView.reloadData()
         }
+        if currentDay! > firstDay! && currentDay! == secondDay!{
+            moveToViewController(at: 1, animated: false)
+            day2VC.scheduleListView.scheduleListTableView.reloadData()
+        }
+        if currentDay! > secondDay! && currentDay! == thirdDay!{
+            moveToViewController(at: 2, animated: false)
+            day3VC.scheduleListView.scheduleListTableView.reloadData()
+        }
+        if currentDay! > thirdDay! && currentDay! == lastDay!{
+            moveToViewController(at: 3, animated: false)
+            day4VC.scheduleListView.scheduleListTableView.reloadData()
+        }
+        
+        
     }
     
     // MARK: - PagerTabStripDataSource
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        let child_1 = ScheduleListViewController(itemInfo: "2019-05-21")
-        let child_2 = ScheduleListViewController(itemInfo: "2019-05-22")
-        let child_3 = ScheduleListViewController(itemInfo: "2019-05-23")
-        let child_4 = ScheduleListViewController(itemInfo: "2019-05-24")
+//        let child_1 = ScheduleListViewController(itemInfo: "2019-05-21")
+//        let child_2 = ScheduleListViewController(itemInfo: "2019-05-22")
+//        let child_3 = ScheduleListViewController(itemInfo: "2019-05-23")
+//        let child_4 = ScheduleListViewController(itemInfo: "2019-05-24")
         //return [child_1, child_2, child_3, child_4]
         
         guard isReload else {
-            return [child_1, child_2, child_3, child_4]
+            return [day1VC, day2VC, day3VC, day4VC]
         }
         
-        var childViewControllers = [child_1, child_2, child_3, child_4]
+        var childViewControllers = [day1VC, day2VC, day3VC, day4VC]
         
         for index in childViewControllers.indices {
             let nElements = childViewControllers.count - index
@@ -98,5 +128,5 @@ class ScheduleViewController: ButtonBarPagerTabStripViewController {
         super.configureCell(cell, indicatorInfo: indicatorInfo)
         cell.backgroundColor = .clear
     }
-
+    
 }

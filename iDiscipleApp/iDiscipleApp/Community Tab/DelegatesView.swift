@@ -7,10 +7,12 @@
 
 import UIKit
 
-class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+class DelegatesView: UIView {
 
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
+    
+    lazy var refreshControl = UIRefreshControl()
     
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
@@ -29,13 +31,13 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         return view
     }()
     
-    lazy var delegateSearchBar : UISearchBar = {
+    lazy var delegatesSearchBar : UISearchBar = {
         
         let search = UISearchBar.newAutoLayout()
         search.searchBarStyle = .minimal
-        search.layer.borderWidth = 1
-        search.layer.borderColor = UIColor.lightGray.cgColor
-        search.layer.cornerRadius = 5.0
+        //search.layer.borderWidth = 1
+        //search.layer.borderColor = UIColor.lightGray.cgColor
+        //search.layer.cornerRadius = 5.0
         search.placeholder = "Search names"
         search.autoSetDimension(.height, toSize: 50)
         search.autoSetDimension(.width, toSize: self.screenSize.width - 40)
@@ -53,7 +55,7 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         return button
     }()
     
-    lazy var familyGroupTableView : UITableView = {
+    lazy var delegatesTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
         tableView.backgroundColor = .white
         tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height-(162+70)))
@@ -71,15 +73,17 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
         
         mainView.addSubview(searchBarView)
         
-        delegateSearchBar.delegate = self
-        searchBarView.addSubview(delegateSearchBar)
+        searchBarView.addSubview(delegatesSearchBar)
         
-        familyGroupTableView.delegate = self
-        familyGroupTableView.dataSource = self
-        familyGroupTableView.register(DelegateTableViewCell.self, forCellReuseIdentifier: "DelegateTableViewCell")
-        mainView.addSubview(familyGroupTableView)
+        mainView.addSubview(delegatesTableView)
         
-        //familyGroupTableView.isHidden = true
+        if #available(iOS 10.0, *) {
+            delegatesTableView.refreshControl = refreshControl
+        } else {
+            delegatesTableView.addSubview(refreshControl)
+        }
+        
+        //delegatesTableView.isHidden = true
         //NSLog("%f", screenSize.height)
         
     }
@@ -103,39 +107,13 @@ class DelegatesView: UIView, UITableViewDelegate, UITableViewDataSource, UISearc
             searchBarView.autoPinEdge(toSuperviewEdge: .left)
             searchBarView.autoPinEdge(toSuperviewEdge: .top, withInset: 1)
             
-            delegateSearchBar.autoAlignAxis(toSuperviewAxis: .vertical)
-            delegateSearchBar.autoAlignAxis(toSuperviewAxis: .horizontal)
+            delegatesSearchBar.autoAlignAxis(toSuperviewAxis: .vertical)
+            delegatesSearchBar.autoAlignAxis(toSuperviewAxis: .horizontal)
             
-            familyGroupTableView.autoPinEdge(.top, to: .bottom, of: searchBarView, withOffset: 0)
+            delegatesTableView.autoPinEdge(.top, to: .bottom, of: searchBarView, withOffset: 0)
             
             shouldSetupConstraints = false
         }
         super.updateConstraints()
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DelegateTableViewCell", for: indexPath) as! DelegateTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        //cell.labMessage.text = "Message \(indexPath.row)"
-        //cell.labTime.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        
-        return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegateSearchBar.endEditing(true)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.delegateSearchBar.endEditing(true)
-        //do search here
-    }
-
 }

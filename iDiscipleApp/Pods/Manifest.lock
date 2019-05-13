@@ -1,36 +1,73 @@
 PODS:
   - Alamofire (4.8.2)
+  - ModelMapper (10.0.0):
+    - ModelMapper/Core (= 10.0.0)
+  - ModelMapper/Core (10.0.0)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya-ModelMapper (9.0.0):
+    - Moya-ModelMapper/Core (= 9.0.0)
+  - Moya-ModelMapper/Core (9.0.0):
+    - ModelMapper (~> 10.0)
+    - Moya (~> 13.0)
+  - Moya-ModelMapper/RxSwift (9.0.0):
+    - Moya-ModelMapper/Core
+    - Moya/RxSwift (~> 13.0)
+    - RxSwift
+  - Moya/Core (13.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.1)
+  - Moya/RxSwift (13.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
   - Popover (1.2.2)
   - PureLayout (3.1.4)
+  - Result (4.1.0)
+  - RxSwift (4.5.0)
   - SideMenu (5.0.1)
   - SwiftyJSON (4.3.0)
   - XLPagerTabStrip (8.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - Moya
+  - Moya-ModelMapper
+  - Moya-ModelMapper/RxSwift
+  - Moya/RxSwift
   - Popover
   - PureLayout
+  - RxSwift
   - SideMenu
-  - SwiftyJSON (~> 4.0)
+  - SwiftyJSON (~> 4.2)
   - XLPagerTabStrip (~> 8.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ModelMapper
+    - Moya
+    - Moya-ModelMapper
     - Popover
     - PureLayout
+    - Result
+    - RxSwift
     - SideMenu
     - SwiftyJSON
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Moya-ModelMapper: 4948625af7fc5eef41ad9fdfe0c3517170b50960
   Popover: 21e357f86d45c8d9e29a41a4adbca3664d6e511f
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: 112ba39d6d7d4afba1f4cc0baa328d57492efac2
+PODFILE CHECKSUM: 04cc217807607507b15a5254fa067a41c1c53b8d
 
 COCOAPODS: 1.5.3

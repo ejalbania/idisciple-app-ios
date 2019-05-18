@@ -27,7 +27,7 @@ class MoreViewController: UIViewController {
   }
   
   @IBAction func btnTabs_selected(_ sender: UIButton) {
-    (0...2).forEach { self.view.viewWithTag($0)?.isUserInteractionEnabled = false }
+    (0..<2).forEach { self.view.viewWithTag($0)?.isUserInteractionEnabled = false }
     self.pageViewController?.flipToPage(index: sender.tag)
     
     Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in

@@ -14,12 +14,12 @@ protocol MorePageViewControllerDelegate {
 class MorePageViewController: UIPageViewController {
   
   var morePageDelegate: MorePageViewControllerDelegate?
-  
+  var pageCount: Int { return tabs.count }
   private let story = iDisciple.Story.more
   fileprivate lazy var tabs: [UIViewController] =
     self.getViewControllers(identifiers:
       [ "More_resourcesViewController",
-        "More_socialViewController",
+//        "More_socialViewController",
         "More_aboutViewController" ]
   )
   
@@ -79,7 +79,7 @@ extension MorePageViewController: UIPageViewControllerDataSource {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
     guard let index = self.tabs.firstIndex(of: viewController) else { return nil }
     
-    return (index++ > 2) ? nil: self.tabs[index++]
+    return (index++ > self.pageCount) ? nil: self.tabs[index++]
   }
 }
 

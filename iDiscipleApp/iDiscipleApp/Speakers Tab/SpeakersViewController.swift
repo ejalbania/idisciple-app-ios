@@ -59,6 +59,12 @@ class SpeakersViewController: DownloaderViewController,  UICollectionViewDataSou
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadSpeakers()
+    }
+    
     @objc private func reloadData(_ sender: Any) {
         // Reload data
         debugPrint("call reload here")
@@ -70,6 +76,7 @@ class SpeakersViewController: DownloaderViewController,  UICollectionViewDataSou
             
         }, onFailure: { error in
             debugPrint(error)
+            self.doneReloading()
         })
     }
     

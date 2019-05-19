@@ -51,7 +51,7 @@ class GroupsViewController: DownloaderViewController, IndicatorInfoProvider, UIT
         
         updateFamilyGroupCounter()
         
-        groupsView.tensIncrementButton.addTarget(self, action: #selector(tensDecrementButtonPressed), for: .touchUpInside)
+        groupsView.tensIncrementButton.addTarget(self, action: #selector(tensIncrementButtonPressed), for: .touchUpInside)
         groupsView.tensDecrementButton.addTarget(self, action: #selector(tensDecrementButtonPressed), for: .touchUpInside)
         groupsView.onesIncrementButton.addTarget(self, action: #selector(onesIncrementButtonPressed), for: .touchUpInside)
         groupsView.onesDecrementButton.addTarget(self, action: #selector(onesDecrementButtonPressed), for: .touchUpInside)
@@ -72,6 +72,7 @@ class GroupsViewController: DownloaderViewController, IndicatorInfoProvider, UIT
             
         }, onFailure: { error in
             debugPrint(error)
+            self.doneReloading()
         })
     }
     
@@ -169,9 +170,8 @@ class GroupsViewController: DownloaderViewController, IndicatorInfoProvider, UIT
         groupsView.onesIncrementButton.isEnabled = true
         groupsView.onesDecrementButton.isEnabled = true
         
-        
         //If Family < 10 disable tens
-        if (groupsView.familyGroupArray.count < 10){
+        if (familyGroupArray.count < 10){
             groupsView.tensIncrementButton.isEnabled = false
             groupsView.tensDecrementButton.isEnabled = false
         }

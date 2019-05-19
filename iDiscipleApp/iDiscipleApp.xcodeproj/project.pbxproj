@@ -13,7 +13,6 @@
 		1D33CC7221EF65C700CF2A8E /* SpeakersCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7121EF65C700CF2A8E /* SpeakersCollectionView.swift */; };
 		1D33CC7421F8B69500CF2A8E /* SpeakersBioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7321F8B69500CF2A8E /* SpeakersBioViewController.swift */; };
 		1D33CC7621F9747100CF2A8E /* SpeakersBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7521F9747100CF2A8E /* SpeakersBioView.swift */; };
-		1D33CC7821FF2EAD00CF2A8E /* WorkshopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7721FF2EAD00CF2A8E /* WorkshopsView.swift */; };
 		1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7D21FF329800CF2A8E /* WorkshopsViewController.swift */; };
 		1D33CC802200009100CF2A8E /* WorkshopsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7F2200009100CF2A8E /* WorkshopsTableViewCell.swift */; };
 		1D33CC84220F22EC00CF2A8E /* WorkshopPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC83220F22EC00CF2A8E /* WorkshopPopOverView.swift */; };
@@ -38,6 +37,7 @@
 		1D530CFE227C6C5D00EAB306 /* JSONCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530CFD227C6C5D00EAB306 /* JSONCache.swift */; };
 		1D530D00227D691A00EAB306 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530CFF227D691A00EAB306 /* Schedule.swift */; };
 		1D530D02227DD56200EAB306 /* FamilyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D01227DD56200EAB306 /* FamilyGroup.swift */; };
+		1D530D04227DED9000EAB306 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D03227DED9000EAB306 /* Profile.swift */; };
 		1D530D062280213100EAB306 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D052280213100EAB306 /* Country.swift */; };
 		1D530D0822817C3000EAB306 /* DownloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D0722817C3000EAB306 /* DownloaderViewController.swift */; };
 		1D530D0A2283136E00EAB306 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D530D092283136E00EAB306 /* MapView.swift */; };
@@ -76,6 +76,7 @@
 		73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA95B5216EDB1000D46F6B /* DashboardView.swift */; };
 		73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA95B7216EDB3200D46F6B /* DashboardViewController.swift */; };
 		B020988D2284297100D94EBE /* UITableView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B020988C2284297100D94EBE /* UITableView+extension.swift */; };
+		B038B08F2291B85E0042E9C8 /* WorkshopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33CC7721FF2EAD00CF2A8E /* WorkshopsView.swift */; };
 		B03CF62E22799CCE00B868D4 /* MorePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03CF62D22799CCE00B868D4 /* MorePageViewController.swift */; };
 		B03CF6312279A8F200B868D4 /* operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03CF6302279A8F200B868D4 /* operators.swift */; };
 		B0426126228676620094BFCD /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0426125228676620094BFCD /* UIView+extension.swift */; };
@@ -100,7 +101,6 @@
 		B066070622898659002B8DF7 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066070522898659002B8DF7 /* GlobalVariables.swift */; };
 		B0782BEF22898B13002352B8 /* MoreResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0782BEE22898B13002352B8 /* MoreResourceViewModel.swift */; };
 		B0782BF222898C3C002352B8 /* ContentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0782BF122898C3C002352B8 /* ContentAdapter.swift */; };
-		B097930C22916409001DCCFB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B097930B22916408001DCCFB /* Profile.swift */; };
 		B097930E229183D9001DCCFB /* AboutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B097930D229183D9001DCCFB /* AboutRepository.swift */; };
 		B0D31BBE22918C210087AC91 /* RepositoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D31BBD22918C210087AC91 /* RepositoryList.swift */; };
 		CD9348F88D123BB8CF2AC825 /* Pods_iDiscipleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6343CB11802AB33AB5355D1D /* Pods_iDiscipleApp.framework */; };
@@ -648,7 +648,6 @@
 				B066070622898659002B8DF7 /* GlobalVariables.swift in Sources */,
 				1D33CC7421F8B69500CF2A8E /* SpeakersBioViewController.swift in Sources */,
 				73FA95AA216B0ADF00D46F6B /* ForgotPasswordViewController.swift in Sources */,
-				B097930C22916409001DCCFB /* Profile.swift in Sources */,
 				B0782BEF22898B13002352B8 /* MoreResourceViewModel.swift in Sources */,
 				1D530D062280213100EAB306 /* Country.swift in Sources */,
 				1D530CF822773AA700EAB306 /* Speaker.swift in Sources */,
@@ -657,6 +656,7 @@
 				1D530CF42276EAFB00EAB306 /* YourProfileViewController.swift in Sources */,
 				1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */,
 				1D530D00227D691A00EAB306 /* Schedule.swift in Sources */,
+				B038B08F2291B85E0042E9C8 /* WorkshopsView.swift in Sources */,
 				1DED0FED226EC0FA0094E0F6 /* ScheduleView.swift in Sources */,
 				1D530D1222841E4C00EAB306 /* MapArea.swift in Sources */,
 				1D33CC86220F2BC800CF2A8E /* UIView+AppHelper.swift in Sources */,
@@ -665,6 +665,7 @@
 				1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */,
 				B020988D2284297100D94EBE /* UITableView+extension.swift in Sources */,
 				1D33CC8A221707E000CF2A8E /* WorkshopsInfoViewController.swift in Sources */,
+				1D530D04227DED9000EAB306 /* Profile.swift in Sources */,
 				B066070122896867002B8DF7 /* iDisciple+constants.swift in Sources */,
 				1DB909E2217E0D75000DF8B7 /* SlideMenuViewController.swift in Sources */,
 				73012A55215C81B300A90BAB /* LoginView.swift in Sources */,
@@ -679,7 +680,6 @@
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
 				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
-				1D33CC7821FF2EAD00CF2A8E /* WorkshopsView.swift in Sources */,
 				B0426126228676620094BFCD /* UIView+extension.swift in Sources */,
 				1D530CFC227AF06000EAB306 /* Workshop.swift in Sources */,
 				1DB909EC21873724000DF8B7 /* User.swift in Sources */,
@@ -688,13 +688,13 @@
 				B05C49F42274EDF200882D65 /* MoreViewController.swift in Sources */,
 				1D33CC84220F22EC00CF2A8E /* WorkshopPopOverView.swift in Sources */,
 				1DED0FE9226EB9220094E0F6 /* ScheduleViewController.swift in Sources */,
+				1D530D02227DD56200EAB306 /* FamilyGroup.swift in Sources */,
+				1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */,
 				B05C49F82274EFD000882D65 /* AboutViewController.swift in Sources */,
 				B042612B228839580094BFCD /* Double+extension.swift in Sources */,
 				B063D32C228275DA0000974A /* MoreResourcesTableViewCell.swift in Sources */,
 				1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */,
 				B05C49FA2274EFDA00882D65 /* SocialViewController.swift in Sources */,
-				1D530D02227DD56200EAB306 /* FamilyGroup.swift in Sources */,
-				1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */,
 				1D530D0822817C3000EAB306 /* DownloaderViewController.swift in Sources */,
 				1D530CF02274827600EAB306 /* DelegatesProfileView.swift in Sources */,
 				1D530CFA22787F8B00EAB306 /* GlobalConstant.swift in Sources */,

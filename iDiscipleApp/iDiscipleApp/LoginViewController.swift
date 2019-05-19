@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if(UserDefaults.standard.bool(forKey: GlobalConstant.checkLoginState)){
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.appHelper.dismissAlert()
+                //self.appHelper.dismissAlert()
                 self.moveToMainTabView()
             }
         }else{
@@ -157,7 +157,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         ApiManager.sharedInstance.postDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
             DispatchQueue.main.async {
                 
-                self.appHelper.dismissAlert()
+                //self.appHelper.dismissAlert()
                 self.loginView.errorLabel.isHidden = true
                 
                 let jsonValue = JSON(json)
@@ -227,6 +227,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func moveToFirstTimeUser(){
+        self.appHelper.dismissAlert()
         let newViewController = FirstTimeUserViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }

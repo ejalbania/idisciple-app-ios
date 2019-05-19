@@ -133,7 +133,7 @@ class FirstTimeUserViewController: DownloaderViewController, UITextFieldDelegate
             ApiManager.sharedInstance.putDataWithRequest(requestUrl: urlString, params: paramsDict, onSuccess: { json in
                 DispatchQueue.main.async {
                     
-                    self.appHelper.dismissAlert()
+                    //self.appHelper.dismissAlert()
                     
                     let jsonValue = JSON(json)
                     debugPrint("\(jsonValue["data"]["api_token"])")
@@ -152,6 +152,7 @@ class FirstTimeUserViewController: DownloaderViewController, UITextFieldDelegate
                         
                     }, onFailure: { error in
                         debugPrint(error)
+                        self.appHelper.dismissAlert()
                     })
                     
                     self.moveToDashboard()

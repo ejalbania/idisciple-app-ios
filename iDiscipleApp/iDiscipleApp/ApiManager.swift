@@ -62,7 +62,7 @@ class ApiManager{
 //                    debugPrint(checkData[0]["data"])
 //                    debugPrint(checkData[0]["name"])
                     
-                    if checkData[0]["name"].stringValue != "" || !checkData[0]["data"].arrayValue.isEmpty {
+                    if checkData[0]["name"].stringValue != "" {
                         onSuccess(data as! Array)
                     }else{
                         debugPrint("ERROR")

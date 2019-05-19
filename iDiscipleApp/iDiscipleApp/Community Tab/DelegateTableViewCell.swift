@@ -92,7 +92,7 @@ class DelegateTableViewCell: UITableViewCell {
         let label = UILabel.newAutoLayout()
         //label.backgroundColor = .yellow
         label.text = "FG"
-        label.textColor = UIColor(red: 22/255, green: 145/255, blue: 195/255, alpha: 1)
+        label.textColor = .orange
         label.textAlignment = .left
         label.font = UIFont(name: "Montserrat-Bold", size: 16)
         label.numberOfLines = 1
@@ -124,6 +124,7 @@ class DelegateTableViewCell: UITableViewCell {
         cellBackgroundView.addSubview(completeNameLabel)
         
         cellBackgroundView.addSubview(starredButton)
+        starredButton.isHidden = true
         
         self.setNeedsUpdateConstraints()
     }
@@ -160,7 +161,7 @@ class DelegateTableViewCell: UITableViewCell {
             completeNameLabel.autoPinEdge(.top, to: .bottom, of: nicknameLabel, withOffset: 0)
             completeNameLabel.autoPinEdge(.left, to: .right, of: delegateImageView, withOffset: 20)
             
-            leaderLabel.autoPinEdge(.bottom, to: .top, of: delegateImageView, withOffset: 35)
+            leaderLabel.autoPinEdge(.bottom, to: .top, of: delegateImageView, withOffset: 33)
             leaderLabel.autoPinEdge(.left, to: .right, of: nicknameLabel, withOffset: 10)
  
             starredButton.autoAlignAxis(toSuperviewAxis: .horizontal)

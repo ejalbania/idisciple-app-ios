@@ -12,7 +12,7 @@ class SpeakersBioView: UIView {
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
-    let imageDimension = CGFloat(100)
+    let imageDimension = CGFloat(120)
     var adjustTextView = false
 
     lazy var overlayBackgroundView: UIView = {
@@ -69,7 +69,7 @@ class SpeakersBioView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 22)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
     
@@ -86,6 +86,7 @@ class SpeakersBioView: UIView {
     
     lazy var speakerDescriptionTextView: UITextView = {
         let textView = UITextView.newAutoLayout()
+        textView.isEditable = false
         textView.textAlignment = NSTextAlignment.center
         textView.textColor = UIColor.black
         textView.font = UIFont(name: "Montserrat-Regular", size: 16)
@@ -167,7 +168,9 @@ class SpeakersBioView: UIView {
             speakerImageView.autoPinEdge(.top, to: .bottom, of: speakersBioLabel, withOffset: imageDimension/3)
             
             speakerNameLabel.autoPinEdge(.top, to: .bottom, of: speakerImageView, withOffset:imageDimension/4)
-            speakerNameLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+            speakerNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            speakerNameLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+            //speakerNameLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             
             socialLabel.autoPinEdge(.top, to: .bottom, of: speakerNameLabel, withOffset:5)
             socialLabel.autoAlignAxis(toSuperviewAxis: .vertical)

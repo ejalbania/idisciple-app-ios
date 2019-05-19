@@ -21,6 +21,7 @@ pod 'Moya/RxSwift'
 pod 'Moya-ModelMapper'
 pod 'Moya-ModelMapper/RxSwift'
 
-  pod "Popover"
+pod "Popover"
+pod 'Kingfisher'
 
 end

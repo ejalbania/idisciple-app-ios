@@ -36,7 +36,8 @@ class ScheduleTableViewCell: UITableViewCell {
         label.text = "Event Name: Stuff Here"
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont(name: "Montserrat-Bold", size: 22)
+        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont(name: "Montserrat-Bold", size: 20)
         label.numberOfLines = 1
         return label
     }()
@@ -97,7 +98,9 @@ class ScheduleTableViewCell: UITableViewCell {
         cellBackgroundView.addSubview(locationLabel)
         
         cellBackgroundView.addSubview(selectedWorkshopLabel)
+        selectedWorkshopLabel.isHidden = true
         cellBackgroundView.addSubview(happeningNowWorkshopLabel)
+        happeningNowWorkshopLabel.isHidden = true
         
         self.setNeedsUpdateConstraints()
     }
@@ -132,16 +135,33 @@ class ScheduleTableViewCell: UITableViewCell {
             
             //eventNameLabel.autoAlignAxis(toSuperviewAxis: .horizontal)
             eventNameLabel.autoPinEdge(.top, to: .bottom, of: scheduleTimeLabel, withOffset: 0)
+            eventNameLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             eventNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
-            locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 0)
-            locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            
-            selectedWorkshopLabel.autoPinEdge(.top, to: .bottom, of: locationLabel, withOffset: 5)
+
+            selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
             selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
-            happeningNowWorkshopLabel.autoPinEdge(.top, to: .bottom, of: locationLabel, withOffset: 5)
-            happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+            if(selectedWorkshopLabel.isHidden){
+                happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
+                happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            }else{
+                happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
+                happeningNowWorkshopLabel.autoPinEdge(.left, to: .right, of: selectedWorkshopLabel, withOffset: 10)
+                //happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+            }
+            
+            //Set position if no workshop and happening label
+            if (!selectedWorkshopLabel.isHidden){
+                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            } else if (!happeningNowWorkshopLabel.isHidden){
+                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            } else{
+                locationLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
+                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            }
             
             shouldSetupConstraints = false
         }

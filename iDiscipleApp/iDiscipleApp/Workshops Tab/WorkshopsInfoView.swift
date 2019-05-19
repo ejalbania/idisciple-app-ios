@@ -55,7 +55,9 @@ class WorkshopsInfoView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "Montserrat-Bold", size: 22)
-        label.numberOfLines = 1
+        //label.layer.borderWidth = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 3
         return label
     }()
     
@@ -72,6 +74,7 @@ class WorkshopsInfoView: UIView {
     
     lazy var workshopDescriptionTextView: UITextView = {
         let textView = UITextView.newAutoLayout()
+        textView.isEditable = false
         textView.textAlignment = NSTextAlignment.center
         textView.textColor = UIColor.black
         textView.font = UIFont(name: "Montserrat-Regular", size: 16)
@@ -148,8 +151,10 @@ class WorkshopsInfoView: UIView {
             //speakerImageView.autoAlignAxis(toSuperviewAxis: .vertical)
             //speakerImageView.autoPinEdge(.top, to: .bottom, of: speakersBioLabel, withOffset: imageDimension/3)
             
-            workshopTitleLabel.autoPinEdge(.top, to: .bottom, of: workshopInfoLabel, withOffset:imageDimension/4)
-            workshopTitleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+            workshopTitleLabel.autoPinEdge(.top, to: .bottom, of: workshopInfoLabel, withOffset:20)
+            //workshopTitleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
             
             workshopBlurbLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset:5)
             workshopBlurbLabel.autoAlignAxis(toSuperviewAxis: .vertical)
@@ -168,7 +173,8 @@ class WorkshopsInfoView: UIView {
         //Update frame of textView
         if (adjustTextView){
             debugPrint("Adjust")
-            textViewHeightConstraint?.constant = (dismissButton.frame.origin.y - workshopBlurbLabel.frame.origin.y) - 55
+            let textHeight = (dismissButton.frame.origin.y - workshopBlurbLabel.frame.origin.y) - 95
+            textViewHeightConstraint?.constant = textHeight
             textViewWidthConstraint?.constant = mainView.frame.size.width - 60
             
             adjustTextView = false

@@ -12,7 +12,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
     
     let screenSize = UIScreen.main.bounds
     var shouldSetupConstraints = true
-    let imageDimension = CGFloat(100)
+    let imageDimension = CGFloat(110)
 
     lazy var cellBackgroundView : UIView = {
         
@@ -38,7 +38,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
         
         var image = UIImageView(image: UIImage(named: "courier"))
         image.autoSetDimensions(to: CGSize(width: imageDimension, height: imageDimension))
-        image.backgroundColor = .darkGray
+        image.backgroundColor = .gray
 
         image.layer.masksToBounds = false
         image.layer.cornerRadius = imageDimension/2
@@ -53,7 +53,8 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
         label.text = "Speaker's Name Here"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 24)
+        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont(name: "Montserrat-Bold", size: 20)
         label.numberOfLines = 2
         return label
     }()
@@ -64,7 +65,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
         label.text = "Plenary Topic"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 18)
+        label.font = UIFont(name: "Montserrat-Bold", size: 16)
         label.numberOfLines = 2
         return label
     }()
@@ -75,7 +76,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
         label.text = "Date and Time"
         label.textColor = .lightGray
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 18)
+        label.font = UIFont(name: "Montserrat-Bold", size: 16)
         label.numberOfLines = 2
         return label
     }()
@@ -112,7 +113,7 @@ class SpeakersCollectionViewCell: UICollectionViewCell {
             
             dateAndTimeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             dateAndTimeLabel.autoPinEdge(.top, to: .bottom, of: plenaryTopicLabel, withOffset: 5)
-            dateAndTimeLabel.autoSetDimensions(to: CGSize(width: cellBackgroundView.frame.width - 40, height: 20))
+            dateAndTimeLabel.autoSetDimensions(to: CGSize(width: cellBackgroundView.frame.width - 0, height: 20))
 
         }
         super.updateConstraints()

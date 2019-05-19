@@ -17,7 +17,7 @@ class WorkshopsTableViewCell: UITableViewCell {
         //var vFrame = self.frame.insetBy(dx: 3.0, dy: 3.0)
         //let view = UIView(frame: vFrame)
         let view = UIView.newAutoLayout()
-        view.autoSetDimensions(to: CGSize(width: screenSize.width - 20, height: 110))
+        view.autoSetDimensions(to: CGSize(width: screenSize.width - 20, height: 115))
         
         view.backgroundColor = .clear
 
@@ -33,11 +33,14 @@ class WorkshopsTableViewCell: UITableViewCell {
     lazy var workshopTitleLabel: UILabel = {
         let label = UILabel.newAutoLayout()
         //label.backgroundColor = .yellow
-        label.text = "Workshop Title"
+        label.text = "Loooooooooooong Titled Workshop"
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont(name: "Montserrat-Bold", size: 28)
-        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        //label.layer.borderWidth = 1
+        label.autoSetDimension(.height, toSize: 45)
+        label.font = UIFont(name: "Montserrat-Bold", size: 20)
+        label.numberOfLines = 2
         return label
     }()
     
@@ -69,7 +72,7 @@ class WorkshopsTableViewCell: UITableViewCell {
         label.text = "YOUR WORKSHOP"
         label.textColor = .orange
         label.textAlignment = .left
-        label.font = UIFont(name: "Montserrat-Bold", size: 16)
+        label.font = UIFont(name: "Montserrat-Bold", size: 14)
         label.numberOfLines = 1
         return label
     }()
@@ -127,17 +130,30 @@ class WorkshopsTableViewCell: UITableViewCell {
             
             //workshopTitleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             workshopTitleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
+            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 40)
+            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
             //workshopTitleLabel.autoSetDimensions(to: CGSize(width: screenSize.width - 60, height: 50))
             
-            facilitatorsNameLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset: 5)
+            //selectedWorkshopLabel.autoPinEdge(.top, to: .bottom, of: dateTimeLocationLabel, withOffset: 0)
+            
+            selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 5)
+            selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            
+            if(selectedWorkshopLabel.isHidden){
+                
+                dateTimeLocationLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset: 30)
+                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+                
+            }else{
+                dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            }
+            
+//            dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+//            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            
+            facilitatorsNameLabel.autoPinEdge(.bottom, to: .top, of: dateTimeLocationLabel, withOffset: 0)
             facilitatorsNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            
-            dateTimeLocationLabel.autoPinEdge(.top, to: .bottom, of: facilitatorsNameLabel, withOffset: 5)
-            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            
-            selectedWorkshopLabel.autoPinEdge(.top, to: .bottom, of: facilitatorsNameLabel, withOffset: 5)
-            selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             
             moreOptionButton.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
             moreOptionButton.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
@@ -147,10 +163,9 @@ class WorkshopsTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//        // Configure the view for the selected state
+//    }
 
 }

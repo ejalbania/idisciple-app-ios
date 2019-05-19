@@ -20,11 +20,6 @@ class MoreResourcesTableViewCell: UITableViewCell {
   @IBOutlet fileprivate weak var resource_titleLabel: UILabel!
   @IBOutlet fileprivate weak var resource_descLabel: UILabel!
   @IBOutlet fileprivate weak var resource_metaDataLabel: UILabel!
-  var sample: Variable<ContentResponseModel>?
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-  }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
@@ -60,9 +55,23 @@ extension MoreResourcesTableViewCell {
   }
   
   @discardableResult
-  func setResources(type: FileType, fileSize: Double) -> Self {
-    self.resource_metaDataLabel.text = "\(type.rawValue) - \(fileSize.stringValue)"
+  func setResources(type: MediaType, fileSize: Double = 0.00) -> Self {
+    var metaLabelText: String {
+      switch type {
+      case .pdf: return "\(type.stringValue) - \(fileSize.stringValue)"
+      case .video, .web, .undefined: return "\(type.stringValue)"
+      }
+    }
+    
+    self.resource_metaDataLabel.text = metaLabelText
     return self
+  }
+  
+  @discardableResult
+  func set(resource: ResourceModel) -> Self {
+    return self.setResources(title: resource.title)
+      .setResources(description: resource.description)
+      .setResources(type: resource.type, fileSize: resource.size)
   }
 }
 

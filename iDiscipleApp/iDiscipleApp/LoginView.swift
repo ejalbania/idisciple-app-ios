@@ -11,6 +11,10 @@ import PureLayout
 class LoginView: UIView {
     
     let mainLogoHeight = 100
+    var isKeyboardShowing = false
+    var keyboardHeight = 0
+    
+    var backgroundHeightConstraint: NSLayoutConstraint?
     
     lazy var backgroundView: UIView = {
         let view = UIView.newAutoLayout()
@@ -24,7 +28,9 @@ class LoginView: UIView {
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
         view.backgroundColor = UIColor.white
+        //view.autoSetDimension(.width, toSize: screenSize.width)
         //view.autoSetDimension(.height, toSize: screenSize.height)
+        
         
         return view
     }()
@@ -59,6 +65,7 @@ class LoginView: UIView {
         label.text = "Please enter your registered\n e-mail and password."
         label.textColor = .gray
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Montserrat-Bold", size: 20)
         label.numberOfLines = 2
         
@@ -173,6 +180,8 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .white
+        
         self.addSubview(backgroundView)
         backgroundView.addSubview(mainView)
         
@@ -208,13 +217,13 @@ class LoginView: UIView {
 //            backgroundView.autoPinEdge(toSuperviewEdge: .top)
             backgroundView.autoPinEdge(toSuperviewEdge: .left)
             backgroundView.autoPinEdge(toSuperviewEdge: .right)
-            backgroundView.autoPinEdge(toSuperviewEdge: .bottom)
+            //backgroundView.autoPinEdge(toSuperviewEdge: .bottom)
             
             mainView.autoPinEdge(toSuperviewSafeArea: .top)
             mainView.autoPinEdge(toSuperviewSafeArea: .left)
             mainView.autoPinEdge(toSuperviewSafeArea: .right)
             mainView.autoPinEdge(toSuperviewEdge: .bottom)
-
+          
             mainLogo.autoSetDimensions(to: CGSize(width: 100.0, height: 100.0))
             mainLogo.autoAlignAxis(toSuperviewAxis: .vertical)
             mainLogo.autoPinEdge(.bottom, to: .top, of: mainView, withOffset: CGFloat(mainLogoHeight + 50))
@@ -253,6 +262,14 @@ class LoginView: UIView {
             
             shouldSetupConstraints = false
         }
+        
+        backgroundHeightConstraint?.autoRemove()
+        if(isKeyboardShowing){
+            backgroundHeightConstraint =  backgroundView.autoPinEdge(.bottom, to: .top, of: self, withOffset: screenSize.height - CGFloat(keyboardHeight))
+        }else{
+            backgroundHeightConstraint =  backgroundView.autoPinEdge(.bottom, to: .top, of: self, withOffset: screenSize.height)
+        }
+        
         super.updateConstraints()
     }
 }

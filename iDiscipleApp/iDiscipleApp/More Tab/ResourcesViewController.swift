@@ -10,6 +10,7 @@ import UIKit
 class ResourcesViewController: UIViewController {
   
   @IBOutlet private weak var resourcesTableView: UITableView!
+  private var resources = ResourcesRepository()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +24,6 @@ class ResourcesViewController: UIViewController {
     self.resourcesTableView.delegate = self
     
     self.setupTableView()
-    
     
   }
   
@@ -47,20 +47,21 @@ fileprivate extension ResourcesViewController {
 // TableView Delegates and Datasource
 extension ResourcesViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+    return self.resources.list.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoreResourcesTableViewCell") as? MoreResourcesTableViewCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoreResourcesTableViewCell") as? MoreResourcesTableViewCell
+      else {
       return UITableViewCell()
     }
     
-    if indexPath.row == 1 {
+    let resource = self.resources.list[indexPath.row]
+    
       cell
-        .setResources(title: "We need morality to beat this hurricane of anger")
-        .setResources(description: "There are calls for the Leader of the Opposition to likewise. A petition for a second referendum gathers millions of votes. There is talk of the United Kingdom splitting apart. The Tory succession campaign turns nasty.")
-        .setResources(type: .pdf, fileSize: 5.23)
-    }
+        .setResources(title: resource.title)
+        .setResources(description: resource.description)
+        .setResources(type: resource.type, fileSize: 5.23)
     
     return cell
   }

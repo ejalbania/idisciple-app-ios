@@ -67,6 +67,7 @@ class ScheduleListViewController: DownloaderViewController, UITableViewDelegate,
             
             }, onFailure: { error in
                 debugPrint(error)
+                self.doneReloading()
         })
         
     }

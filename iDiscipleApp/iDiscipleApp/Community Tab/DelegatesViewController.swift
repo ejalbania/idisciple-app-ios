@@ -65,6 +65,7 @@ class DelegatesViewController: DownloaderViewController, UISearchBarDelegate,UIT
             
         }, onFailure: { error in
             debugPrint(error)
+            self.doneReloading()
         })
     }
     

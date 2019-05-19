@@ -40,7 +40,7 @@ class DelegatesProfileViewController: UIViewController {
         delegatesProfileView.mainView.layer.addSublayer(headerLayer)
         
         //footerLine
-        let footerLine = UIBezierPath(rect: CGRect(x: 0, y: 470 - 60, width: delegatesProfileView.screenSize.width, height: 0.1))
+        let footerLine = UIBezierPath(rect: CGRect(x: 0, y: 475 - 60, width: delegatesProfileView.screenSize.width, height: 0.1))
         let footerLayer = CAShapeLayer()
         footerLayer.path = footerLine.cgPath
         footerLayer.strokeColor =  UIColor.withAlphaComponent(.gray)(0.3).cgColor
@@ -48,7 +48,9 @@ class DelegatesProfileViewController: UIViewController {
         
         delegatesProfileView.dismissButton.addTarget(self, action: #selector(dismissDelegatesProfileView), for: .touchUpInside)
         
-        loadCountry()
+        DispatchQueue.main.async {
+            self.loadCountry()
+        }
         
     }
     
@@ -177,11 +179,24 @@ class DelegatesProfileViewController: UIViewController {
                 }
             }
             
-            delegatesProfileView.workshopsLabel.text = workshopText
+            var workshopString = ""
+            if(workshopText == ""){
+                workshopString = ""
+            }else{
+                workshopString = "Attending " + workshopText
+            }
+            delegatesProfileView.workshopsLabel.appHelper.halfTextColorChange(fullText: workshopString, changeText: workshopText)
+            //delegatesProfileView.workshopsLabel.text = "Attending " + workshopText
             
             let familyGroup = familyGroupArray.first(where: ({ (familyGroupSearch: FamilyGroup) -> Bool in
                 return familyGroupSearch.familyGroupID == delegateProfile?.familyGroupID
                 }))
+            
+            delegatesProfileView.leaderLabel.isHidden = true
+            //check if fg
+            if(delegateProfile?.profileID == familyGroup?.familyGroupLeadID){
+                delegatesProfileView.leaderLabel.isHidden = false
+            }
             
 //            let fgID = familyGroup?.familyGroupID ?? 0
 //            var familyGroupNumberText = "00"

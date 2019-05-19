@@ -101,6 +101,7 @@ class WorkshopsTableViewCell: UITableViewCell {
         
         cellBackgroundView.addSubview(selectedWorkshopLabel)
         cellBackgroundView.addSubview(moreOptionButton)
+        moreOptionButton.isHidden = true
         
         self.setNeedsUpdateConstraints()
     }
@@ -130,7 +131,7 @@ class WorkshopsTableViewCell: UITableViewCell {
             
             //workshopTitleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             workshopTitleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 40)
+            workshopTitleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             workshopTitleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
             //workshopTitleLabel.autoSetDimensions(to: CGSize(width: screenSize.width - 60, height: 50))
             
@@ -139,15 +140,15 @@ class WorkshopsTableViewCell: UITableViewCell {
             selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 5)
             selectedWorkshopLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
-            if(selectedWorkshopLabel.isHidden){
-                
-                dateTimeLocationLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset: 30)
-                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-                
-            }else{
-                dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
-                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            }
+//            if(selectedWorkshopLabel.isHidden){
+//                dateTimeLocationLabel.autoPinEdge(.top, to: .bottom, of: workshopTitleLabel, withOffset: 30)
+//                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }else{
+//                dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+//                dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }
+            dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
+            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             
 //            dateTimeLocationLabel.autoPinEdge(.bottom, to: .top, of: selectedWorkshopLabel, withOffset: 0)
 //            dateTimeLocationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)

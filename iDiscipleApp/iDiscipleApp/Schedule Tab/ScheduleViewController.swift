@@ -49,42 +49,43 @@ class ScheduleViewController: ButtonBarPagerTabStripViewController {
         }
         
         super.viewDidLoad()
-        checkDateForTabSelection()
-    
-        // Do any additional setup after loading the view.
         
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        checkDateForTabSelection()
     }
     
     func checkDateForTabSelection(){
         
         //Check here if workshop/happening or not
         let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
-        let currentDay = GlobalConstant.kDateSource_formatter.date(from: stringDay)
         
-        let firstDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
-        let secondDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
-        let thirdDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
-        let lastDay = GlobalConstant.kDateSource_formatter.date(from: day1VC.itemInfo.title!)
+        day1VC.loadSchedule()
         
-        //add date checking
-        if currentDay! <= firstDay!{
-            moveToViewController(at: 0, animated: false)
-            day1VC.scheduleListView.scheduleListTableView.reloadData()
+        if (stringDay == day1VC.itemInfo.title!){
+            debugPrint("Day 1")
+            moveToViewController(at: 0, animated: true)
+            day1VC.loadSchedule()
         }
-        if currentDay! > firstDay! && currentDay! == secondDay!{
-            moveToViewController(at: 1, animated: false)
-            day2VC.scheduleListView.scheduleListTableView.reloadData()
+        if (stringDay == day2VC.itemInfo.title!){
+            debugPrint("Day 2")
+            moveToViewController(at: 1, animated: true)
+            day2VC.loadSchedule()
         }
-        if currentDay! > secondDay! && currentDay! == thirdDay!{
-            moveToViewController(at: 2, animated: false)
-            day3VC.scheduleListView.scheduleListTableView.reloadData()
+        if (stringDay == day3VC.itemInfo.title!){
+            debugPrint("Day 3")
+            moveToViewController(at: 2, animated: true)
+            day3VC.loadSchedule()
         }
-        if currentDay! > thirdDay! && currentDay! == lastDay!{
-            moveToViewController(at: 3, animated: false)
-            day4VC.scheduleListView.scheduleListTableView.reloadData()
+        if (stringDay == day4VC.itemInfo.title!){
+            debugPrint("Day 4")
+            moveToViewController(at: 3, animated: true)
+            day4VC.loadSchedule()
         }
-        
-        
     }
     
     // MARK: - PagerTabStripDataSource

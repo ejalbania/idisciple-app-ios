@@ -10,9 +10,17 @@ target 'iDiscipleApp' do
 
 pod 'SideMenu'
 pod 'PureLayout'
-pod 'SwiftyJSON', '~> 4.0'
+pod 'SwiftyJSON', '~> 4.2'
 pod 'Alamofire', '~> 4.7'
 pod 'XLPagerTabStrip', '~> 8.1'
+
+pod 'RxSwift'
+
+pod 'Moya'
+pod 'Moya/RxSwift'
+pod 'Moya-ModelMapper'
+pod 'Moya-ModelMapper/RxSwift'
+
 pod "Popover"
 pod 'Kingfisher'
 

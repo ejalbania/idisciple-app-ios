@@ -25,7 +25,7 @@ class YourProfileView: UIView {
         let view = UIView.newAutoLayout()
         view.backgroundColor = UIColor.white
         
-        view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 470))
+        view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 475))
         
         view.layer.cornerRadius = 20.0
         //view.layer.borderColor = UIColor.black.cgColor
@@ -49,9 +49,9 @@ class YourProfileView: UIView {
     
     lazy var profileImageView : UIImageView = {
         
-        var image = UIImageView(image: UIImage(named: "creep"))
+        var image = UIImageView(image: UIImage(named:""))
         image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 170))
-        image.backgroundColor = .darkGray
+        image.backgroundColor = .white
         image.contentMode = UIImageView.ContentMode.scaleAspectFill
         image.clipsToBounds = true
         

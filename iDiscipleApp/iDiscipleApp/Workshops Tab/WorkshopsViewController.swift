@@ -42,6 +42,12 @@ class WorkshopsViewController: DownloaderViewController, UITableViewDelegate, UI
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //reloadTab()
+    }
+    
     func reloadTab(){
         
         checkSpeakers()
@@ -63,6 +69,7 @@ class WorkshopsViewController: DownloaderViewController, UITableViewDelegate, UI
             
         }, onFailure: { error in
             debugPrint(error)
+            self.doneReloading()
         })
     }
     
@@ -258,7 +265,17 @@ class WorkshopsViewController: DownloaderViewController, UITableViewDelegate, UI
     }
     
     @IBAction func openPopover(sender: UIButton!){
+        debugPrint("\(String(describing: sender))")
         showPopOverMenu(fromView: sender, indexPath: sender.tag)
+    }
+    
+    // MARK: Tableview Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //debugPrint("\(indexPath.row)")
+        DispatchQueue.main.async {
+            self.openWorkshopInfoView(indexPath: indexPath.row, isOutline: false);
+        }
     }
     
 }

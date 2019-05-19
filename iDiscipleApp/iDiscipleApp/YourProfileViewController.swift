@@ -48,14 +48,14 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
         yourProfileView.mainView.layer.addSublayer(headerLayer)
         
         //footerLine
-        let footerLine = UIBezierPath(rect: CGRect(x: 0, y: 470 - 60, width: yourProfileView.screenSize.width, height: 0.1))
+        let footerLine = UIBezierPath(rect: CGRect(x: 0, y: 475 - 60, width: yourProfileView.screenSize.width, height: 0.1))
         let footerLayer = CAShapeLayer()
         footerLayer.path = footerLine.cgPath
         footerLayer.strokeColor =  UIColor.withAlphaComponent(.gray)(0.3).cgColor
         yourProfileView.mainView.layer.addSublayer(footerLayer)
         
         //footerDividerLine
-        let dividerLine = UIBezierPath(rect: CGRect(x: (yourProfileView.screenSize.width/2) - 35, y: 470-60, width: 0.1, height: 60))
+        let dividerLine = UIBezierPath(rect: CGRect(x: (yourProfileView.screenSize.width/2) - 35, y: 475-60, width: 0.1, height: 60))
         let dividerLayer = CAShapeLayer()
         dividerLayer.path = dividerLine.cgPath
         dividerLayer.strokeColor =  UIColor.withAlphaComponent(.gray)(0.3).cgColor
@@ -65,7 +65,9 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
         yourProfileView.changeAvatarButton.addTarget(self, action: #selector(changeAvatarPressed), for: .touchUpInside)
         yourProfileView.logoutButton.addTarget(self, action: #selector(logoutDidPressed), for: .touchUpInside)
         
-        loadCountry()
+        DispatchQueue.main.async {
+            self.loadCountry()
+        }
         
     }
     
@@ -164,6 +166,7 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
                         
                     }, onFailure: { error in
                         debugPrint(error)
+                        self.appHelper.dismissAlert()
                     })
                 }
                 
@@ -292,7 +295,6 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
         }
         
         loadYourProfileView()
-        
     }
     
     func loadYourProfileView(){
@@ -345,7 +347,14 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
                 }
             }
             
-            yourProfileView.workshopsLabel.text = workshopText
+            var workshopString = ""
+            if(workshopText == ""){
+                workshopString = ""
+            }else{
+                workshopString = "Attending " + workshopText
+            }
+            yourProfileView.workshopsLabel.appHelper.halfTextColorChange(fullText: workshopString, changeText: workshopText)
+            //yourProfileView.workshopsLabel.text = "Attending " + workshopText
             
             let familyGroup = familyGroupArray.first(where: ({ (familyGroupSearch: FamilyGroup) -> Bool in
                 return familyGroupSearch.familyGroupID == userProfile?.familyGroupID

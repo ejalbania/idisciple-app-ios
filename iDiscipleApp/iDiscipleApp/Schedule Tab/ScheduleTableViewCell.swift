@@ -150,18 +150,30 @@ class ScheduleTableViewCell: UITableViewCell {
                 happeningNowWorkshopLabel.autoPinEdge(.left, to: .right, of: selectedWorkshopLabel, withOffset: 10)
                 //happeningNowWorkshopLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             }
+
+            locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+            locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+            
+//            debugPrint("\(selectedWorkshopLabel.isHidden) == \(happeningNowWorkshopLabel.isHidden)")
+//            if(!selectedWorkshopLabel.isHidden || !happeningNowWorkshopLabel.isHidden){
+//                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+//                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }else{
+//                locationLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
+//                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }
             
             //Set position if no workshop and happening label
-            if (!selectedWorkshopLabel.isHidden){
-                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
-                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            } else if (!happeningNowWorkshopLabel.isHidden){
-                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
-                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            } else{
-                locationLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
-                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-            }
+//            if (!selectedWorkshopLabel.isHidden){
+//                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+//                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }
+//            if (!happeningNowWorkshopLabel.isHidden){
+////                locationLabel.autoPinEdge(.top, to: .bottom, of: eventNameLabel, withOffset: 5)
+////                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//                locationLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
+//                locationLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//            }
             
             shouldSetupConstraints = false
         }

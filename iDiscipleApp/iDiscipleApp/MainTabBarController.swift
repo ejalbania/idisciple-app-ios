@@ -18,7 +18,11 @@ class CustomNavItemButton: UIButton {
 
 class MainTabBarController: UITabBarController {
     
+    
+    var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
     var profileArray : [Profile] = []
+    var scheduleArray : [Schedule] = []
     
     let speakersViewController = SpeakersViewController()
     let workshopsViewController = WorkshopsViewController()
@@ -65,13 +69,24 @@ class MainTabBarController: UITabBarController {
         
         let controllers = [speakersViewController, workshopsViewController, scheduleViewController, communityViewController, moreViewController]
         self.viewControllers = controllers
+        self.selectedIndex = 2
         //self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         
         //tabBarController?.selectedViewController = speakersViewController;
         
         //NotificationCenter.defaultCenter.addObserver(self, selector: "refreshList:", name:"refresh", object: nil)
+        self.appHelper.alert(message: "Loading..")
         
-        loadJsonFiles()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.appHelper.dismissAlert()
+            self.loadJsonFiles()
+            
+            self.scheduleViewController.checkDateForTabSelection()
+            
+            self.loadSchedule()
+        }
+        
+        //loadJsonFiles()
         
     }
     
@@ -111,6 +126,8 @@ class MainTabBarController: UITabBarController {
             self.navigationController?.navigationBar.barTintColor = UIColor(red: 243/255, green: 137/255, blue: 49/255, alpha: 1)
             break
         }
+        
+        loadSchedule()
     }
     
     func createCustomButton(offset: CGFloat = 0, image: UIImage) -> UIButton {
@@ -182,8 +199,13 @@ class MainTabBarController: UITabBarController {
         if(profile != nil){
             let imageUrl = profile!.imagePath //+ profile!.imageName
             debugPrint(" >>>> \(imageUrl)")
-            profileImageView.kf.indicatorType = .activity
-            profileImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl), placeholder: UIImage(named:"country_\(loadedUser.country)"))
+            
+            if((imageUrl.isEmpty)){
+                profileImageView.image = UIImage(named: "country_" + profile!.country)
+            }else{
+                profileImageView.kf.indicatorType = .activity
+                profileImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl), placeholder: UIImage(named:"country_\(loadedUser.country)"))
+            }
         }else{
             profileImageView.image = UIImage(named:"country_\(loadedUser.country)")
         }
@@ -362,6 +384,83 @@ class MainTabBarController: UITabBarController {
         }
         
         customizeNavigationBar()
+    }
+    
+    func loadSchedule(){
+        
+        scheduleArray.removeAll()
+        let filename = "schedule"
+        
+        //Check if schedule.json exists
+        let testRetrieve = JSONCache.getOptional(filename, as: JSON.self)
+        if((testRetrieve) != nil){
+            //load
+            let jsonValue = JSON(testRetrieve!)
+            //debugPrint("\(jsonValue)")
+            for (_, subJson) in jsonValue[0]["data"]{
+                self.scheduleArray.append(Schedule(schedID: subJson["sched_id"].intValue,
+                                                   schedDate: subJson["sched_date"].stringValue,
+                                                   schedStartTime: subJson["sched_start_time"].stringValue,
+                                                   schedEndTime: subJson["sched_end_time"].stringValue,
+                                                   schedName: subJson["sched_name"].stringValue,
+                                                   schedVenue: subJson["sched_venue"].stringValue,
+                                                   schedWorkshopID: subJson["workshop_id"].intValue))
+            }
+            
+            let stringDay = GlobalConstant.kDateSource_formatter.string(from: Date())
+            let stringTime = GlobalConstant.kTimeSource_formatter.string(from: Date())
+            
+            let dateTime = GlobalConstant.kTimeSource_formatter.date(from: stringTime)
+            debugPrint("\(stringDay) + \(stringTime) + \(dateTime!)")
+
+            //test
+            //stringDay = "2019-05-21"
+        
+            for schedule in scheduleArray{
+                if(schedule.schedDate == stringDay){
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "h:mm a"
+
+                    let date1 = formatter.date(from: stringTime)!
+                    let date2 = formatter.date(from: schedule.schedStartTime)!
+
+                    let elapsedTime = date2.timeIntervalSince(date1)
+
+                    // convert from seconds to hours, rounding down to the nearest hour
+                    let hours = floor(elapsedTime / 60 / 60)
+
+                    // we have to subtract the number of seconds in hours from minutes to get
+                    // the remaining minutes, rounding down to the nearest minute (in case you
+                    // want to get seconds down the road)
+                    let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
+                    
+                    if(elapsedTime > 0){
+                        debugPrint("\(elapsedTime): \(Int(hours)) hr and \(Int(minutes)) min")
+                        var timeTrigger = elapsedTime - 3600
+                        if (elapsedTime < 3600)
+                        {
+                            timeTrigger = 1
+                        }
+                        
+                        self.appDelegate?.notificationCenter.getDeliveredNotifications(completionHandler: { notificationArray in
+                            //print("Delivered notifications: \(notificationArray)")
+                            
+                            let notif = notificationArray.first(where: { notifSearch in
+                                return notifSearch.request.identifier == schedule.schedName
+                            })
+                            
+                            if(notif == nil){
+                                self.appDelegate?.scheduleNotification(notifID: schedule.schedName, notificationMessage: "\(schedule.schedName) starts at \(schedule.schedStartTime)", timeInterval:timeTrigger)
+                            }
+                        })
+                        //self.appDelegate?.scheduleNotification(notifID: schedule.schedName, notificationMessage: "\(schedule.schedName) starts at \(schedule.schedStartTime)", timeInterval:timeTrigger)
+                    }
+                }
+            }
+        }else{
+            debugPrint("\(filename) not found!")
+        }
     }
     
 

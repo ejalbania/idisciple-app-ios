@@ -11,7 +11,7 @@ struct GlobalConstant {
     
     static let kDateSource_formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "PHT")!
+        //formatter.timeZone = TimeZone(abbreviation: "PHT")!
         //formatter.dateFormat = "EEEE, MMM d, yyyy HH:mm"
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
@@ -19,7 +19,7 @@ struct GlobalConstant {
     
     static let kTimeSource_formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "PHT")
+        //formatter.timeZone = TimeZone(abbreviation: "PHT")
         formatter.dateFormat = "h:mm a"
         return formatter
     }()
@@ -35,6 +35,7 @@ struct GlobalConstant {
     
     static var checkLoginState : String = "isLoggedIn"
     //static var newAvatarUploaded = false
+    static var alertShown: Bool = false
     
     static let mapDataArray : [MapArea] =
         [MapArea(areaID: 1, areaCode: "A", areaName: "Grover Tyner", areaDescription: "Administration Building"),

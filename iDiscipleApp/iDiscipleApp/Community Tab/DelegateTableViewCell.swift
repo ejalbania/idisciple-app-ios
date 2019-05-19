@@ -91,7 +91,7 @@ class DelegateTableViewCell: UITableViewCell {
     lazy var leaderLabel: UILabel = {
         let label = UILabel.newAutoLayout()
         //label.backgroundColor = .yellow
-        label.text = "FG"
+        label.text = "Leader"
         label.textColor = .orange
         label.textAlignment = .left
         label.font = UIFont(name: "Montserrat-Bold", size: 16)
@@ -160,6 +160,7 @@ class DelegateTableViewCell: UITableViewCell {
             
             completeNameLabel.autoPinEdge(.top, to: .bottom, of: nicknameLabel, withOffset: 0)
             completeNameLabel.autoPinEdge(.left, to: .right, of: delegateImageView, withOffset: 20)
+            completeNameLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             
             leaderLabel.autoPinEdge(.bottom, to: .top, of: delegateImageView, withOffset: 33)
             leaderLabel.autoPinEdge(.left, to: .right, of: nicknameLabel, withOffset: 10)

@@ -26,7 +26,7 @@ class DelegatesProfileView: UIView {
         view.backgroundColor = UIColor.white
         
         //view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: screenSize.height - (screenSize.height/3)))
-         view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 470))
+         view.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height: 475))
         
         view.layer.cornerRadius = 20.0
         //view.layer.borderColor = UIColor.black.cgColor
@@ -50,9 +50,9 @@ class DelegatesProfileView: UIView {
     
     lazy var profileImageView : UIImageView = {
         
-        var image = UIImageView(image: UIImage(named: "creep"))
+        var image = UIImageView(image: UIImage(named:""))
         image.autoSetDimensions(to: CGSize(width: screenSize.width - 70, height:170))
-        image.backgroundColor = .darkGray
+        image.backgroundColor = .lightGray
         image.contentMode = UIImageView.ContentMode.scaleAspectFill
         image.clipsToBounds = true
         
@@ -95,6 +95,17 @@ class DelegatesProfileView: UIView {
         return label
     }()
     
+    lazy var leaderLabel: UILabel = {
+        let label = UILabel.newAutoLayout()
+        //label.backgroundColor = .yellow
+        label.text = "Leader"
+        label.textColor = .orange
+        label.textAlignment = .left
+        label.font = UIFont(name: "Montserrat-Bold", size: 16)
+        label.numberOfLines = 1
+        return label
+    }()
+    
     lazy var genderCountryLabel: UILabel = {
         let label = UILabel.newAutoLayout()
         //label.backgroundColor = .yellow
@@ -114,7 +125,7 @@ class DelegatesProfileView: UIView {
         //label.textAlignment = .center
         //label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Montserrat-Bold", size: 16)
-        label.numberOfLines = 3
+        label.numberOfLines = 4
         
         return label
     }()
@@ -176,6 +187,8 @@ class DelegatesProfileView: UIView {
         mainView.addSubview(starredButton)
         
         mainView.addSubview(nicknameLabel)
+        mainView.addSubview(leaderLabel)
+        
         mainView.addSubview(fullNameLabel)
         mainView.addSubview(genderCountryLabel)
         mainView.addSubview(workshopsLabel)
@@ -220,6 +233,10 @@ class DelegatesProfileView: UIView {
             
             nicknameLabel.autoPinEdge(.top, to: .bottom, of: profileImageView, withOffset:20)
             nicknameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+            
+            //leader label
+            leaderLabel.autoPinEdge(.top, to: .bottom, of: profileImageView, withOffset:25)
+            leaderLabel.autoPinEdge(.left, to: .right, of: nicknameLabel, withOffset: 10)
             
             fullNameLabel.autoPinEdge(.top, to: .bottom, of: nicknameLabel, withOffset:0)
             fullNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)

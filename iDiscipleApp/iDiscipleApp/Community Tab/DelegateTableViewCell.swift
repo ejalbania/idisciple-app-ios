@@ -33,9 +33,11 @@ class DelegateTableViewCell: UITableViewCell {
     
     lazy var delegateImageView : UIImageView = {
         
-        var image = UIImageView(image: UIImage(named: "creep"))
+        var image = UIImageView(image: UIImage(named:""))
         image.autoSetDimensions(to: CGSize(width: imageDimension, height: imageDimension))
         image.backgroundColor = .darkGray
+        
+        image.contentMode = UIImageView.ContentMode.scaleToFill
         
         image.layer.masksToBounds = false
         image.layer.cornerRadius = imageDimension/2

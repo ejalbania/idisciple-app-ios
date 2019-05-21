@@ -81,7 +81,7 @@ class MainTabBarController: UITabBarController {
             self.appHelper.dismissAlert()
             self.loadJsonFiles()
             
-            self.scheduleViewController.checkDateForTabSelection()
+            //self.scheduleViewController.checkDateForTabSelection()
             
             self.loadSchedule()
         }
@@ -179,7 +179,7 @@ class MainTabBarController: UITabBarController {
         logoButton.isEnabled = false
         navigationItem.leftBarButtonItem = logoButton
         
-        let infoButton = UIBarButtonItem(image: UIImage(named: "infoIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(openMapView(sender:)))
+        let infoButton = UIBarButtonItem(image: UIImage(named: "locIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(openMapView(sender:)))
         
         let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
         let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User

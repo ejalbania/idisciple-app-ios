@@ -38,7 +38,10 @@ class WorkshopsViewController: DownloaderViewController, UITableViewDelegate, UI
         workshopView.refreshControl.addTarget(self, action: #selector(reloadData(_:)), for: .valueChanged)
 
         //workshopView.workshopTableView.reloadData()
-        reloadTab()
+        DispatchQueue.main.async {
+            self.reloadTab()
+        }
+
         
     }
     

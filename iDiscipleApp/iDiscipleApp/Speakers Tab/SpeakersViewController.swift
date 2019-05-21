@@ -55,7 +55,10 @@ class SpeakersViewController: DownloaderViewController,  UICollectionViewDataSou
          speakersCollectionView.refreshControl.addTarget(self, action: #selector(reloadData(_:)), for: .valueChanged)
         
         //speakersCollectionView.speakerView.isHidden = true;
-        loadSpeakers()
+        DispatchQueue.main.async {
+               self.loadSpeakers()
+        }
+   
         
     }
     

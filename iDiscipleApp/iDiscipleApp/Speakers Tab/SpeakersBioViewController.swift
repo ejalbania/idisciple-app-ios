@@ -52,7 +52,7 @@ class SpeakersBioViewController: UIViewController {
             
             
             if((speakerBio?.facebook.isEmpty)!){
-                speakersBioView.socialLabel.text = "facebook.com"
+                speakersBioView.socialLabel.text = ""
             }else{
                 speakersBioView.socialLabel.text = speakerBio?.facebook
             }

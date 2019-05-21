@@ -44,7 +44,7 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         logoButton.isEnabled = false
         navigationItem.leftBarButtonItem = logoButton
         
-        let infoButton = UIBarButtonItem(image: UIImage(named: "infoIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
+        let infoButton = UIBarButtonItem(image: UIImage(named: "locIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
         infoButton.isEnabled = false
         
         let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
@@ -65,8 +65,13 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if(profile != nil){
             let imageUrl = profile!.imagePath //+ profile!.imageName
             
-            profileImageView.kf.indicatorType = .activity
-            profileImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl), placeholder: UIImage(named:"country_\(loadedUser.country)"))
+            if(imageUrl.isEmpty){
+                profileImageView.image = UIImage(named:"country_\(loadedUser.country)")
+                
+            }else{
+                profileImageView.kf.indicatorType = .activity
+                profileImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl), placeholder: UIImage(named:"country_\(loadedUser.country)"))
+            }
         }else{
             profileImageView.image = UIImage(named:"country_\(loadedUser.country)")
         }

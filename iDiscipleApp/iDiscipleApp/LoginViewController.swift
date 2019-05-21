@@ -206,7 +206,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         for (_, subJson) in jsonValue["data"] {
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "yyyy-MM-dd"
-            let dataDate = dateFormat.date(from:(subJson["profile"]["birthdate"].stringValue))!
+            
+            var dateString : String?
+            dateString = subJson["profile"]["birthdate"].stringValue
+
+            var dataDate = GlobalConstant.kDateSource_formatter.date(from: dateString!)
+            if(dataDate == nil){
+                dataDate = GlobalConstant.kDateSource_formatter.date(from: "1900-01-01")
+            }
+            
             //debugPrint("\(subJson["profile"]["birthdate"])")
             
             let user = User(userID: subJson["user_account"]["user_id"].intValue,
@@ -216,7 +224,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             lastName: subJson["profile"]["lastname"].stringValue,
                             nickName: subJson["profile"]["nickname"].stringValue,
                             mobileNo: subJson["profile"]["mobile_no"].stringValue,
-                            birthDate: dataDate,
+                            birthDate: dataDate!,
                             gender: subJson["profile"]["gender"].stringValue,
                             country: subJson["profile"]["country"].stringValue,
                             token: subJson["user_account"]["token"].stringValue)

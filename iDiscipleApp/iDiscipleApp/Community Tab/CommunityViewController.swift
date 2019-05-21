@@ -51,6 +51,15 @@ class CommunityViewController: ButtonBarPagerTabStripViewController {
         // AutoLayout
         communityView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
         
+//        DispatchQueue.main.async {
+//            self.loadCommunityData()
+//
+//            self.groupVC.familyGroupArray = self.familyGroupArray
+//            self.groupVC.profileArray = self.profileArray
+//            self.delegatesVC.familyGroupArray = self.familyGroupArray
+//            self.delegatesVC.profileArray = self.profileArray
+//        }
+        
         loadCommunityData()
         
         groupVC.familyGroupArray = familyGroupArray

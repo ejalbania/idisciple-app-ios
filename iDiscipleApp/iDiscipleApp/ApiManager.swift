@@ -76,7 +76,6 @@ class ApiManager{
     }
   }
   
-  
   //GET
   func getDataWithRequest(requestUrl: String, onSuccess: @escaping(Dictionary<String, Any>) -> Void,  onFailure: @escaping(String) -> Void){
     
@@ -153,6 +152,19 @@ class ApiManager{
     }
   }
   
-  
+//    Alamofire.download(
+//      url,
+//      method: .get,
+//      parameters: parameters,
+//      encoding: JSONEncoding.default,
+//      headers: nil,
+//      to: destination).downloadProgress(closure: { (progress) in
+//        //progress closure
+//      }).response(completionHandler: { (DefaultDownloadResponse) in
+//        //here you able to access the DefaultDownloadResponse
+//        //result closure
+//      })
+//    
+//  }
   
 }

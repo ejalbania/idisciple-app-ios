@@ -21,8 +21,8 @@ enum MediaType {
   }
   
   static func getFrom(string: String) -> MediaType {
-    switch string {
-    case "PDF": return .pdf
+    switch string.uppercased() {
+    case "PDF", "FILE": return .pdf
     case "VIDEO": return .video
     case "WEB": return .web
     default: return .undefined(string)

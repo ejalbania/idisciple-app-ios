@@ -320,7 +320,7 @@ class MainTabBarController: UITabBarController {
             debugPrint("\(error)")
         })
     }
-    
+  
   func loadJsonData(urlString: String, fileName: String){
     
     //Check if speaker.json exists
@@ -364,7 +364,7 @@ class MainTabBarController: UITabBarController {
     }
     
   }
-    
+  
     func loadProfiles(){
         
         profileArray.removeAll()

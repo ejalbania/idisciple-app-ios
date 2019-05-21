@@ -109,8 +109,8 @@ class ScheduleListViewController: DownloaderViewController, UITableViewDelegate,
             }
             
             //reloadTables
-            self.scheduleListView.scheduleListTableView.reloadData()
-            
+//            self.scheduleListView.scheduleListTableView.reloadData()
+          
         }else{
             debugPrint("\(filename) not found!")
         }

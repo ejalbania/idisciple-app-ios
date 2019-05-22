@@ -27,7 +27,20 @@ class ScheduleListView: UIView {
     lazy var scheduleListTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
         tableView.backgroundColor = .white
-        tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height-162 - 60))
+        
+        var tabOffset = 0
+        debugPrint(self.screenSize.height)
+        //896 xs, xr,
+        //812 x, xs
+        //736 6+
+        //667 6
+        if(screenSize.height >= 812){
+            tabOffset = 226
+        }else{
+            tabOffset = 166
+        }
+        
+        tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height - CGFloat(tabOffset)))
         tableView.separatorStyle = .none
         
         tableView.rowHeight = 120

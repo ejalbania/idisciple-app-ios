@@ -436,9 +436,14 @@ class MainTabBarController: UITabBarController {
                     
                     let formatter = DateFormatter()
                     formatter.dateFormat = "h:mm a"
-
-                    let date1 = formatter.date(from: stringTime)!
-                    let date2 = formatter.date(from: schedule.schedStartTime)!
+                    
+                    debugPrint(schedule.schedStartTime)
+                    
+                    guard let date1 = formatter.date(from: stringTime),
+                        let date2 = formatter.date(from: schedule.schedStartTime) else {
+                            break
+                            
+                    }
 
                     let elapsedTime = date2.timeIntervalSince(date1)
 

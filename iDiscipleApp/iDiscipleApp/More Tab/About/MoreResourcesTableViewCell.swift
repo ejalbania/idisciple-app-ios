@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import SwiftyJSON
+import WebKit
 
 protocol MoreResourcesTableViewCellDelegate {
   func didSelectOptions()
@@ -20,6 +21,13 @@ class MoreResourcesTableViewCell: UITableViewCell {
   @IBOutlet fileprivate weak var resource_titleLabel: UILabel!
   @IBOutlet fileprivate weak var resource_descLabel: UILabel!
   @IBOutlet fileprivate weak var resource_metaDataLabel: UILabel!
+  fileprivate(set) var url: String = ""
+  fileprivate(set) var mediaType: MediaType = .undefined("")
+  fileprivate(set) var fileSize: Double?
+  
+  var resource_name: String {
+    return self.resource_titleLabel.text ?? ""
+  }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
@@ -31,8 +39,6 @@ class MoreResourcesTableViewCell: UITableViewCell {
     super.layoutSubviews()
     
   }
-  
-  
   
   override func layoutSublayers(of layer: CALayer) {
     super.layoutSublayers(of: layer)
@@ -58,12 +64,20 @@ extension MoreResourcesTableViewCell {
   func setResources(type: MediaType, fileSize: Double = 0.00) -> Self {
     var metaLabelText: String {
       switch type {
-      case .pdf: return "\(type.stringValue) - \(fileSize.stringValue)"
-      case .video, .web, .undefined: return "\(type.stringValue)"
+      case .pdf: return type.stringValue.uppercased()
+      case .video: return "YOUTUBE"
+      case .web, .undefined: return "\(type.stringValue)"
       }
     }
     
+    self.mediaType = type
     self.resource_metaDataLabel.text = metaLabelText
+    return self
+  }
+  
+  @discardableResult
+  func setResources(url: String) -> Self {
+    self.url = url
     return self
   }
   
@@ -72,6 +86,7 @@ extension MoreResourcesTableViewCell {
     return self.setResources(title: resource.title)
       .setResources(description: resource.description)
       .setResources(type: resource.type, fileSize: resource.size)
+      .setResources(url: resource.url)
   }
 }
 

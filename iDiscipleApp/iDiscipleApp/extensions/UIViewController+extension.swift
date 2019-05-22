@@ -8,4 +8,10 @@
 import UIKit.UIViewController
 
 // Builders
-extension UIViewController {  }
+extension UIViewController {
+  @discardableResult
+  func set(title: String) -> Self {
+    self.title = title
+    return self
+  }
+}

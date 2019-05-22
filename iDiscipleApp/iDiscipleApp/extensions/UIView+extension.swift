@@ -27,6 +27,23 @@ extension UIView {
     self.layer.shouldRasterize = true
     self.layer.rasterizationScale = UIScreen.main.scale
   }
+  
+  @discardableResult
+  func enableClipToBounds(state: Bool = true) -> Self {
+    self.clipsToBounds = state
+    return self
+  }
+  
+  @discardableResult
+  func setBorder(width: CGFloat, color: UIColor = UIColor.darkGray) -> Self {
+    self.layer.borderColor = color.cgColor
+    self.layer.borderWidth = width
+    return self
+  }
+  
+  @discardableResult
+  func setCorner(radius: CGFloat) -> Self {
+    self.layer.cornerRadius = radius
+    return self
+  }
 }
-
-

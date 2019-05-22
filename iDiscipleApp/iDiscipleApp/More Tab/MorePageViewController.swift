@@ -79,7 +79,7 @@ extension MorePageViewController: UIPageViewControllerDataSource {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
     guard let index = self.tabs.firstIndex(of: viewController) else { return nil }
     
-    return (index++ >  self.pageCount) ? nil: self.tabs[index++]
+    return (index++ >=  self.pageCount) ? nil: self.tabs[index++]
   }
 }
 

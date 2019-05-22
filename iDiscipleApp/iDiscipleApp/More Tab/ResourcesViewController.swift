@@ -14,11 +14,12 @@ class ResourcesViewController: UIViewController {
   @IBOutlet private weak var resourcesTableView: UITableView!
   private var resources = ResourcesRepository()
   fileprivate var resources_onQueue: [ResourceModel] = []
+  @IBOutlet weak var searchTextField: UITextField!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.resources_onQueue = self.resources.list
-    
+    self.searchTextField.delegate = self
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -131,8 +132,13 @@ extension ResourcesViewController: UITableViewDelegate {
       self.present(nav, animated: true, completion: nil)
     default: break
     }
-    
   }
+}
+
+extension ResourcesViewController: UITextFieldDelegate {
+  
+  
+  
 }
 
 class iDiscipleYouTubePlayer: UIViewController {

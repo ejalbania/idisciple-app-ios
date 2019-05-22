@@ -80,7 +80,7 @@ class MainTabBarController: UITabBarController {
             self.appHelper.dismissAlert()
             self.loadJsonFiles()
             
-            self.scheduleViewController.checkDateForTabSelection()
+            //self.scheduleViewController.checkDateForTabSelection()
             
             self.loadSchedule()
         }
@@ -176,7 +176,7 @@ class MainTabBarController: UITabBarController {
         logoButton.isEnabled = false
         navigationItem.leftBarButtonItem = logoButton
         
-        let infoButton = UIBarButtonItem(image: UIImage(named: "infoIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(openMapView(sender:)))
+        let infoButton = UIBarButtonItem(image: UIImage(named: "locIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(openMapView(sender:)))
         
         let data  = UserDefaults.standard.object(forKey: "userProfile") as! Data
         let loadedUser = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
@@ -309,44 +309,62 @@ class MainTabBarController: UITabBarController {
                 
                 let familyGroupPathFile = jsonValue["data"]["assets"]["family_groups"]["path_file"].stringValue
                 self.loadJsonData(urlString: familyGroupPathFile, fileName: "family_groups")
-                
-//                debugPrint("\(jsonValue["data"]["assets"]["resources"])")
-//                debugPrint("\(jsonValue["data"]["assets"]["about"])")
+              
+              let resourcesFilePath = jsonValue["data"]["assets"]["resources"]["path_file"].stringValue
+              self.loadJsonData(urlString: resourcesFilePath, fileName: "resources")
+              
+              let aboutFilePath = jsonValue["data"]["assets"]["about"]["path_file"].stringValue
+              self.loadJsonData(urlString: aboutFilePath, fileName: "about")
             }
         }, onFailure: { error in
             debugPrint("\(error)")
         })
     }
+  
+  func loadJsonData(urlString: String, fileName: String){
     
-    func loadJsonData(urlString: String, fileName: String){
+    //Check if speaker.json exists
+    //let testRetrieve = JSONCache.getOptional(fileName, as: JSON.self)
+    //if((testRetrieve) == nil){
+    //save
+    ApiManager.sharedInstance.getDataFromJson(url: urlString, onSuccess: { json in
+      DispatchQueue.main.async {
+        let jsonValue = JSON(json)
         
-        //Check if speaker.json exists
-        //let testRetrieve = JSONCache.getOptional(fileName, as: JSON.self)
-        //if((testRetrieve) == nil){
-            //save
-            ApiManager.sharedInstance.getDataFromJson(url: urlString, onSuccess: { json in
-                DispatchQueue.main.async {
-                    
-                    let jsonValue = JSON(json)
-                    JSONCache.set(jsonValue, as: fileName)
-                    
-                }
-            }, onFailure: { error in
-                debugPrint("\(error)")
-            })
-        //}
-        
-        if(fileName == "speakers"){
-            self.speakersViewController.loadSpeakers()
+        if fileName == "resources",
+          let items = jsonValue[0]["data"].array {
+          let resources = ResourcesRepository().flush()
+          
+          items.forEach { resources.add(model: ResourceModel(json: $0)) }
+          
+          resources.save()
+          
+        } else if fileName == "about",
+          let items = jsonValue[0]["data"].array {
+          let abouts = AboutRepository().flush()
+          items.forEach { abouts.add(model: AboutModel(json: $0)) }
+          abouts.save()
+        } else {
+          JSONCache.set(jsonValue, as: fileName)
         }
         
-        //Check if profile
-        if(fileName == "profile"){
-            loadProfiles()
-        }
-        
+      }
+    }, onFailure: { error in
+      debugPrint("\(error)")
+    })
+    //}
+    
+    if(fileName == "speakers"){
+      self.speakersViewController.loadSpeakers()
     }
     
+    //Check if profile
+    if(fileName == "profile"){
+      loadProfiles()
+    }
+    
+  }
+  
     func loadProfiles(){
         
         profileArray.removeAll()

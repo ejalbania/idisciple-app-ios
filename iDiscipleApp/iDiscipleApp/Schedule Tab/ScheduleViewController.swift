@@ -56,7 +56,15 @@ class ScheduleViewController: ButtonBarPagerTabStripViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        checkDateForTabSelection()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            self.checkDateForTabSelection()
+//        }
+        
+//        DispatchQueue.main.async {
+//            self.checkDateForTabSelection()
+//        }
+        //day1VC.loadSchedule()
+        
     }
     
     func checkDateForTabSelection(){

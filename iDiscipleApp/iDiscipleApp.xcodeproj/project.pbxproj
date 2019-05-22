@@ -86,7 +86,7 @@
 		B05C49DD227498E700882D65 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05C49DC227498E700882D65 /* More.storyboard */; };
 		B05C49DF22749AE900882D65 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49DE22749AE900882D65 /* ResourcesViewController.swift */; };
 		B05C49E22274B71500882D65 /* iDisciple+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49E12274B71500882D65 /* iDisciple+Colors.swift */; };
-		B05C49E62274CCDA00882D65 /* iDiscipile+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49E52274CCDA00882D65 /* iDiscipile+Storyboard.swift */; };
+		B05C49E62274CCDA00882D65 /* iDisciple+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49E52274CCDA00882D65 /* iDisciple+Storyboard.swift */; };
 		B05C49EB2274D6A000882D65 /* iDisciple_class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49EA2274D6A000882D65 /* iDisciple_class.swift */; };
 		B05C49ED2274DAA500882D65 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49EC2274DAA500882D65 /* UIViewController+extension.swift */; };
 		B05C49EF2274DB6700882D65 /* UITabBar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49EE2274DB6700882D65 /* UITabBar+extension.swift */; };
@@ -96,12 +96,20 @@
 		B05C49FA2274EFDA00882D65 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C49F92274EFDA00882D65 /* SocialViewController.swift */; };
 		B063D32C228275DA0000974A /* MoreResourcesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D32A228275DA0000974A /* MoreResourcesTableViewCell.swift */; };
 		B063D32D228275DA0000974A /* MoreResourcesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B063D32B228275DA0000974A /* MoreResourcesTableViewCell.xib */; };
+		B0657F6B22944D5600B6A567 /* FileManager+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0657F6A22944D5600B6A567 /* FileManager+extension.swift */; };
+		B0657F6D2294752000B6A567 /* UINavigationController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0657F6C2294752000B6A567 /* UINavigationController+extension.swift */; };
+		B0657F6F22947F3200B6A567 /* iDisciple+PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0657F6E22947F3200B6A567 /* iDisciple+PDFViewer.swift */; };
+		B0657F7122948ADC00B6A567 /* AutoLayoutConstraint+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0657F7022948ADC00B6A567 /* AutoLayoutConstraint+extension.swift */; };
 		B066070122896867002B8DF7 /* iDisciple+constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066070022896867002B8DF7 /* iDisciple+constants.swift */; };
 		B066070422896F69002B8DF7 /* ContentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066070322896F69002B8DF7 /* ContentAPI.swift */; };
 		B066070622898659002B8DF7 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066070522898659002B8DF7 /* GlobalVariables.swift */; };
 		B0782BEF22898B13002352B8 /* MoreResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0782BEE22898B13002352B8 /* MoreResourceViewModel.swift */; };
 		B0782BF222898C3C002352B8 /* ContentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0782BF122898C3C002352B8 /* ContentAdapter.swift */; };
 		B097930E229183D9001DCCFB /* AboutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B097930D229183D9001DCCFB /* AboutRepository.swift */; };
+		B09CD6A62294A3BC007481B7 /* UIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09CD6A52294A3BC007481B7 /* UIActivityIndicatorView.swift */; };
+		B09CD6A82294A40C007481B7 /* iDisciple+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09CD6A72294A40C007481B7 /* iDisciple+ActivityIndicator.swift */; };
+		B0C1023922939B6E00EB0806 /* iDiscipleUISearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1023822939B6E00EB0806 /* iDiscipleUISearchView.swift */; };
+		B0C1023C22939B9B00EB0806 /* iDiscipleUISearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C1023B22939B9B00EB0806 /* iDiscipleUISearchView.xib */; };
 		B0D31BBE22918C210087AC91 /* RepositoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D31BBD22918C210087AC91 /* RepositoryList.swift */; };
 		CD9348F88D123BB8CF2AC825 /* Pods_iDiscipleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6343CB11802AB33AB5355D1D /* Pods_iDiscipleApp.framework */; };
 /* End PBXBuildFile section */
@@ -191,7 +199,7 @@
 		B05C49DC227498E700882D65 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		B05C49DE22749AE900882D65 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		B05C49E12274B71500882D65 /* iDisciple+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iDisciple+Colors.swift"; sourceTree = "<group>"; };
-		B05C49E52274CCDA00882D65 /* iDiscipile+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "iDiscipile+Storyboard.swift"; path = "extensions/iDiscipile+Storyboard.swift"; sourceTree = "<group>"; };
+		B05C49E52274CCDA00882D65 /* iDisciple+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "iDisciple+Storyboard.swift"; path = "extensions/iDisciple+Storyboard.swift"; sourceTree = "<group>"; };
 		B05C49EA2274D6A000882D65 /* iDisciple_class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDisciple_class.swift; sourceTree = "<group>"; };
 		B05C49EC2274DAA500882D65 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		B05C49EE2274DB6700882D65 /* UITabBar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+extension.swift"; sourceTree = "<group>"; };
@@ -201,6 +209,10 @@
 		B05C49F92274EFDA00882D65 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		B063D32A228275DA0000974A /* MoreResourcesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MoreResourcesTableViewCell.swift; path = About/MoreResourcesTableViewCell.swift; sourceTree = "<group>"; };
 		B063D32B228275DA0000974A /* MoreResourcesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MoreResourcesTableViewCell.xib; path = About/MoreResourcesTableViewCell.xib; sourceTree = "<group>"; };
+		B0657F6A22944D5600B6A567 /* FileManager+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+extension.swift"; sourceTree = "<group>"; };
+		B0657F6C2294752000B6A567 /* UINavigationController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+extension.swift"; sourceTree = "<group>"; };
+		B0657F6E22947F3200B6A567 /* iDisciple+PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iDisciple+PDFViewer.swift"; sourceTree = "<group>"; };
+		B0657F7022948ADC00B6A567 /* AutoLayoutConstraint+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayoutConstraint+extension.swift"; sourceTree = "<group>"; };
 		B066070022896867002B8DF7 /* iDisciple+constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iDisciple+constants.swift"; sourceTree = "<group>"; };
 		B066070322896F69002B8DF7 /* ContentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAPI.swift; sourceTree = "<group>"; };
 		B066070522898659002B8DF7 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -208,6 +220,10 @@
 		B0782BF122898C3C002352B8 /* ContentAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAdapter.swift; sourceTree = "<group>"; };
 		B097930B22916408001DCCFB /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		B097930D229183D9001DCCFB /* AboutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutRepository.swift; sourceTree = "<group>"; };
+		B09CD6A52294A3BC007481B7 /* UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorView.swift; sourceTree = "<group>"; };
+		B09CD6A72294A40C007481B7 /* iDisciple+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iDisciple+ActivityIndicator.swift"; sourceTree = "<group>"; };
+		B0C1023822939B6E00EB0806 /* iDiscipleUISearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDiscipleUISearchView.swift; sourceTree = "<group>"; };
+		B0C1023B22939B9B00EB0806 /* iDiscipleUISearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iDiscipleUISearchView.xib; sourceTree = "<group>"; };
 		B0D31BBD22918C210087AC91 /* RepositoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +317,7 @@
 		733CA224214757AA0045A44A /* iDiscipleApp */ = {
 			isa = PBXGroup;
 			children = (
+				B0C1023A22939B8000EB0806 /* reusable views */,
 				B0782BF022898C2C002352B8 /* adapters */,
 				B042612F228964D40094BFCD /* models */,
 				B05C49E02274B6F900882D65 /* utilities */,
@@ -418,6 +435,7 @@
 		B05C49E32274CCA400882D65 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B0657F6A22944D5600B6A567 /* FileManager+extension.swift */,
 				B042612C228839720094BFCD /* DataTypes */,
 				B05C49E42274CCB800882D65 /* UIKit */,
 			);
@@ -432,6 +450,9 @@
 				B05C49F02274DC2800882D65 /* UITabBarItem+extension.swift */,
 				B020988C2284297100D94EBE /* UITableView+extension.swift */,
 				B0426125228676620094BFCD /* UIView+extension.swift */,
+				B0657F6C2294752000B6A567 /* UINavigationController+extension.swift */,
+				B0657F7022948ADC00B6A567 /* AutoLayoutConstraint+extension.swift */,
+				B09CD6A52294A3BC007481B7 /* UIActivityIndicatorView.swift */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -441,8 +462,10 @@
 			children = (
 				B05C49EA2274D6A000882D65 /* iDisciple_class.swift */,
 				B05C49E12274B71500882D65 /* iDisciple+Colors.swift */,
-				B05C49E52274CCDA00882D65 /* iDiscipile+Storyboard.swift */,
+				B05C49E52274CCDA00882D65 /* iDisciple+Storyboard.swift */,
 				B066070022896867002B8DF7 /* iDisciple+constants.swift */,
+				B0657F6E22947F3200B6A567 /* iDisciple+PDFViewer.swift */,
+				B09CD6A72294A40C007481B7 /* iDisciple+ActivityIndicator.swift */,
 			);
 			name = "iDisciple classes";
 			sourceTree = "<group>";
@@ -488,6 +511,23 @@
 				B0782BF122898C3C002352B8 /* ContentAdapter.swift */,
 			);
 			name = adapters;
+			sourceTree = "<group>";
+		};
+		B0C1023A22939B8000EB0806 /* reusable views */ = {
+			isa = PBXGroup;
+			children = (
+				B0C1023D22939BAB00EB0806 /* iDiscipleUISearchView */,
+			);
+			name = "reusable views";
+			sourceTree = "<group>";
+		};
+		B0C1023D22939BAB00EB0806 /* iDiscipleUISearchView */ = {
+			isa = PBXGroup;
+			children = (
+				B0C1023B22939B9B00EB0806 /* iDiscipleUISearchView.xib */,
+				B0C1023822939B6E00EB0806 /* iDiscipleUISearchView.swift */,
+			);
+			path = iDiscipleUISearchView;
 			sourceTree = "<group>";
 		};
 		FE0BE9D4DBE3B6AEAD5A9383 /* Pods */ = {
@@ -560,6 +600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73FA95AE216B40EC00D46F6B /* Montserrat-Black.ttf in Resources */,
+				B0C1023C22939B9B00EB0806 /* iDiscipleUISearchView.xib in Resources */,
 				B063D32D228275DA0000974A /* MoreResourcesTableViewCell.xib in Resources */,
 				B05C49DD227498E700882D65 /* More.storyboard in Resources */,
 				73FA95AF216B40EC00D46F6B /* Montserrat-Bold.ttf in Resources */,
@@ -653,6 +694,7 @@
 				1D530CF822773AA700EAB306 /* Speaker.swift in Sources */,
 				1DED0FF4226EFAF80094E0F6 /* GroupsViewController.swift in Sources */,
 				1D530CDE22733B5100EAB306 /* ScheduleListViewController.swift in Sources */,
+				B0657F7122948ADC00B6A567 /* AutoLayoutConstraint+extension.swift in Sources */,
 				1D530CF42276EAFB00EAB306 /* YourProfileViewController.swift in Sources */,
 				1D33CC6E21E8DD6000CF2A8E /* SpeakersViewController.swift in Sources */,
 				1D530D00227D691A00EAB306 /* Schedule.swift in Sources */,
@@ -660,6 +702,7 @@
 				1DED0FED226EC0FA0094E0F6 /* ScheduleView.swift in Sources */,
 				1D530D1222841E4C00EAB306 /* MapArea.swift in Sources */,
 				1D33CC86220F2BC800CF2A8E /* UIView+AppHelper.swift in Sources */,
+				B0657F6F22947F3200B6A567 /* iDisciple+PDFViewer.swift in Sources */,
 				B05C49ED2274DAA500882D65 /* UIViewController+extension.swift in Sources */,
 				B05C49DF22749AE900882D65 /* ResourcesViewController.swift in Sources */,
 				1D368F2321DD0DDA00E59C6F /* MainTabBarController.swift in Sources */,
@@ -679,7 +722,10 @@
 				B05C49E22274B71500882D65 /* iDisciple+Colors.swift in Sources */,
 				73FA95A8216B0AC900D46F6B /* ForgotPasswordView.swift in Sources */,
 				733CA228214757AA0045A44A /* ViewController.swift in Sources */,
+				B0C1023922939B6E00EB0806 /* iDiscipleUISearchView.swift in Sources */,
+				B09CD6A82294A40C007481B7 /* iDisciple+ActivityIndicator.swift in Sources */,
 				73FA95B6216EDB1000D46F6B /* DashboardView.swift in Sources */,
+				B0657F6B22944D5600B6A567 /* FileManager+extension.swift in Sources */,
 				B0426126228676620094BFCD /* UIView+extension.swift in Sources */,
 				1D530CFC227AF06000EAB306 /* Workshop.swift in Sources */,
 				1DB909EC21873724000DF8B7 /* User.swift in Sources */,
@@ -694,6 +740,7 @@
 				B042612B228839580094BFCD /* Double+extension.swift in Sources */,
 				B063D32C228275DA0000974A /* MoreResourcesTableViewCell.swift in Sources */,
 				1D33CC7E21FF329800CF2A8E /* WorkshopsViewController.swift in Sources */,
+				B0657F6D2294752000B6A567 /* UINavigationController+extension.swift in Sources */,
 				B05C49FA2274EFDA00882D65 /* SocialViewController.swift in Sources */,
 				1D530D0822817C3000EAB306 /* DownloaderViewController.swift in Sources */,
 				1D530CF02274827600EAB306 /* DelegatesProfileView.swift in Sources */,
@@ -711,7 +758,7 @@
 				1D530CF62276ED3500EAB306 /* YourProfileView.swift in Sources */,
 				733CA23A214758880045A44A /* HomeView.swift in Sources */,
 				733CA226214757AA0045A44A /* AppDelegate.swift in Sources */,
-				B05C49E62274CCDA00882D65 /* iDiscipile+Storyboard.swift in Sources */,
+				B05C49E62274CCDA00882D65 /* iDisciple+Storyboard.swift in Sources */,
 				1D33CC802200009100CF2A8E /* WorkshopsTableViewCell.swift in Sources */,
 				B05C49F12274DC2800882D65 /* UITabBarItem+extension.swift in Sources */,
 				73FA95B8216EDB3200D46F6B /* DashboardViewController.swift in Sources */,
@@ -720,6 +767,7 @@
 				B0426128228838DD0094BFCD /* MediaTypes.swift in Sources */,
 				B097930E229183D9001DCCFB /* AboutRepository.swift in Sources */,
 				B05C49EB2274D6A000882D65 /* iDisciple_class.swift in Sources */,
+				B09CD6A62294A3BC007481B7 /* UIActivityIndicatorView.swift in Sources */,
 				73012A53215C819000A90BAB /* LoginViewController.swift in Sources */,
 				1D33CC7221EF65C700CF2A8E /* SpeakersCollectionView.swift in Sources */,
 				1D530CFE227C6C5D00EAB306 /* JSONCache.swift in Sources */,
@@ -871,8 +919,8 @@
 			baseConfigurationReference = 5EA4A24F6EC0E790B38AE5AB /* Pods-iDiscipleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arvin Jay Sumalbag (S399UC4J99)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DA9YLAH7L4;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -882,7 +930,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.idiscipleph.iDisciplePhApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = iDisciplePhAppDevelopmentProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -893,7 +941,8 @@
 			baseConfigurationReference = 8A677C7C27A2039E276CE408 /* Pods-iDiscipleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DA9YLAH7L4;
 				INFOPLIST_FILE = iDiscipleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -903,7 +952,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.idiscipleph.iDisciplePhApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = iDisciplePhAppDistributionProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

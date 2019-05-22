@@ -48,6 +48,12 @@ class ScheduleListViewController: DownloaderViewController, UITableViewDelegate,
         //getSystemTime()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         //loadSchedule()
+    }
+    
     func getSystemTime(){
         
         debugPrint("\(GlobalConstant.kTimeSource_formatter.string(from: Date()))")
@@ -108,9 +114,10 @@ class ScheduleListViewController: DownloaderViewController, UITableViewDelegate,
                 }
             }
             
+            //debugPrint(self.scheduleListView.scheduleListTableView)
             //reloadTables
             self.scheduleListView.scheduleListTableView.reloadData()
-            
+          
         }else{
             debugPrint("\(filename) not found!")
         }

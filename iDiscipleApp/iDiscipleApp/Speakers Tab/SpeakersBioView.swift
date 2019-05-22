@@ -12,7 +12,7 @@ class SpeakersBioView: UIView {
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
-    let imageDimension = CGFloat(120)
+    let imageDimension = CGFloat(150)
     var adjustTextView = false
 
     lazy var overlayBackgroundView: UIView = {
@@ -165,9 +165,9 @@ class SpeakersBioView: UIView {
             speakersBioLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             
             speakerImageView.autoAlignAxis(toSuperviewAxis: .vertical)
-            speakerImageView.autoPinEdge(.top, to: .bottom, of: speakersBioLabel, withOffset: imageDimension/3)
+            speakerImageView.autoPinEdge(.top, to: .bottom, of: speakersBioLabel, withOffset: imageDimension/3 - 20)
             
-            speakerNameLabel.autoPinEdge(.top, to: .bottom, of: speakerImageView, withOffset:imageDimension/4)
+            speakerNameLabel.autoPinEdge(.top, to: .bottom, of: speakerImageView, withOffset:imageDimension/4 - 20)
             speakerNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
             speakerNameLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
             //speakerNameLabel.autoAlignAxis(toSuperviewAxis: .vertical)

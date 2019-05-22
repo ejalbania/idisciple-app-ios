@@ -28,7 +28,7 @@ class CommunityView: UIView {
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView.newAutoLayout()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.white
         //view.autoSetDimension(.height, toSize: screenSize.height)
         
         return view

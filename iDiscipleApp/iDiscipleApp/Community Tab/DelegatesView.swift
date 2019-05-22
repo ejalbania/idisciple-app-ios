@@ -16,7 +16,7 @@ class DelegatesView: UIView {
     
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         view.autoSetDimension(.height, toSize: screenSize.height)
         
         return view
@@ -58,7 +58,20 @@ class DelegatesView: UIView {
     lazy var delegatesTableView : UITableView = {
         let tableView = UITableView.newAutoLayout()
         tableView.backgroundColor = .white
-        tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height-(162+70)))
+        
+        var tabOffset = 0
+        debugPrint(self.screenSize.height)
+        //896 xs, xr,
+        //812 x, xs
+        //736 6+
+        //667 6
+        if(screenSize.height >= 812){
+            tabOffset = 226
+        }else{
+            tabOffset = 166
+        }
+        
+        tableView.autoSetDimensions(to: CGSize(width: screenSize.width, height: screenSize.height-(CGFloat(tabOffset)+70)))
         tableView.separatorStyle = .none
         
         tableView.rowHeight = 100

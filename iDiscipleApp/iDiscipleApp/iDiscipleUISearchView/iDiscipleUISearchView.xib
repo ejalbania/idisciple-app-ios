@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iDiscipleUISearchView" customModule="iDiscipleApp" customModuleProvider="target">
+            <connections>
+                <outlet property="searchField" destination="eiL-vo-Qri" id="pUw-cZ-e4w"/>
+                <outlet property="search_placeholder" destination="F7A-QN-iVM" id="ZtJ-Mw-KNE"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7A-QN-iVM">
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9l-a9-eSm">
+                            <rect key="frame" x="85.5" y="0.0" width="109" height="40"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_regular" translatesAutoresizingMaskIntoConstraints="NO" id="lRj-Fl-Wfg">
+                                    <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="lRj-Fl-Wfg" secondAttribute="height" id="dBd-dn-WqS"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlL-Ro-heA">
+                                    <rect key="frame" x="30" y="0.0" width="79" height="40"/>
+                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-An-Nef">
+                                    <rect key="frame" x="-85.5" y="5" width="280" height="40"/>
+                                    <connections>
+                                        <action selector="didTap_searchBtn:" destination="-1" eventType="touchUpInside" id="suP-AP-6RU"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="lRj-Fl-Wfg" firstAttribute="leading" secondItem="liY-BJ-1a5" secondAttribute="leading" id="50S-LC-Mou"/>
+                                <constraint firstAttribute="bottom" secondItem="FlL-Ro-heA" secondAttribute="bottom" id="AlW-Lz-jY3"/>
+                                <constraint firstItem="FlL-Ro-heA" firstAttribute="leading" secondItem="lRj-Fl-Wfg" secondAttribute="trailing" constant="10" id="ODk-uF-kpG"/>
+                                <constraint firstItem="FlL-Ro-heA" firstAttribute="top" secondItem="q9l-a9-eSm" secondAttribute="top" id="ShU-tX-RhT"/>
+                                <constraint firstAttribute="trailing" secondItem="FlL-Ro-heA" secondAttribute="trailing" id="eE6-wD-jrS"/>
+                                <constraint firstItem="lRj-Fl-Wfg" firstAttribute="height" secondItem="FlL-Ro-heA" secondAttribute="height" multiplier="0.5" id="gXH-aV-rk3"/>
+                                <constraint firstItem="liY-BJ-1a5" firstAttribute="leading" secondItem="tQB-An-Nef" secondAttribute="leading" constant="85.5" id="nf5-cs-8wt"/>
+                                <constraint firstItem="lRj-Fl-Wfg" firstAttribute="centerY" secondItem="FlL-Ro-heA" secondAttribute="centerY" id="qzC-qo-azz"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="liY-BJ-1a5"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="q9l-a9-eSm" firstAttribute="top" secondItem="F7A-QN-iVM" secondAttribute="top" id="QMr-6W-u8N"/>
+                        <constraint firstItem="tQB-An-Nef" firstAttribute="centerX" secondItem="FQa-bA-dfl" secondAttribute="centerX" id="V9K-KP-Qpe"/>
+                        <constraint firstItem="tQB-An-Nef" firstAttribute="width" secondItem="F7A-QN-iVM" secondAttribute="width" id="ac9-Dw-vmn"/>
+                        <constraint firstAttribute="bottom" secondItem="q9l-a9-eSm" secondAttribute="bottom" id="kSK-5R-Qgw"/>
+                        <constraint firstItem="q9l-a9-eSm" firstAttribute="centerX" secondItem="FQa-bA-dfl" secondAttribute="centerX" id="kxx-vo-tC5"/>
+                        <constraint firstItem="tQB-An-Nef" firstAttribute="centerY" secondItem="FQa-bA-dfl" secondAttribute="centerY" id="l1z-he-6my"/>
+                        <constraint firstItem="tQB-An-Nef" firstAttribute="height" secondItem="F7A-QN-iVM" secondAttribute="height" id="tEG-Ep-tYs"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="FQa-bA-dfl"/>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-vo-Qri">
+                    <rect key="frame" x="2" y="10" width="276" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="right" secondItem="eiL-vo-Qri" secondAttribute="rightMargin" constant="10" id="18k-jV-vXO"/>
+                <constraint firstAttribute="trailing" secondItem="F7A-QN-iVM" secondAttribute="trailing" id="1gf-8w-5wY"/>
+                <constraint firstItem="F7A-QN-iVM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MFG-Ph-f9i"/>
+                <constraint firstItem="eiL-vo-Qri" firstAttribute="leftMargin" secondItem="iN0-l3-epB" secondAttribute="left" constant="10" id="MKu-QC-UY8"/>
+                <constraint firstItem="F7A-QN-iVM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NpP-Uh-Qre"/>
+                <constraint firstAttribute="bottom" secondItem="F7A-QN-iVM" secondAttribute="bottom" id="d4H-QJ-jEc"/>
+                <constraint firstItem="eiL-vo-Qri" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="zKl-Fz-hPb"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_search_regular" width="283.5" height="283.5"/>
+    </resources>
+</document>

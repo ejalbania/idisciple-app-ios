@@ -43,7 +43,9 @@ class ResourcesViewController: UIViewController {
 
 // Private functions
 fileprivate extension ResourcesViewController {
+
   func setupTableView() {
+    self.resourcesTableView.backgroundColor = .white
     resourcesTableView.registerNib(cell: "MoreResourcesTableViewCell")
   }
   
@@ -101,7 +103,7 @@ extension ResourcesViewController: UITableViewDataSource {
     }
     
     let resource = self.resources_onQueue[indexPath.row]
-    
+    cell.backgroundColor = .white
     cell.set(resource: resource)
     
     return cell
@@ -135,11 +137,7 @@ extension ResourcesViewController: UITableViewDelegate {
   }
 }
 
-extension ResourcesViewController: UITextFieldDelegate {
-  
-  
-  
-}
+extension ResourcesViewController: UITextFieldDelegate { }
 
 class iDiscipleYouTubePlayer: UIViewController {
   

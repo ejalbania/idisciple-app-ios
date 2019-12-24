@@ -44,7 +44,7 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 8.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Kingfisher
     - ModelMapper
@@ -74,4 +74,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f5b82db6518e9ebdd1262d13d2e5074ede804423
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

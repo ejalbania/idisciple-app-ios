@@ -324,7 +324,7 @@ class YourProfileViewController: DownloaderViewController, UINavigationControlle
                 return countrySearch.countryID == Int(userProfile!.country)
             }))
             
-            yourProfileView.genderCountryLabel.text = "\((userProfile?.gender)!), \((country?.countryName)!)"
+            yourProfileView.genderCountryLabel.text = "\((userProfile?.gender) ?? ""), \((country?.countryName) ?? "Philippines")"
             
             //update workshops here
             let workshop1 = workshopArray.first(where: ({ (workshopSearch: Workshop) -> Bool in

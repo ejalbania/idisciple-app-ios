@@ -16,7 +16,8 @@ class AboutViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    self.view.backgroundColor = .white
+    self.tableView.backgroundColor = .white
     self.tableView.delegate = self
     self.tableView.dataSource = self
   }
@@ -41,7 +42,9 @@ extension AboutViewController: UITableViewDataSource {
     }
     
     let about = self.abouts.list[indexPath.row]
-    
+
+    cell.backgroundColor = .white
+
     if let titleLabel = cell.viewWithTag(100) as? UILabel,
       let contentLabel = cell.viewWithTag(101) as? UILabel {
       titleLabel.text = about.title

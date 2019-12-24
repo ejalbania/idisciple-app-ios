@@ -13,7 +13,6 @@ class CommunityView: UIView {
     lazy var mainView: UIView = {
         let view = UIView.newAutoLayout()
         view.backgroundColor = UIColor.white
-        //view.autoSetDimension(.height, toSize: screenSize.height)
         
         return view
     }()
@@ -21,30 +20,19 @@ class CommunityView: UIView {
     lazy var buttonBarView: ButtonBarView = {
         let view = ButtonBarView(frame: CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: 40.0), collectionViewLayout: UICollectionViewFlowLayout())
         view.backgroundColor = UIColor.white
-        //view.autoSetDimension(.height, toSize: screenSize.height)
-        
+
         return view
     }()
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView.newAutoLayout()
         view.backgroundColor = UIColor.white
-        //view.autoSetDimension(.height, toSize: screenSize.height)
-        
+
         return view
     }()
     
     var shouldSetupConstraints = true
     let screenSize = UIScreen.main.bounds
-    
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
